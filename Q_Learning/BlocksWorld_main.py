@@ -10,9 +10,9 @@ env = gym.make('BlocksWorld-v1', num_blocks)
 obs = env.reset()
 
 
-Q=np.zeros([(num_blocks+1)**(num_blocks), (num_blocks+1)**2])
-learning_rate=0.1 #학습률
-lamda=0.9 #할인율
+Q=np.zeros([(num_blocks+1)**(num_blocks), (num_blocks+1)**2])#Very Large
+learning_rate=0.1 #Learning Rate
+lamda=0.9 #Discount Rate
 def integer_to_action (int_action):
 # From an integer returns the encoded format for an action
 # [block to move, destination]
