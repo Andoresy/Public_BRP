@@ -26,8 +26,8 @@ class MyBlocksWorldEnv(gym.Env):
         self.numactions = (numBlocks+1)*(numBlocks+1)
         self.last_reward = 0
     def reset(self):
-        self.start_state = [0,3,0,5,0,1,0]
-        self.goal_state = [0,1,2,3,4,5,6]
+        self.start_state = [0,3,0,5,0,1,0]#start_state, 직접 설정(추후 변경해야함)
+        self.goal_state = [0,1,2,3,4,5,6]#goal_state, 직접 설정(추후 변경해야함)
         self.state = [0,3,0,5,0,1,0]
         self.num_run = 0
         return self.get_obs()
