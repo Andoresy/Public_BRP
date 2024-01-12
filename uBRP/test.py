@@ -30,4 +30,6 @@ stackofc = stackof(1)#c가 있는 stack
 cnd_stacks = torch.where(stack_len < max_stacks, True, False) # 조건 1: H<MaxH
 cnd_stacks[stackofc] = False #조건 2: S != s(c)
 
-print(cnd_stacks)
+#print(cnd_stacks)
+
+print(torch.cat([torch.tensor([[1,2]]),torch.tensor([[1,2]])]))
