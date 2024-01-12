@@ -24,12 +24,11 @@ def select_action_GREEDY(x, algo_type="Greedy_rBRP"):
     def top(s): #top of stack
         return x[s,stack_len[s]-1]
     def tops():
-        s = torch.arange(max_stacks)
-        tps = torch.tensor([])
-        for i in s:
+        tps = []
+        for i in range(max_stacks):
             if stack_len[i] > 0:
-                tps = torch.cat([tps, torch.tensor([x[i,stack_len[i]-1]])])
-        return tps
+                tps.append(x[i,stack_len[i]-1])
+        return torch.tensor(tps)
     def stackof(c): #find stack of block c ACO: s(c)
         #c:Batch
         c_index = torch.nonzero(x == c)
@@ -74,6 +73,7 @@ def select_action_GREEDY(x, algo_type="Greedy_rBRP"):
         return torch.squeeze(cnd_stacks.nonzero(), -1)
     def tn(): # Tops that are not well located and not on Target ACO: (10)
         top_blocks = tops()
+        #print("Top_blocks", top_blocks)
         temp_tops = []
         for b in top_blocks:
             if (not well_Located(b)) and stackof(b) != target_stack:
@@ -82,6 +82,7 @@ def select_action_GREEDY(x, algo_type="Greedy_rBRP"):
     def Or(): # ACO: (12)
         Tn = tn()
         Or_ = []
+        #print("Tops",Tn)
         for c in Tn:
             Wc = well_locate_CndStacks(c)
             for w in Wc:
@@ -94,6 +95,7 @@ def select_action_GREEDY(x, algo_type="Greedy_rBRP"):
             T.append([target_stack, c_s_target])
         T = torch.tensor(T)
         Cr = torch.cat([T, Or()])
+        #print("Possible Action: ",Cr)
         best_action,best_dif = None, 999 #Best_candidateStack & initialize
         for action in Cr: #sourceStack, destStack
             sS,dS = action
@@ -125,26 +127,28 @@ def GRE_uBRP(data):
     reset(data)
     env.clear()
     while not env.all_empty():
-        
         action = select_action_GREEDY(env.x[0], "Greedy_uBRP") #Batch = 1 (문제 하나)
-        #print(action, end=" ")
+        #print("Selected Action:", action)
         env.step(action)
         cnt = cnt + 1
     #print("Greedy in uBRP steps: ", cnt)
     return cnt
-H,W = 4,5
+H,W = 10,6 # ACO 논문 기준 H X W = T X S
 rBRP_cnt = 0
 uBRP_cnt = 0
 cnt = 0
 N=H*W
-caserta_dataset = data_from_caserta(f"data{H}-{W}-.*")
+H_plus = H-1 #Hmax = 2H-1 (ACO 논문 기준)
+caserta_dataset = data_from_caserta(f"data{H}-{W}-.*",H_plus)
 for data in caserta_dataset:
     d1 = data.clone().unsqueeze(0)
     #print(d1)
     d2 = data.clone().unsqueeze(0)
     cnt+=1
-    rBRP_cnt += GRE_rBRP(d1)
-    uBRP_cnt += GRE_uBRP(d2)
+    t1 = GRE_rBRP(d1)
+    t2 = GRE_uBRP(d2)
+    rBRP_cnt += t1
+    uBRP_cnt += t2
 print(f"Test_cnt: {cnt}개")
 print(f"Avg rBRP_cnt: {rBRP_cnt/cnt}")
 print(f"Avg uBRP_cnt: {uBRP_cnt/cnt}")
