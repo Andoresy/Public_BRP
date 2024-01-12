@@ -90,10 +90,3 @@ Sample
 s0 s1 s2
 optimal action: (0 -> 2)
 """
-samplex = torch.tensor([[[5/6,3/6,0/6],[4/6,6/6,0/6],[1/6,2/6,0/6]],[[5/6,3/6,0/6],[4/6,6/6,0/6],[1/6,2/6,0/6]]]).to('cpu')
-sample_action = torch.tensor([[0,1], [0,2]]).to('cpu')
-uBRP_Env = Env('cpu', samplex)
-uBRP_Env.find_target_stack()
-uBRP_Env.clear()
-uBRP_Env.step(sample_action)
-print(uBRP_Env.x)
