@@ -133,22 +133,23 @@ def GRE_uBRP(data):
         cnt = cnt + 1
     #print("Greedy in uBRP steps: ", cnt)
     return cnt
-H,W = 10,6 # ACO 논문 기준 H X W = T X S
-rBRP_cnt = 0
-uBRP_cnt = 0
-cnt = 0
-N=H*W
-H_plus = H-1 #Hmax = 2H-1 (ACO 논문 기준)
-caserta_dataset = data_from_caserta(f"data{H}-{W}-.*",H_plus)
-for data in caserta_dataset:
-    d1 = data.clone().unsqueeze(0)
-    #print(d1)
-    d2 = data.clone().unsqueeze(0)
-    cnt+=1
-    t1 = GRE_rBRP(d1)
-    t2 = GRE_uBRP(d2)
-    rBRP_cnt += t1
-    uBRP_cnt += t2
-print(f"Test_cnt: {cnt}개")
-print(f"Avg rBRP_cnt: {rBRP_cnt/cnt}")
-print(f"Avg uBRP_cnt: {uBRP_cnt/cnt}")
+
+if __name__ == '__main__':
+    H,W = 10,6 # ACO 논문 기준 H X W = T X S
+    rBRP_cnt = 0
+    uBRP_cnt = 0
+    cnt = 0
+    N=H*W
+    H_plus = H-1 #Hmax = 2H-1 (ACO 논문 기준)
+    caserta_dataset = data_from_caserta(f"data{H}-{W}-.*",H_plus)
+    for data in caserta_dataset:
+        d1 = data.clone().unsqueeze(0)
+        #print(d1)
+        d2 = data.clone().unsqueeze(0)
+        cnt+=1
+        rBRP_cnt += GRE_rBRP(d1)
+        uBRP_cnt += GRE_uBRP(d2)
+    print(f"H x W (T x S in ACO) : {H} x {W}")
+    print(f"Test_cnt: {cnt}개")
+    print(f"Avg rBRP_cnt: {rBRP_cnt/cnt}")
+    print(f"Avg uBRP_cnt: {uBRP_cnt/cnt}")

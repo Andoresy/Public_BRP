@@ -32,3 +32,5 @@ def data_from_caserta(file_regex="data3-3.*", H_plus=2):
     directory_path  = 'uBRP\\brp-instances-caserta-etal-2012\\CRPTestcases_Caserta'
     transform_datas = process_files_with_regex(directory_path, file_regex, H_plus)
     return transform_datas
+if __name__ == '__main__':
+    print(data_from_caserta())
