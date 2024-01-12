@@ -97,7 +97,7 @@ def select_action_GREEDY(x, algo_type="Greedy_rBRP"):
             for w in Wc:
                 Or_.append([stackof(c),Wc])
         return torch.tensor(Or_, dtype=torch.long)
-    def MinMax_uBRP():
+    def MinMax_uBRP(): #ACO: (14)
         T = torch.tensor([[target_stack, MinMax_rBRP(top(target_stack))]])# ACO: (11) 조금 변형됨 rBRP 중 best 가지고옴
         Cr = torch.cat([T, Or()])
         best_action,best_dif = torch.tensor([[0,0]]), 999 #Best_candidateStack & initialize
