@@ -16,14 +16,18 @@ stack_len = torch.where(stack_len < 3, True, False)
 #print(stack_len)
 
 
-matrix = torch.tensor([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+x = torch.tensor([[1, 2, 3], [4, 5, 6], [7, 8, 0]])
+def stackof(c): #find stack of block c ACO: s(c)
+    #c:Batch
+    c_index = torch.nonzero(x == c) #Batch X 3 (Batch_i, Stack_i, tier_i)
+    return c_index[0][0] # (Stack_i)
+#print(matrix)
+#print(torch.squeeze(torch.gather(maxs, 1, torch.tensor([[0],[2]])), -1))
+max_stacks = 3
+binary_x = torch.where(x > 0., 1, 0)# Block -> 1 Empty -> 0
+stack_len = torch.sum(binary_x, dim=1) #Stack의 Length
+stackofc = stackof(1)#c가 있는 stack
+cnd_stacks = torch.where(stack_len < max_stacks, True, False) # 조건 1: H<MaxH
+cnd_stacks[stackofc] = False #조건 2: S != s(c)
 
-# 변경할 인덱스들 정의
-rows_to_change = [0, 2]
-columns_to_change = [1, 2]
-new_values = [10, 20]
-
-# 여러 인덱스의 값을 동시에 바꾸기
-matrix[rows_to_change, columns_to_change] = torch.tensor(new_values)
-
-print(matrix)
+print(cnd_stacks)
