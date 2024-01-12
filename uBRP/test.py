@@ -32,4 +32,4 @@ cnd_stacks[stackofc] = False #조건 2: S != s(c)
 
 #print(cnd_stacks)
 
-print(torch.cat([torch.tensor([1]),torch.tensor([2])]))
+print(torch.cat([torch.tensor([[1,2]]),torch.tensor([[1,2]])]))
