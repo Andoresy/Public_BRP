@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import math
-from torchsummary import summary
+
 """ https://github.com/wouterkool/attention-learn-to-route
     TSP Attention Code (Given)
     참고하였습니다.
@@ -14,9 +14,9 @@ class SkipConnection(nn.Module):
     def __init__(self, module):
         super(SkipConnection, self).__init__()
         self.module = module
-    def forward(self, Q,K,V,mask=None):
-        output= self.module(Q,K,V,mask)
-        return Q + output
+    def forward(self, input):
+        output= self.module(input)
+        return input + output
 
 class Normalization(nn.Module): #wounterkool git 참고
     def __init__(self, embed_dim, normalization='batch'):
@@ -62,8 +62,6 @@ class ScaledDotProductAttention(nn.Module): #Tsp_Attention.ipynb
         attn_score = torch.matmul(Q, K.transpose(2, 3)) / math.sqrt(d_k) 
                     # dim of attn_score: batchSize x n_heads x seqLen_Q x seqLen_K
                     #wj) batch matrix multiplication
-        print(mask.size())
-        print(torch.zeros_like(attn_score).bool().size())
         if mask is None:
             mask = torch.zeros_like(attn_score).bool()
         else:
@@ -76,7 +74,9 @@ class ScaledDotProductAttention(nn.Module): #Tsp_Attention.ipynb
         return output, attn_dist
 
 class MultiHeadAttention(nn.Module):
-    def __init__(self, n_heads, embed_dim, is_encoder=True):
+    """ Skip_Connection 은 Built_in 되어있습니다.
+    """
+    def __init__(self, n_heads, embed_dim, is_encoder):
         super(MultiHeadAttention, self).__init__()
         self.n_heads = n_heads
         self.embed_dim = embed_dim
@@ -97,9 +97,10 @@ class MultiHeadAttention(nn.Module):
     def init_parameters(self):
         #Noah: 필요하다면 구현해야함
         pass
-    def forward(self, Q, K, V, mask):
+    def forward(self, x, mask=None):
+        Q,K,V = x
         batchSize, seqLen_Q, seqLen_K = Q.size(0), Q.size(1), K.size(1) # decoder의 경우 query와 key의 length가 다를 수 있음
-
+        residual = Q
         # Query, Key, Value를 (n_heads)개의 Head로 나누어 각기 다른 Linear projection을 통과시킴
         # dim : batchSize x seqLen x d_model -> batchSize x seqLen x n_heads x d_k
         if self.is_encoder:
@@ -120,19 +121,70 @@ class MultiHeadAttention(nn.Module):
 
         # Linear Projection, Residual sum, and Layer Normalization
         if self.is_encoder:
-            output = self.W_O(output)
+            output = residual + self.W_O(output)
         
         return output
 
+class MultiHeadAttentionLayer(nn.Module): #Self-Attention
+    """ h_ = BN(h+MHA(h))
+        h = BN(h_ + FF(h_))
+    """
+    def __init__(self, n_heads, embed_dim, ff_hidden = 512, normalization = 'batch', is_encoder=True):
+        super(MultiHeadAttentionLayer, self).__init__()
+        self.n_heads = n_heads
+        self.MHA = MultiHeadAttention(n_heads, embed_dim=embed_dim, is_encoder=is_encoder) #Maybe Modified
+        self.BN1 = Normalization(embed_dim, normalization)
+        self.BN2 = Normalization(embed_dim, normalization)
+        
+        self.FF_sub = SkipConnection(
+                        nn.Sequential(
+                            nn.Linear(embed_dim, ff_hidden), #bias = True by default
+                            nn.ReLU(),
+                            nn.Linear(ff_hidden, embed_dim)  #bias = True by default
+                        )
+                    )
+    def forward(self, x, mask=None):
+        x = [x,x,x] # Self_Attention
+        x = self.BN1(self.MHA(x, mask=mask))
+        x = self.BN2(self.FF_sub(x))
+        return x
+        
+class GraphAttentionEncoder(nn.Module):
+    def __init__(self, n_heads = 8, embed_dim=128, n_layers=3, max_stacks=4, max_tiers=4, n_containers = 8, normalization = 'batch', ff_hidden = 512):
+        super().__init__()
+        self.n_heads = n_heads
+        self.embed_dim = embed_dim
+        self.n_layers = n_layers
+        self.max_stacks = max_stacks
+        self.max_tiers = max_tiers
+        #self.init_embed = nn.LSTM(input_size = max_tiers, hidden_size = embed_dim) #LSTM!
+        self.init_embed = nn.Linear(max_tiers, embed_dim, bias=True)
+        self.encoder_layers = nn.ModuleList([MultiHeadAttentionLayer(n_heads, embed_dim,ff_hidden ) for _ in range(n_layers)])
+
+    def forward(self, x, mask=None):
+        """ x(batch, max_stacks, max_tiers)
+            return: (node_embeddings, graph_embedding)
+            =((batch, max_stacks, embed_dim), (batch, embed_dim))
+        """
+        x = x.clone()
+        x = self.init_embed(x)
+        #x = self.init_embed(x)[0] ##LSTM!
+
+        for layer in self.encoder_layers:
+            x = layer(x, mask)
+        return (x, torch.mean(x, dim=1))
+
 if __name__ == "__main__":
-    mha = MultiHeadAttention(n_heads=8, embed_dim=128, is_encoder=True)
-    Smha = SkipConnection(mha)
-    norm = Normalization(embed_dim = 128)
-    batch,n_nodes,embed_dim = 5, 21, 128
-    Q = torch.randn((batch, n_nodes, embed_dim), dtype=torch.float)
-    K = Q
-    V = Q
-    mask = torch.zeros((batch, n_nodes, n_nodes), dtype=torch.bool)
-    print("mask: ", mask.shape)
-    output = norm(Smha(Q,K,V,mask))
-    print("output size:",output.size())
+    batch, n_nodes, embed_dim = 5, 21, 128
+    max_stacks, max_tiers, n_containers = 4, 4, 8
+
+    encoder = GraphAttentionEncoder()
+    data = torch.randn((batch, 4, 4), dtype=torch.float)
+    output = encoder(data, mask=None)
+    print(f"output[0] shape: {output[0].shape}")
+    print(f"output[1] shape: {output[1].shape}")
+    cnt = 0
+    for i, k in encoder.state_dict().items():
+        print(i, k.size(), torch.numel(k))
+        cnt += torch.numel(k)
+    print(cnt)
