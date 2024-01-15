@@ -82,11 +82,3 @@ class Env():
         else:
             return False
 
-"""
-Sample
--  -  - 
-4  1  5
-2  3  6
-s0 s1 s2
-optimal action: (0 -> 2)
-"""

@@ -6,7 +6,7 @@ from data import data_from_caserta
 global env
 env = None
 device = 'cpu'
-N=9
+N=0
 def reset(data):
     global env 
     env = Env('cpu', data)
@@ -135,12 +135,12 @@ def GRE_uBRP(data):
     return cnt
 
 if __name__ == '__main__':
-    H,W = 10,6 # ACO 논문 기준 H X W = T X S
+    H,W = 5,6 # ACO 논문 기준 H X W = T X S
     rBRP_cnt = 0
     uBRP_cnt = 0
     cnt = 0
     N=H*W
-    H_plus = H-1 #Hmax = 2H-1 (ACO 논문 기준)
+    H_plus = 2 #Hmax = 2H-1 (ACO 논문 기준), H_plus = H_max - H
     caserta_dataset = data_from_caserta(f"data{H}-{W}-.*",H_plus)
     for data in caserta_dataset:
         d1 = data.clone().unsqueeze(0)

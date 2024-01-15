@@ -28,7 +28,7 @@ def process_files_with_regex(directory_path, file_regex, H_plus):
         transformed_data = transform_format(file_path,H_plus)
         transform_datas.append(transformed_data)
     return transform_datas
-def data_from_caserta(file_regex="data3-3.*", H_plus=2):
+def data_from_caserta(file_regex="data3-3.*", H_plus=2): #dataH-W-N.data, H_plus = Hmax-H
     directory_path  = 'uBRP\\brp-instances-caserta-etal-2012\\CRPTestcases_Caserta'
     transform_datas = process_files_with_regex(directory_path, file_regex, H_plus)
     return transform_datas
