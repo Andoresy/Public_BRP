@@ -52,6 +52,7 @@ class ScaledDotProductAttention(nn.Module): #Tsp_Attention.ipynb
     def __init__(self, d_k):# d_k: head를 나눈 이후의 key dimension
         super(ScaledDotProductAttention, self).__init__()
         self.d_k = d_k # key dimenstion
+        self.inf = 1e9
 
     def forward(self, Q, K, V, mask):
         # key, query의 곱을 통해 attention weight를 계산하고 value의 weighted sum인 output을 생성
@@ -65,16 +66,41 @@ class ScaledDotProductAttention(nn.Module): #Tsp_Attention.ipynb
         if mask is None:
             mask = torch.zeros_like(attn_score).bool()
         else:
-            mask = mask.unsqueeze(1).repeat(1, Q.size(1), 1, 1)
-        attn_score[mask] = -1e9
+            attn_score = attn_score.masked_fill(mask[:, None, None, :, 0].repeat(1, attn_score.size(1), 1, 1) == True, -self.inf)
 
         attn_dist = F.softmax(attn_score, dim=-1)  # attention distribution
         output = torch.matmul(attn_dist, V)  # dim of output : batchSize x n_heads x seqLen x d_v
 
         return output, attn_dist
 
+class SingleHeadAttention(nn.Module):
+    def __init__(self, clip=10, head_depth=16, inf=1e+10, **kwargs):
+        super().__init__(**kwargs)
+        self.clip = clip
+        self.inf = inf
+        self.scale = math.sqrt(head_depth)
+
+    # self.tanh = nn.Tanh()
+
+    def forward(self, x, mask=None):
+        """ Q: (batch, n_heads, q_seq(=max_stacks or =1), head_depth)
+            K: (batch, n_heads, k_seq(=max_stacks), head_depth)
+            logits: (batch, n_heads, q_seq(this could be 1), k_seq)
+            mask: (batch, max_stacks, 1), e.g. tf.Tensor([[ True], [ True], [False]])
+            mask[:,None,None,:,0]: (batch, 1, 1, stacks) ==> broadcast depending on logits shape
+            [True] -> [1 * -np.inf], [False] -> [logits]
+            K.transpose(-1,-2).size() == K.permute(0,1,-1,-2).size()
+        """
+        Q, K, V = x
+        logits = torch.matmul(Q, K.transpose(-1, -2)) / self.scale
+        logits = self.clip * torch.tanh(logits)
+
+        if mask is not None:
+            return logits.masked_fill(mask.permute(0, 2, 1) == True, -self.inf)
+        return logits
 class MultiHeadAttention(nn.Module):
     """ Skip_Connection 은 Built_in 되어있습니다.
+        Norm은 따로 진행합니다. (tsp_attention.ipynb와 다름)
     """
     def __init__(self, n_heads, embed_dim, is_encoder):
         super(MultiHeadAttention, self).__init__()
@@ -95,14 +121,14 @@ class MultiHeadAttention(nn.Module):
         self.attention = ScaledDotProductAttention(self.d_k)
         #self.init_parameters()
     def init_parameters(self):
-        #Noah: 필요하다면 구현해야함
+        #JK: 필요하다면 구현해야함
         pass
     def forward(self, x, mask=None):
         Q,K,V = x
         batchSize, seqLen_Q, seqLen_K = Q.size(0), Q.size(1), K.size(1) # decoder의 경우 query와 key의 length가 다를 수 있음
         residual = Q
         # Query, Key, Value를 (n_heads)개의 Head로 나누어 각기 다른 Linear projection을 통과시킴
-        # dim : batchSize x seqLen x d_model -> batchSize x seqLen x n_heads x d_k
+        # dim : batchSize x seqLen x embed_dim -> batchSize x seqLen x n_heads x d_k
         if self.is_encoder:
             Q = self.W_Q(Q)
             K = self.W_K(K)
@@ -119,7 +145,7 @@ class MultiHeadAttention(nn.Module):
         output = output.transpose(1, 2).contiguous()  # dim : batchSize x n_heads x seqLen x d_k -> batchSize x seqLen x n_heads x d_k
         output = output.view(batchSize, seqLen_Q, -1)  # dim : batchSize x seqLen x n_heads x d_k -> batchSize x seqLen x d_model
 
-        # Linear Projection, Residual sum, and Layer Normalization
+        # Linear Projection, Residual sum
         if self.is_encoder:
             output = residual + self.W_O(output)
         
