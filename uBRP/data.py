@@ -32,7 +32,7 @@ def process_files_with_regex(directory_path, file_regex, H_plus):
         transform_datas.append(transformed_data)
     return transform_datas
 def data_from_caserta(file_regex="data3-3.*", H_plus=2): #dataH-W-N.data, H_plus = Hmax-H
-    directory_path  = 'uBRP\\brp-instances-caserta-etal-2012\\CRPTestcases_Caserta'
+    directory_path  = 'C:\\Users\\yambo\\OneDrive\\바탕 화면\\env\\Public_BRP\\uBRP\\brp-instances-caserta-etal-2012\\CRPTestcases_Caserta'
     transform_datas = process_files_with_regex(directory_path, file_regex, H_plus)
     return transform_datas
 
