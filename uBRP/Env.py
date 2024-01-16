@@ -1,11 +1,12 @@
 import torch
 import torch.nn as nn
 class Env():
-    def __init__(self, device, x):
+    def __init__(self, device, x, embed_dim=128):
         super().__init__()
         #x: (batch_size) X (max_stacks) X (max_tiers)
         self.device = device
         self.x = x
+        self.embed_dim = embed_dim
         self.batch, self.max_stacks,self.max_tiers=x.size()
         self.target_stack = None
         self.empty = torch.zeros([self.batch], dtype=torch.bool).to(self.device)
@@ -53,6 +54,48 @@ class Env():
             clear_mask = clear_mask & (torch.where(target_stack_len > 0, True, False).to(self.device))
 
         self._update_empty()
+    def _get_step(self, next_node):
+        """ next_node : (batch, 1) int, range[0, max_stacks)
+
+            mask(batch,max_stacks,1) 1表示那一列不可选，0表示可选
+            context: (batch, 1, embed_dim)
+        """
+
+        # len_mask(batch,max_stacks,max_tiers)表示把len的值都弄出来变成1和0
+        len_mask = torch.where(self.x > 0., 1, 0).to(self.device)
+        # stack_len(batch,max_stacks)表示每一列最高是多少
+        stack_len = torch.sum(len_mask, dim=2)
+        # self.target_stack[:,None](batch,1)
+        # target_stack_len(batch,1)[i][0]=stack_len[i][target_stack[i][0]] 相当于把目标列的长度都拿出来了
+
+        target_stack_len = torch.gather(stack_len, dim=1, index=self.target_stack[:, None]).to(self.device)
+
+        #next_stack_len(batch,1)[i][0]=stack_len[i][next_node[i][0]]
+        next_stack_len=torch.gather(stack_len,dim=1,index=next_node).to(self.device)
+
+        #  top_val(batch,max_stacks,1)=x(batch,max_stacks,stack_len(i,j,1))
+        #top_ind(batch,max_stacks)-1 ,再用where把空的边0
+        top_ind=stack_len-1
+        top_ind=torch.where(top_ind>=0,top_ind,0).to(self.device)
+        #top_val(batch,max_stacks,1)=x(batch,max_stacks,top_ind(i,j,1))
+        top_val=torch.gather(self.x,dim=2,index=top_ind[:,:,None]).to(self.device)
+        #top_val(batch,max_stacks)
+        top_val=top_val.squeeze(-1)
+        #target_top_val(batch,1)=top_val(batch,self.target_stack[batch,1])
+        target_top_val=torch.gather(top_val,dim=1,index=self.target_stack[:,None]).to(self.device)
+
+        #target_ind(batch,1)
+        target_ind=target_stack_len-1
+        target_ind=torch.where(target_ind>=0,target_ind,0).to(self.device)
+        input_index=(torch.arange(self.batch).to(self.device),self.target_stack.to(self.device),target_ind.squeeze(-1).to(self.device))
+        self.x=self.x.index_put_(input_index,torch.Tensor([0.]).to(self.device))
+
+
+        input_index=(torch.arange(self.batch).to(self.device),next_node.squeeze(-1).to(self.device),next_stack_len.squeeze(-1).to(self.device))
+        self.x=self.x.index_put_(input_index,target_top_val.squeeze(-1)).to(self.device)
+
+        self.clear()
+
     def step(self, actions):#action Pair로 구성 (source, destination)
         """ action: (batch, (1, 1)) int, range[0,max_stacks)
             no invalid action (Assume)
@@ -81,4 +124,59 @@ class Env():
             return True
         else:
             return False
+    """ 밑에서부턴 https://github.com/binarycopycode/CRP_DAM/blob/main 코드부분과 일치합니다.(코드 이해 필요)
+    """
+    def _create_t1(self):
+        #先吧self.target_stack更新出来 #target_stack(batch) 当前要移动的列
+        self.find_target_stack()
+        #mask(batch,max_stacks,1) 1表示那一列不可选，0表示可选
+        mask_t1 = self.create_mask_t1()
+        #step_context = target_stack_embedding(batch, 1, embed_dim)
+        step_context_t1= self.create_context_t1()
+        return mask_t1, step_context_t1
+
+    # 创建初始化的mask 哪些列不能用
+    def create_mask_t1(self):
+
+        top_val=self.x[:,:,-1]
+        #如果最后一列是0，那么这列就是可选的
+        mask=torch.where(top_val>0,True,False).to(self.device)
+        mask = mask.bool()
+
+        #当前target_stack也不能走,这几句相当于mask[i][target_stack[i]]=True
+        a=self.target_stack.clone().to(self.device)
+        index = (torch.arange(self.batch).to(self.device), a.squeeze())
+        mask=mask.index_put(index,torch.BoolTensor([True] ).to(self.device))
+
+
+        #mask(batch,max_stacks,1) 1表示那一列不可选，0表示可选
+        return mask[:,:,None].to(self.device)
+
+    # 创建初始化的context
+    def create_context_t1(self):
+
+
+
+        # node_embeddings(batch,max_stacks,embed_dim) 然后把target_stack变成(batch,1,1)后把最后一维循环embed_dim变成(batch,1,128) 然后使用gather dim=1 就相当于
+        # target_stack_embedding(batch,1,embed_dim)=node_embeddings(i,idx[i][j][k],k)，就是把目标列的embeding全部拿出来了
+
+        target_stack_embedding = torch.gather(input=self.node_embeddings, dim=1,
+                                       index=self.target_stack[:, None, None].repeat(1, 1, self.embed_dim))
+        # https://medium.com/analytics-vidhya/understanding-indexing-with-pytorch-gather-33717a84ebc4
+
+
+        return target_stack_embedding
+
+    def get_log_likelihood(self, _log_p, pi):
+        """ _log_p: (batch, decode_step, n_nodes)
+            pi: (batch, decode_step), predicted tour
+        """
+        # log_p(batch,decode_step,1) 相当于把pi这个路径的所有log_p值给弄出来了
+        # 相当于log_p(i,j,k=0)=_log_p(i,j,pi[i][j][0])
+        log_p = torch.gather(input=_log_p, dim=2, index=pi[:, :, None])
+        # 先把最后1维的1给消掉，然后再加起来
+        # 由于是log_softmax,所以概率本来要用乘法，取了log就可以加法了
+        return torch.sum(log_p.squeeze(-1), 1)
+
+
 
