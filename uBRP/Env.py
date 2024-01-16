@@ -11,7 +11,7 @@ class Env():
         self.target_stack = None
         self.empty = torch.zeros([self.batch], dtype=torch.bool).to(self.device)
         #True -> Empty / False-> not Empty
-    def find_targetstack(self):
+    def find_target_stack(self):
         #최고 priority Stack 찾기
         mx_val = torch.max(self.x, dim=2)[0].to(self.device)
         self.target_stack = torch.argmax(mx_val, dim=1).to(self.device)
@@ -125,9 +125,9 @@ class Env():
         else:
             return False
     """ 밑에서부턴 https://github.com/binarycopycode/CRP_DAM/blob/main 코드부분과 일치합니다.(코드 이해 필요)
+        uBRP에서의 수정 필요
     """
     def _create_t1(self):
-        #先吧self.target_stack更新出来 #target_stack(batch) 当前要移动的列
         self.find_target_stack()
         #mask(batch,max_stacks,1) 1表示那一列不可选，0表示可选
         mask_t1 = self.create_mask_t1()
@@ -135,7 +135,6 @@ class Env():
         step_context_t1= self.create_context_t1()
         return mask_t1, step_context_t1
 
-    # 创建初始化的mask 哪些列不能用
     def create_mask_t1(self):
 
         top_val=self.x[:,:,-1]
