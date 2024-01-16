@@ -23,7 +23,7 @@ def select_action_GREEDY(x, algo_type="Greedy_rBRP"):
     target_stack = env.target_stack[0]
     def top(s): #top of stack
         return x[s,stack_len[s]-1]
-    def topvs():
+    def tops():
         tps = []
         for i in range(max_stacks):
             if stack_len[i] > 0:
