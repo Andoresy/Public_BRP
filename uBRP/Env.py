@@ -11,7 +11,7 @@ class Env():
         self.target_stack = None
         self.empty = torch.zeros([self.batch], dtype=torch.bool).to(self.device)
         #True -> Empty / False-> not Empty
-    def find_target_stack(self):
+    def find_targetstack(self):
         #최고 priority Stack 찾기
         mx_val = torch.max(self.x, dim=2)[0].to(self.device)
         self.target_stack = torch.argmax(mx_val, dim=1).to(self.device)
