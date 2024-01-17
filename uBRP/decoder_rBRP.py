@@ -43,6 +43,8 @@ class Decoder_rBRP(nn.Module):
         Q1 = self.Q_fixed + Q_step
         Q2 = self.MHA([Q1, self.K1, self.V], mask=mask)
         Q2 = self.WO(Q2)
+        print(Q2.size())
+        print(self.K2.size())
         logits = self.SHA([Q2, self.K2, None], mask=mask)
         return logits.squeeze(dim=1)
     def forward(self, x, n_containers=8, return_pi=False, decode_type='sampling'):

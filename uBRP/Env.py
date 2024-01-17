@@ -96,7 +96,7 @@ class Env():
         self.x=self.x.index_put_(input_index,target_top_val.squeeze(-1)).to(self.device)
         self.clear()
     def step(self, actions):#action Pair로 구성 (source, destination)
-        """ action: (batch, (1, 1)) int, range[0,max_stacks)
+        """ action: (batch, 2) int, range[0,max_stacks)
             no invalid action (Assume)
         """
         len_mask = torch.where(self.x > 0., 1, 0).to(self.device)
@@ -115,6 +115,7 @@ class Env():
         input_index = (torch.arange(self.batch).to(self.device), source_index.to(self.device), source_ind.squeeze(-1).to(self.device))
         self.x = self.x.index_put_(input_index, torch.Tensor([0.]).to(self.device))
         input_index = (torch.arange(self.batch).to(self.device), dest_index.to(self.device), dest_stack_len.squeeze(-1).to(self.device))
+#        print("input_index:",input_index)
         self.x = self.x.index_put_(input_index, source_top_val.squeeze(-1)).to(self.device)
         self.clear()
     def all_empty(self):
@@ -128,9 +129,13 @@ class Env():
     """
     def create_mask_uBRP(self):
         top_val=self.x[:,:,-1]
-        mask=torch.where(top_val>0,True,False).to(self.device).bool()
-        mask = mask.repeat(1, self.max_stacks)
-        mask = mask.view(self.batch, self.max_stacks, self.max_stacks)
+        bottom_val = self.x[:,:,0]
+        mask_top=torch.where(top_val>0,True,False).to(self.device).bool()
+        mask_top = mask_top.repeat(1, self.max_stacks).view(self.batch, self.max_stacks, self.max_stacks)
+        mask_bottom=torch.where(bottom_val==0.,True,False).to(self.device).bool()
+        mask_bottom = mask_bottom.view(self.batch, self.max_stacks, 1).repeat(1, 1, self.max_stacks)
+
+        mask = torch.logical_or(mask_top, mask_bottom)
         diagonal_size = self.max_stacks
         d_tensor = torch.zeros((self.batch, diagonal_size, 2), dtype=torch.long)
         # 대각선 값 설정
@@ -138,6 +143,8 @@ class Env():
         d_tensor[:,:,1] = torch.arange(diagonal_size)
         mask.scatter_(2, d_tensor, 1)
         return mask.view(self.batch, self.max_stacks*self.max_stacks)[:,:,None].to(self.device)
+    def create_context_uBRP(self):
+        pass
     def _create_t1(self):
         self.find_target_stack()
         #mask(batch,max_stacks,1) 1表示那一列不可选，0表示可选
@@ -161,7 +168,7 @@ class Env():
         return mask[:,:,None].to(self.device)
 
     def create_context_t1(self):
-
+        
 
 
         # node_embeddings(batch,max_stacks,embed_dim) 然后把target_stack变成(batch,1,1)后把最后一维循环embed_dim变成(batch,1,128) 然后使用gather dim=1 就相当于
@@ -187,7 +194,7 @@ class Env():
 
 if __name__ == "__main__":
     data = generate_data('cpu')
-    env = Env('cpu', data)
-    env.clear()
-    print(env.create_mask_uBRP())
+    env = Env('cpu', data[:2])
+    env.node_embeddings = torch.randn((2,4,2))
+    env.embed_dim = 2
 
