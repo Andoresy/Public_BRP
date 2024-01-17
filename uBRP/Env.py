@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+from data import generate_data
 class Env():
     def __init__(self, device, x, embed_dim=128):
         super().__init__()
@@ -93,9 +94,7 @@ class Env():
 
         input_index=(torch.arange(self.batch).to(self.device),next_node.squeeze(-1).to(self.device),next_stack_len.squeeze(-1).to(self.device))
         self.x=self.x.index_put_(input_index,target_top_val.squeeze(-1)).to(self.device)
-
         self.clear()
-
     def step(self, actions):#action Pair로 구성 (source, destination)
         """ action: (batch, (1, 1)) int, range[0,max_stacks)
             no invalid action (Assume)
@@ -127,6 +126,18 @@ class Env():
     """ 밑에서부턴 https://github.com/binarycopycode/CRP_DAM/blob/main 코드부분과 일치합니다.(코드 이해 필요)
         uBRP에서의 수정 필요
     """
+    def create_mask_uBRP(self):
+        top_val=self.x[:,:,-1]
+        mask=torch.where(top_val>0,True,False).to(self.device).bool()
+        mask = mask.repeat(1, self.max_stacks)
+        mask = mask.view(self.batch, self.max_stacks, self.max_stacks)
+        diagonal_size = self.max_stacks
+        d_tensor = torch.zeros((self.batch, diagonal_size, 2), dtype=torch.long)
+        # 대각선 값 설정
+        d_tensor[:,:,0] = torch.arange(diagonal_size)
+        d_tensor[:,:,1] = torch.arange(diagonal_size)
+        mask.scatter_(2, d_tensor, 1)
+        return mask.view(self.batch, self.max_stacks*self.max_stacks)[:,:,None].to(self.device)
     def _create_t1(self):
         self.find_target_stack()
         #mask(batch,max_stacks,1) 1表示那一列不可选，0表示可选
@@ -138,7 +149,6 @@ class Env():
     def create_mask_t1(self):
 
         top_val=self.x[:,:,-1]
-        #如果最后一列是0，那么这列就是可选的
         mask=torch.where(top_val>0,True,False).to(self.device)
         mask = mask.bool()
 
@@ -147,11 +157,9 @@ class Env():
         index = (torch.arange(self.batch).to(self.device), a.squeeze())
         mask=mask.index_put(index,torch.BoolTensor([True] ).to(self.device))
 
-
         #mask(batch,max_stacks,1) 1表示那一列不可选，0表示可选
         return mask[:,:,None].to(self.device)
 
-    # 创建初始化的context
     def create_context_t1(self):
 
 
@@ -177,5 +185,9 @@ class Env():
         # 由于是log_softmax,所以概率本来要用乘法，取了log就可以加法了
         return torch.sum(log_p.squeeze(-1), 1)
 
-
+if __name__ == "__main__":
+    data = generate_data('cpu')
+    env = Env('cpu', data)
+    env.clear()
+    print(env.create_mask_uBRP())
 
