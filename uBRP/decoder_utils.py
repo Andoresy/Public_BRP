@@ -18,9 +18,9 @@ def concat_embedding(node_embeddings):
 
 if __name__ == "__main__":
     # 예제 입력 생성
-    batch_size = 3
+    batch_size = 1
     width = 4
-    embed_size = 128
+    embed_size = 2
     node_embeddings = torch.rand((batch_size, width, embed_size))
 
     # 함수 호출

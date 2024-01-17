@@ -174,7 +174,7 @@ class MultiHeadAttentionLayer(nn.Module): #Self-Attention
         x = self.BN1(self.MHA(x, mask=mask))
         x = self.BN2(self.FF_sub(x))
         return x
-        
+
 class GraphAttentionEncoder(nn.Module):
     def __init__(self, n_heads = 8, embed_dim=128, n_layers=3, max_stacks=4, max_tiers=4, n_containers = 8, normalization = 'batch', ff_hidden = 512):
         super().__init__()
