@@ -6,7 +6,7 @@ from Env import Env
 from sampler import TopKSampler, CategoricalSampler
 from data import generate_data
 from decoder_utils import concat_embedding
-class Decoder_rBRP(nn.Module):
+class Decoder_uBRP(nn.Module):
     def __init__(self, 
                  device, 
                  embed_dim=128, 
@@ -34,7 +34,7 @@ class Decoder_rBRP(nn.Module):
             nn.Linear(64, 16),
             nn.ReLU(),
             nn.Linear(16,1)
-            #nn.Linear(256, 512),
+            #nn.Linear(256, 512), # It can be More Deeper
             #nn.ReLU(),
             #nn.Linear(512,256),
             #nn.ReLU(),
@@ -43,11 +43,11 @@ class Decoder_rBRP(nn.Module):
         )
         
         self.MHA = MultiHeadAttention(n_heads, embed_dim*2, False)
-        self.SHA = SingleHeadAttention(clip=10, head_depth = embed_dim*2)
 
     def compute_static(self, node_embeddings, graph_embedding):
-        self.Q_fixed = self.Wq_fixed(graph_embedding[:, None, :])
-        self.K = self.Wk_2(node_embeddings)
+        pass
+        #self.Q_fixed = self.Wq_fixed(graph_embedding[:, None, :])
+        #self.K = self.Wk_2(node_embeddings)
 
     def compute_dynamic(self, mask, node_embeddings):
         logits = self.W_O(node_embeddings)
@@ -110,7 +110,8 @@ class Decoder_rBRP(nn.Module):
             self.compute_static(concat_node_embeddings, graph_embedding)
 
             mask = env.create_mask_uBRP()
-
+#        print('\ncost(Number of Relocations):\n', cost)
+#        print('\nll(Sum of Log Probabilities on trajectory):\n', ll)
 
         return cost, ll
 
@@ -118,7 +119,7 @@ class Decoder_rBRP(nn.Module):
 if __name__ == '__main__':
     batch, max_stacks, embed_dim = 32, 4, 128
     data = generate_data(device = 'cpu', n_samples=batch, max_stacks=max_stacks)
-    decoder = Decoder_rBRP('cpu', embed_dim, max_stacks=max_stacks, n_heads=8, clip=10.)
+    decoder = Decoder_uBRP('cpu', embed_dim, max_stacks=max_stacks, n_heads=8, clip=10.)
     decoder.train()
     cost, ll= decoder(data, return_pi=True, decode_type='sampling')
     print('\nbatch, max_stacks, embed_dim',batch, max_stacks, embed_dim)
