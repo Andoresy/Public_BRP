@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 
 from data import generate_data
-from decoder_rBRP import Decoder_rBRP
+from decoder_uBRP import Decoder_uBRP
 
 class AttentionModel(nn.Module):
 
@@ -11,7 +11,7 @@ class AttentionModel(nn.Module):
         super().__init__()
 
 
-        self.Decoder = Decoder_rBRP(device=device,n_encode_layers=n_encode_layers,embed_dim=embed_dim, n_heads=n_heads, clip=tanh_clipping,ff_hidden=ff_hidden,
+        self.Decoder = Decoder_uBRP(device=device,n_encode_layers=n_encode_layers,embed_dim=embed_dim, n_heads=n_heads, clip=tanh_clipping,ff_hidden=ff_hidden,
                                    n_containers=n_containers,max_stacks=max_stacks,max_tiers=max_tiers)
         self.n_containers=n_containers
         self.max_stacks=max_stacks
