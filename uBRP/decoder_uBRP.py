@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-
+import math
 from encoder import MultiHeadAttention, ScaledDotProductAttention, GraphAttentionEncoder, SingleHeadAttention
 from Env import Env
 from sampler import TopKSampler, CategoricalSampler
@@ -27,13 +27,16 @@ class Decoder_uBRP(nn.Module):
         self.Wk_2 = nn.Linear(embed_dim*2, embed_dim*2, bias=False)
 
         self.W_O = nn.Sequential(
-            nn.Linear(256, 128),
+            nn.Linear(embed_dim*2, embed_dim),
             nn.ReLU(),
-            nn.Linear(128, 64),
+            nn.Dropout(0.5),
+            nn.Linear(embed_dim, embed_dim//2),
             nn.ReLU(),
-            nn.Linear(64, 16),
+            nn.Dropout(0.5),
+            nn.Linear(embed_dim//2, embed_dim//8),
             nn.ReLU(),
-            nn.Linear(16,1)
+            nn.Dropout(0.5),
+            nn.Linear(embed_dim//8,1)
             #nn.Linear(256, 512), # It can be More Deeper
             #nn.ReLU(),
             #nn.Linear(512,256),
@@ -94,7 +97,11 @@ class Decoder_uBRP(nn.Module):
 #            print("action:", actions)
             cost += (1.0 - env.empty.type(torch.float64))
             #만약 필요하다면 끝난 node들에 대해 더해지는 일은 없어야할듯
-            ll += torch.gather(input=log_p,dim=1,index=next_action).squeeze(-1)
+            temp_log_p = log_p.clone()#수정필요
+            temp_log_p[env.empty, :] = 0#수정필요
+#            print(temp_log_p)
+            #----수정필요
+            ll += torch.gather(input=temp_log_p,dim=1,index=next_action).squeeze(-1)
 
             #solv the actions
             env.step(actions)

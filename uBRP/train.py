@@ -23,11 +23,11 @@ def train(log_path = None):
     with open(log_path, 'a') as f:
         f.write('\n start training \n')
 
-    model = AttentionModel(device=device)
+    model = AttentionModel(device=device, max_stacks = 3, max_tiers = 5, n_containers = 9)
     model.train()
     model=model.to(device)
 
-    baseline = RolloutBaseline(model, task=None,  weight_dir = None, log_path=log_path)
+    baseline = RolloutBaseline(model, task=None,  weight_dir = None, log_path=log_path, max_stacks = 3, max_tiers = 5, n_containers = 9)
 
     optimizer = optim.Adam(model.parameters(), lr=.001)
 
@@ -40,7 +40,8 @@ def train(log_path = None):
         L, ll = model(inputs, decode_type='sampling')
         #b = bs[t] if bs is not None else baseline.eval(inputs, L)
         b=torch.FloatTensor([L.mean()]).to(device)
-        return ((L - b) * ll).mean(), L.mean()
+        #return ((L - b) * ll).mean(), L.mean()
+        return ((L-b)*ll).mean(), L.mean()
 
     tt1 = time()
 
@@ -48,13 +49,13 @@ def train(log_path = None):
     t1=time()
     epochs = 10
     batch = 64
-    batch_verbose = 1
+    batch_verbose = 64
     for epoch in range(epochs):
 
         ave_loss, ave_L = 0., 0.
 
         datat1=time()
-        dataset=Generator(device)
+        dataset=Generator(device, n_samples=64*1000, n_containers=9, max_stacks=3, max_tiers=5)
         datat2=time()
         print('data_gen: %dmin%dsec' % ((datat2 - datat1) // 60, (datat2 - datat1) % 60))
 
