@@ -6,7 +6,7 @@ from data import data_from_caserta
 global env
 env = None
 device = 'cpu'
-N=8
+N=9
 def reset(data):
     global env 
     env = Env('cpu', data)

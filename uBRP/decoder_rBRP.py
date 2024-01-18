@@ -43,8 +43,6 @@ class Decoder_rBRP(nn.Module):
         Q1 = self.Q_fixed + Q_step
         Q2 = self.MHA([Q1, self.K1, self.V], mask=mask)
         Q2 = self.WO(Q2)
-        print(Q2.size())
-        print(self.K2.size())
         logits = self.SHA([Q2, self.K2, None], mask=mask)
         return logits.squeeze(dim=1)
     def forward(self, x, n_containers=8, return_pi=False, decode_type='sampling'):
@@ -66,7 +64,6 @@ class Decoder_rBRP(nn.Module):
         #default n_samples=1
         selecter = {'greedy': TopKSampler(), 'sampling': CategoricalSampler()}.get(decode_type, None)
         log_ps, tours = [], []
-        print(n_containers)
         batch,max_stacks,max_tiers = x.size()
         cost=torch.zeros(batch).to(self.device)
         ll=torch.zeros(batch).to(self.device)
@@ -81,7 +78,8 @@ class Decoder_rBRP(nn.Module):
             next_node = selecter(log_p)
             cost += (1.0 - env.empty.type(torch.float64))
             ll += torch.gather(input=log_p,dim=1,index=next_node).squeeze(-1)
-
+            print(log_p)
+            print(next_node)
             #solv the actions
             env._get_step(next_node)
 
@@ -101,7 +99,7 @@ class Decoder_rBRP(nn.Module):
 
 
 if __name__ == '__main__':
-    batch, n_nodes, embed_dim = 1, 21, 128
+    batch, n_nodes, embed_dim = 5, 21, 128
     data = generate_data(device = 'cpu', n_samples=batch)
     decoder = Decoder_rBRP('cpu', embed_dim, n_heads=8, clip=10.)
     node_embeddings = torch.rand((batch, n_nodes, embed_dim), dtype=torch.float).to('cpu')
