@@ -1,7 +1,7 @@
 import torch
 import torch.nn.functional as F
 
-def concat_embedding(node_embeddings):
+def concat_embedding(node_embeddings, device='cuda:0'):
     # 입력 텐서의 크기를 가져오기
     batch_size, width, embed_size = node_embeddings.size()
 
@@ -14,7 +14,7 @@ def concat_embedding(node_embeddings):
     newnode_embeddings = newnode_embeddings.view(batch_size, width * width, embed_size * 2)
     newnode_embeddings = newnode_embeddings.view(batch_size, width, width, embed_size * 2)
     newnode_embeddings = newnode_embeddings.transpose(1, 2).contiguous().view(batch_size, width * width, embed_size * 2)
-    return newnode_embeddings
+    return newnode_embeddings.to(device)
 
 if __name__ == "__main__":
     # 예제 입력 생성

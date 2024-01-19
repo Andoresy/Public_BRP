@@ -17,25 +17,22 @@ class Decoder_uBRP(nn.Module):
                  n_containers=8, 
                  max_stacks = 4,
                  max_tiers = 4,
+                 return_pi = False,
                  **kwargs):
         super().__init__(**kwargs)
         self.device = device
         self.embed_dim = embed_dim
         self.concat_embed_dim = embed_dim*2
-        self.Encoder = GraphAttentionEncoder(n_heads, embed_dim, n_encode_layers, max_stacks, max_tiers, n_containers, ff_hidden=ff_hidden)
+        self.return_pi = return_pi
+        self.Encoder = GraphAttentionEncoder(n_heads, embed_dim, n_encode_layers, max_stacks, max_tiers, n_containers, ff_hidden=ff_hidden).to(device)
         self.Wq_fixed = nn.Linear(embed_dim, embed_dim*2, bias=False)
         self.Wk_2 = nn.Linear(embed_dim*2, embed_dim*2, bias=False)
 
         self.W_O = nn.Sequential(
-            nn.Linear(embed_dim*2, embed_dim),
+            nn.Linear(embed_dim*2, embed_dim//2),
             nn.ReLU(),
-            nn.Dropout(0.5),
-            nn.Linear(embed_dim, embed_dim//2),
-            nn.ReLU(),
-            nn.Dropout(0.5),
             nn.Linear(embed_dim//2, embed_dim//8),
             nn.ReLU(),
-            nn.Dropout(0.5),
             nn.Linear(embed_dim//8,1)
             #nn.Linear(256, 512), # It can be More Deeper
             #nn.ReLU(),
@@ -43,7 +40,7 @@ class Decoder_uBRP(nn.Module):
             #nn.ReLU(),
             #nn.Linear(256,128),
             #nn.ReLU()
-        )
+        ).to(device)
         
         self.MHA = MultiHeadAttention(n_heads, embed_dim*2, False)
 
@@ -62,7 +59,7 @@ class Decoder_uBRP(nn.Module):
         env.clear()
         encoder_output=self.Encoder(env.x)
         node_embeddings, graph_embedding = encoder_output
-        concat_node_embeddings = concat_embedding(node_embeddings)
+        concat_node_embeddings = concat_embedding(node_embeddings, device = self.device)
         env.node_embeddings= concat_node_embeddings
         self.compute_static(concat_node_embeddings, graph_embedding)
 
@@ -90,11 +87,12 @@ class Decoder_uBRP(nn.Module):
             source_node, dest_node = next_action//max_stacks, next_action%max_stacks
             actions = torch.cat((source_node,dest_node), 1)
 #            DEBUGGING Print
-#            print('------------------------------------')
-#            print('env:', env.x)
-#            print('mask:', mask.view(batch, max_stacks, max_stacks))
-#            print('log_p:',log_p.view(batch, max_stacks, max_stacks))
-#            print("action:", actions)
+            if(return_pi):
+                print('------------------------------------')
+                print('env:', env.x)
+    #            print('mask:', mask.view(batch, max_stacks, max_stacks))
+    #            print('log_p:',log_p.view(batch, max_stacks, max_stacks))
+                print("action:", actions)
             cost += (1.0 - env.empty.type(torch.float64))
             #만약 필요하다면 끝난 node들에 대해 더해지는 일은 없어야할듯
             temp_log_p = log_p.clone()#수정필요
@@ -112,7 +110,7 @@ class Decoder_uBRP(nn.Module):
             # re-compute node_embeddings
             encoder_output = self.Encoder(env.x)
             node_embeddings, graph_embedding = encoder_output
-            concat_node_embeddings = concat_embedding(node_embeddings)
+            concat_node_embeddings = concat_embedding(node_embeddings, device= self.device)
             env.node_embeddings = concat_node_embeddings
             self.compute_static(concat_node_embeddings, graph_embedding)
 
@@ -125,8 +123,8 @@ class Decoder_uBRP(nn.Module):
 
 if __name__ == '__main__':
     batch, max_stacks, embed_dim = 32, 4, 128
-    data = generate_data(device = 'cpu', n_samples=batch, max_stacks=max_stacks)
-    decoder = Decoder_uBRP('cpu', embed_dim, max_stacks=max_stacks, n_heads=8, clip=10.)
+    data = generate_data(device = 'cuda:0', n_samples=batch, max_stacks=max_stacks)
+    decoder = Decoder_uBRP('cuda:0', embed_dim, max_stacks=max_stacks, n_heads=8, clip=10.)
     decoder.train()
     cost, ll= decoder(data, return_pi=True, decode_type='sampling')
     print('\nbatch, max_stacks, embed_dim',batch, max_stacks, embed_dim)

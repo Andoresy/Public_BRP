@@ -1,15 +1,15 @@
 import torch
 from Env import Env
-from data import data_from_caserta
+from data import data_from_caserta, data_from_caserta_for_greedy
 
 #n의 역수로 해서 Environment 호환 동시에 Greedy 알고리즘 계산 가능하게 하였음
 global env
 env = None
-device = 'cpu'
-N=9
+device = 'cuda:0'
+N=12
 def reset(data):
     global env 
-    env = Env('cpu', data)
+    env = Env(device, data)
 def select_action_GREEDY(x, algo_type="Greedy_rBRP"): 
     """ Time Complexitiy는 ACO 논문과 다를 수 있습니다.! 제가 비효율적으로 짰을 가능성도 있습니다.
         => 이 알고리즘으로 time을 비교해서는 안됩니다
@@ -106,9 +106,9 @@ def select_action_GREEDY(x, algo_type="Greedy_rBRP"):
                 best_dif = t_dif
         return best_action.unsqueeze(0)
     if algo_type == "Greedy_rBRP":
-        return torch.tensor([[target_stack, MinMax_rBRP(top(target_stack))]])
+        return torch.tensor([[target_stack, MinMax_rBRP(top(target_stack))]]).to(device)
     elif algo_type == "Greedy_uBRP":
-        return MinMax_uBRP()
+        return MinMax_uBRP().to(device)
 
     return None
 def GRE_rBRP(data):
@@ -127,8 +127,9 @@ def GRE_uBRP(data):
     reset(data)
     env.clear()
     while not env.all_empty():
+#        print(env.x)
         action = select_action_GREEDY(env.x[0], "Greedy_uBRP") #Batch = 1 (문제 하나)
-        #print("Selected Action:", action)
+#        print("Selected Action:", action)
         env.step(action)
         cnt = cnt + 1
     #print("Greedy in uBRP steps: ", cnt)
@@ -141,17 +142,17 @@ if __name__ == '__main__':
         (2) 2 -> 해가 있을 충분 조건
         (3) Inf(999) -> 제한 없음 
     """
-    H,W = 5,6 # ACO 논문 기준 H X W = T X S
+    H,W = 3,3 # ACO 논문 기준 H X W = T X S
     rBRP_cnt = 0
     uBRP_cnt = 0
     cnt = 0
     N=H*W
     H_plus = 2 #H-1, 2, 999 중 선택
-    caserta_dataset = data_from_caserta(f"data{H}-{W}-.*",H_plus)
+    caserta_dataset = data_from_caserta_for_greedy(f"data{H}-{W}-.*",H_plus)
     for data in caserta_dataset:
-        d1 = data.clone().unsqueeze(0)
+        d1 = data.clone().unsqueeze(0).to('cuda:0')
         #print(d1)
-        d2 = data.clone().unsqueeze(0)
+        d2 = data.clone().unsqueeze(0).to('cuda:0')
         cnt+=1
         rBRP_cnt += GRE_rBRP(d1)
         uBRP_cnt += GRE_uBRP(d2)

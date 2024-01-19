@@ -27,10 +27,10 @@ class Env():
         stack_len = torch.sum(binary_x, dim=2).to(self.device) #Stack의 Length
         target_stack_len = torch.gather(stack_len, dim=1, index = self.target_stack[:,None].to(self.device)) #target_stack의 location
         stack_mx_index = torch.argmax(self.x, dim=2).to(self.device)
-        target_stack_mx_index = torch.gather(stack_mx_index, dim=1, index=self.target_stack[:,None].to(self.device)).to(self.device)
+        target_stack_mx_index = torch.gather(stack_mx_index, dim=1, index=self.target_stack[:,None].to(self.device))
         clear_mask = ((target_stack_len -1) == target_stack_mx_index)
-        clear_mask = clear_mask.to(self.device)
-        clear_mask = clear_mask & (torch.where(target_stack_len > 0, True, False).to(self.device)) # 완전히 제거된 그룹은 신경쓸 필요 X
+        clear_mask = clear_mask
+        clear_mask = clear_mask & (torch.where(target_stack_len > 0, True, False)) # 완전히 제거된 그룹은 신경쓸 필요 X
         while torch.sum(clear_mask.squeeze(-1))>0:
             batch_mask = clear_mask.repeat_interleave(self.max_stacks * self.max_tiers).to(self.device)
             batch_mask = torch.reshape(batch_mask, (self.batch, self.max_stacks, self.max_tiers)).to(self.device)
@@ -128,19 +128,19 @@ class Env():
         uBRP에서의 수정 필요
     """
     def create_mask_uBRP(self):
-        top_val=self.x[:,:,-1]
-        bottom_val = self.x[:,:,0]
+        top_val=self.x[:,:,-1].to(self.device)
+        bottom_val = self.x[:,:,0].to(self.device)
         mask_top=torch.where(top_val>0,True,False).to(self.device).bool()
-        mask_top = mask_top.repeat(1, self.max_stacks).view(self.batch, self.max_stacks, self.max_stacks)
+        mask_top = mask_top.repeat(1, self.max_stacks).view(self.batch, self.max_stacks, self.max_stacks).to(self.device)
         mask_bottom=torch.where(bottom_val==0.,True,False).to(self.device).bool()
-        mask_bottom = mask_bottom.view(self.batch, self.max_stacks, 1).repeat(1, 1, self.max_stacks)
+        mask_bottom = mask_bottom.view(self.batch, self.max_stacks, 1).repeat(1, 1, self.max_stacks).to(self.device)
 
-        mask = torch.logical_or(mask_top, mask_bottom)
+        mask = torch.logical_or(mask_top, mask_bottom).to(self.device)
         diagonal_size = self.max_stacks
-        d_tensor = torch.zeros((self.batch, diagonal_size, 2), dtype=torch.long)
+        d_tensor = torch.zeros((self.batch, diagonal_size, 2), dtype=torch.long).to(self.device)
         # 대각선 값 설정
-        d_tensor[:,:,0] = torch.arange(diagonal_size)
-        d_tensor[:,:,1] = torch.arange(diagonal_size)
+        d_tensor[:,:,0] = torch.arange(diagonal_size).to(self.device)
+        d_tensor[:,:,1] = torch.arange(diagonal_size).to(self.device)
         mask.scatter_(2, d_tensor, 1)
         return mask.view(self.batch, self.max_stacks*self.max_stacks)[:,:,None].to(self.device)
     def create_context_uBRP(self):
@@ -193,8 +193,10 @@ class Env():
         return torch.sum(log_p.squeeze(-1), 1)
 
 if __name__ == "__main__":
-    data = generate_data('cpu')
-    env = Env('cpu', data[:2])
+    data = generate_data('cuda:0')
+    env = Env('cuda:0', data[:2])
     env.node_embeddings = torch.randn((2,4,2))
     env.embed_dim = 2
+    env.clear()
+    print(env.x)
 
