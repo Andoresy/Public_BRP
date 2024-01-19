@@ -1,34 +1,53 @@
 from baseline import load_model
 from data import generate_data
 from GreedyACO import GRE_rBRP, GRE_uBRP
+from data import data_from_caserta, data_from_caserta_for_greedy
 import torch
 import gc
 if __name__ == '__main__':
-
-    model = load_model('cpu', path="./epoch5.pt", embed_dim=128, n_containers=9, max_stacks=3, max_tiers=5)
-    data = generate_data('cpu', n_samples=200, n_containers=9, max_stacks=3, max_tiers=5)
+    device = 'cuda:0'
+    H,W = 3,4 # ACO 논문 기준 H X W = T X S
+    N = H*W
+    model = load_model(device='cuda:0', path="./Train/Exp4_greedy_01/epoch26.pt",n_encode_layers=3, embed_dim=128, n_containers=N, max_stacks=W, max_tiers=H+2)
+    data_caserta = data_from_caserta(f'data{H}-{W}-.*', 2).to(device)
+    data_greedy = data_from_caserta_for_greedy(f'data{H}-{W}-.*', 2).to(device)
+    print(data_caserta.size())
+    print(data_greedy.size())
     return_pi = False
-    output = model(data, decode_type='greedy', return_pi=return_pi)
+    output = model(data_caserta, decode_type='greedy', return_pi=return_pi)
+    output_ = output[0]
+    #is_toobig = torch.torch.where(output_ > 80, True, False)
+    #is_toobig = torch.nonzero(is_toobig).squeeze()
+    #is_toobig_sam = is_toobig[0]
+    #print(output_[is_toobig])
     print("Greedy Mean Locations:",output[0].mean())  # cost: (batch)
+    #model(data[is_toobig_sam:is_toobig_sam+1],decode_type='greedy', return_pi=True)
 #    print(output[1])  # ll: (batch)
-
-
+    device = 'cuda:0'
 
 
     #---greedy
-    H,W = 3,3 # ACO 논문 기준 H X W = T X S
     rBRP_cnt = 0
     uBRP_cnt = 0
+    rBRP_cnt_ar = []
+    uBRP_cnt_ar = []
     cnt = 0
-    for d in data:
-        d1 = d.clone().unsqueeze(0)
+    for d in data_greedy:
+        d1 = d.clone().unsqueeze(0).to(device)
         #print(d1)
-        d2 = d.clone().unsqueeze(0)
+        d2 = d.clone().unsqueeze(0).to(device)
         cnt+=1
-        rBRP_cnt += GRE_rBRP(d1)
-        uBRP_cnt += GRE_uBRP(d2)
+        t1 = GRE_rBRP(d1)
+        rBRP_cnt += t1
+        rBRP_cnt_ar.append(t1)
+        t2 = GRE_uBRP(d2)
+        uBRP_cnt_ar.append(t2)
+        uBRP_cnt += t2
         gc.collect()
     print(f"H x W (T x S in ACO) : {H} x {W}")
     print(f"Test_cnt: {cnt}개")
     print(f"Avg rBRP_cnt: {rBRP_cnt/cnt}")
     print(f"Avg uBRP_cnt: {uBRP_cnt/cnt}")
+    for i in range(cnt):
+        print()
+        print(f"rBRPGR({i}) : {rBRP_cnt_ar[i]} uBRPGR({i}) : {uBRP_cnt_ar[i]} Model({i}): {output_[i]}")

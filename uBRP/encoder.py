@@ -184,7 +184,16 @@ class GraphAttentionEncoder(nn.Module):
         self.max_stacks = max_stacks
         self.max_tiers = max_tiers
         #self.init_embed = nn.LSTM(input_size = max_tiers, hidden_size = embed_dim) #LSTM!
-        self.init_embed = nn.Linear(max_tiers, embed_dim, bias=True)
+        self.init_embed = nn.Sequential(
+            nn.Linear(max_tiers, embed_dim//2, bias=True),
+            nn.ReLU(),
+            nn.Linear(embed_dim//2, embed_dim, bias=True),
+            nn.ReLU(),
+            nn.Linear(embed_dim, embed_dim, bias=True)
+        )
+        self.init_conv1d_1 = nn.Conv1d(in_channels=3, out_channels=3, kernel_size=3, stride=1, padding=1, bias = False)
+        self.init_conv1d_2 = nn.Conv1d(in_channels=3, out_channels=3, kernel_size=3, stride=1, padding=2)
+        self.ReLU = nn.ReLU()
         self.encoder_layers = nn.ModuleList([MultiHeadAttentionLayer(n_heads, embed_dim,ff_hidden ) for _ in range(n_layers)])
 
     def forward(self, x, mask=None):
@@ -193,6 +202,7 @@ class GraphAttentionEncoder(nn.Module):
             =((batch, max_stacks, embed_dim), (batch, embed_dim))
         """
         x = x.clone()
+        #x = x + self.init_conv1d_1(x)
         x = self.init_embed(x)
         #x = self.init_embed(x)[0] ##LSTM!
 
@@ -203,9 +213,9 @@ class GraphAttentionEncoder(nn.Module):
 if __name__ == "__main__":
     batch, n_nodes, embed_dim = 5, 21, 128
     max_stacks, max_tiers, n_containers = 4, 4, 8
-
-    encoder = GraphAttentionEncoder()
-    data = torch.randn((batch, 4, 4), dtype=torch.float)
+    device = 'cuda:0'
+    encoder = GraphAttentionEncoder().to(device)
+    data = torch.randn((batch, 4, 4), dtype=torch.float).to(device)
     output = encoder(data, mask=None)
     print(f"output[0] shape: {output[0].shape}")
     print(f"output[1] shape: {output[1].shape}")
