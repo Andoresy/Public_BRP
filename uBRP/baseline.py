@@ -168,7 +168,6 @@ class RolloutBaseline:
     def copy_model(self, model):
         new_model = copy.deepcopy(model)
         return new_model
-    #这里本来有self
     def rollout(self,model, dataset, batch=1000, disable_tqdm=False):
         costs_list = []
         dataloader = DataLoader(dataset, batch_size=batch)

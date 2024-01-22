@@ -1,0 +1,156 @@
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import DataLoader
+from tqdm import tqdm
+from time import time
+from datetime import datetime
+import os
+from model import AttentionModel
+from baseline import RolloutBaseline
+from data import generate_data, Generator
+
+def train(log_path = None, dict_file = None):
+    torch.backends.cudnn.benchmark = True
+    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    if device!='cpu':
+        torch.cuda.set_device(device)
+    n_encode_layers = dict_file["n_encode_layers"] # 4
+    N_samplings = dict_file["N_samplings"] 
+    epochs = dict_file["epochs"] 
+    batch = dict_file["batch"] 
+    batch_num = dict_file["batch_num"] 
+    batch_verbose = dict_file["batch_verbose"] 
+    max_stacks = dict_file["max_stacks"] 
+    max_tiers = dict_file["max_tiers"]
+    baseline_type = dict_file["baseline_type"]
+    lr = dict_file["lr"]
+    beta = dict_file["beta"]
+    n_containers = max_stacks*(max_tiers-2)
+    model_save_path = log_path
+    log_path = log_path + f'/{max_stacks}X{max_tiers-2}Problem_NoAug_x{N_samplings}_Linearx2Init_{n_encode_layers}_layers_0_epoch{epochs}.txt'
+
+# 파일이 이미 존재하는지 확인
+    
+    # open w就是覆盖，a就是在后面加 append
+    with open(log_path, 'w') as f:
+        f.write(datetime.now().strftime('%y%m%d_%H_%M'))
+    with open(log_path, 'a') as f:
+        f.write('\n start training \n')
+    
+    model = AttentionModel(device=device, n_encode_layers=n_encode_layers, max_stacks = max_stacks, max_tiers = max_tiers, n_containers = n_containers)
+    model=model.to(device)
+    model.train()
+
+    baseline = RolloutBaseline(model, task=None,  device=device,weight_dir = None, log_path=log_path, max_stacks = max_stacks, max_tiers = max_tiers, n_containers = n_containers)
+
+    optimizer = optim.Adam(model.parameters(), lr=lr)
+
+    #bs batch steps number of samples = batch * batch_steps
+    def rein_loss(model, inputs, bs, t, device):
+        with torch.no_grad():
+            if baseline_type == 'greedy':
+                b, bl = baseline.model(inputs, decode_type = 'greedy')
+            elif baseline_type == 'sampling':
+                bLs = torch.zeros([batch]).to(device)
+                for i in range(N_samplings):
+                    bL, bll = baseline.model(inputs, decode_type='sampling')
+                    bLs = bLs + bL
+                    b = bLs/N_samplings
+            elif baseline_type == 'augmented_sampling':
+                bLs = torch.zeros([batch]).to(device)
+                shifted_input = inputs
+                for i in range(N_samplings):
+                    shifted_input = torch.cat([shifted_input[:, -1:], shifted_input[:, :-1]], dim=1)
+                    bL, bll = baseline.model(shifted_input, decode_type='sampling')
+                    bLs = bLs + bL
+                b = bLs/N_samplings
+            elif baseline_type == 'greedy+augmented_sampling':
+                bLs = torch.zeros([batch]).to(device)
+                shifted_input = inputs
+                bG, bgl = baseline.model(inputs, decode_type = 'greedy')
+                for i in range(N_samplings):
+                    shifted_input = torch.cat([shifted_input[:, -1:], shifted_input[:, :-1]], dim=1)
+                    bL, bll = baseline.model(shifted_input, decode_type='sampling')
+                    bLs = bLs + bL
+                bS = bLs/N_samplings
+                b = bG*beta + bS*(1-beta)
+        model.train()
+        L, ll = model(inputs, decode_type='sampling')
+        #b = bs[t] if bs is not None else baseline.eval(inputs, L)
+        return ((L - b) * ll).mean(), L.mean()
+        #return ((L-bL)*ll).mean(), L.mean()
+
+    tt1 = time()
+
+
+    t1=time()
+    for epoch in range(epochs):
+
+        ave_loss, ave_L = 0., 0.
+
+        datat1=time()
+        n_containers = max_stacks * (max_tiers-2)
+        dataset=Generator(device, n_samples=batch*batch_num, n_containers=n_containers, max_stacks=max_stacks, max_tiers=max_tiers)
+        datat2=time()
+        print('data_gen: %dmin%dsec' % ((datat2 - datat1) // 60, (datat2 - datat1) % 60))
+
+        bs=baseline.eval_all(dataset)
+        bs = bs.view(-1, batch) if bs is not None else None  # bs: (cfg.batch_steps, cfg.batch) or None
+
+        model.train()
+        dataloader=DataLoader(dataset, batch_size = batch, shuffle = True)
+        for t, inputs in enumerate(dataloader):
+            #print(inputs.size())
+            loss,L_mean=rein_loss(model,inputs,bs,t,device)
+            optimizer.zero_grad()
+            with torch.autograd.set_detect_anomaly(True):
+                loss.backward()
+
+            # print('grad: ', model.Decoder.Wk1.weight.grad[0][0])
+            # https://github.com/wouterkool/attention-learn-to-route/blob/master/train.py
+            nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0, norm_type=2)
+            optimizer.step()
+
+            ave_loss += loss.item()
+            ave_L += L_mean.item()
+
+            if t % (batch_verbose) == 0:
+                t2 = time()
+                # //60是对小数取整
+                print('Epoch %d (batch = %d): Loss: %1.3f avg_L: %1.3f, batch_Loss: %1.3f batch_L: %1.3f %dmin%dsec' % (
+                    epoch, t, ave_loss / (t + 1), ave_L / (t + 1), loss.item(), L_mean.item(), (t2 - t1) // 60, (t2 - t1) % 60))
+                # 如果要把日志文件保存下来
+                if True:
+                    with open(log_path, 'a') as f:
+                        f.write('Epoch %d (batch = %d): Loss: %1.3f L: %1.3f, %dmin%dsec \n' % (
+                    epoch, t, ave_loss / (t + 1), ave_L / (t + 1), (t2 - t1) // 60, (t2 - t1) % 60))
+                t1 = time()
+        model.eval()
+        baseline.epoch_callback(model, epoch)
+        torch.save(model.state_dict(), model_save_path + '/epoch%s.pt' % (epoch))
+
+    tt2 = time()
+    print('all time, %dmin%dsec' % (
+        (tt2 - tt1) // 60, (tt2 - tt1) % 60))
+
+if __name__ == '__main__':
+    dict_file = {"n_encode_layers": 4,
+                 "N_samplings": 8,
+                 "epochs": 50,
+                 "batch": 128,
+                 "batch_num": 100,
+                 "batch_verbose": 10,
+                 "max_stacks": 5,
+                 "max_tiers": 6,
+                 "baseline_type": "greedy+augmented_sampling",
+                 "lr": 0.0001,
+                 "beta": 0.1}
+    i = 0
+    newpath = f'./train/Exp{i}' 
+    while os.path.exists(newpath):
+        i = i+1
+        newpath = f'./train/Exp{i}'
+    if not os.path.exists(newpath):
+        os.makedirs(newpath)
+    train(log_path = newpath, dict_file=dict_file)

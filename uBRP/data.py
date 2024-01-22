@@ -19,7 +19,7 @@ def transform_format(instance_file, H_plus, type='greedy'):
         if type == 'greedy':
             block_values = list(map(lambda x: 1/int(x), lines[i].split()[1:]))
         else:
-            block_values = list(map(lambda x: ((num_blocks+1) - int(x))/num_blocks, lines[i].split()[1:]))
+            block_values = list(map(lambda x: ((num_blocks+1) - int(x))/(num_blocks+1), lines[i].split()[1:]))
         row = block_values + [0] * H_plus
         result.append(row)
 
@@ -44,7 +44,7 @@ def data_from_caserta(file_regex="data3-3.*", H_plus=2): #dataH-W-N.data, H_plus
     return transform_datas
 
 
-def generate_data(device,n_samples=10,n_containers = 8,max_stacks=4,max_tiers=4, seed = None):
+def generate_data(device,n_samples=10,n_containers = 8,max_stacks=4,max_tiers=4, seed = None, plus_tiers = 2):
 
 	if seed is not None:
 		torch.manual_seed(seed)
@@ -58,11 +58,7 @@ def generate_data(device,n_samples=10,n_containers = 8,max_stacks=4,max_tiers=4,
 
 		for i in range(n_samples):
 
-			#初始化
-			#tiers=[0 for j in range(max_stacks)] #stack 要从0到max_stacks-1
 			tiers=np.zeros((max_stacks),dtype=int)
-			#per=[j for j in range(n_containers)] #打乱(0,n-1)的顺序
-			#arange(初始值, 终值, 步长) 不包含终值
 			per=np.arange(0,n_containers,1)
 			np.random.shuffle(per)
 			pos=np.zeros((n_containers,2),dtype=int)
@@ -86,7 +82,7 @@ def generate_data(device,n_samples=10,n_containers = 8,max_stacks=4,max_tiers=4,
 
 	else:
 		#数据的生成都是h*max_stacks个，然后max_tiers=h+2
-		dataset = torch.zeros((n_samples, max_stacks, max_tiers), dtype=float).to(device)
+		dataset = torch.zeros((n_samples, max_stacks, max_tiers + plus_tiers - 2), dtype=float).to(device)
 		if max_stacks * max_tiers < n_containers:  # 放不下就寄
 			print("max_stacks*max_tiers<n_containers")
 			assert max_stacks * max_tiers >= n_containers
@@ -96,9 +92,7 @@ def generate_data(device,n_samples=10,n_containers = 8,max_stacks=4,max_tiers=4,
 			np.random.shuffle(per)
 			per=torch.FloatTensor((per+1)/(n_containers+1.0))
 			data=torch.reshape(per,(max_stacks,max_tiers-2)).to(device)
-
-			add_empty=torch.zeros((max_stacks,2),dtype=float).to(device)
-
+			add_empty=torch.zeros((max_stacks,plus_tiers),dtype=float).to(device)
 			dataset[i]=torch.cat( (data,add_empty) ,dim=1).to(device)
 
 		dataset=dataset.to(torch.float32)
@@ -124,4 +118,5 @@ class Generator(Dataset):
 		return self.n_samples
 	
 if __name__ == '__main__':
-    print(data_from_caserta())
+    #print(data_from_caserta())
+    print(generate_data(device = 'cpu', n_samples = 1, n_containers = 20, max_stacks = 4, max_tiers = 7, plus_tiers = 5))

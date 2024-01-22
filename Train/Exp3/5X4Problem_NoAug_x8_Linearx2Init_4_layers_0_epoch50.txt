@@ -1,0 +1,21 @@
+240122_15_59
+ start training 
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 0) 
+bl_vals = [120. 120. 120. ... 120. 120. 120.] ,means = 119.97779846191406 
+Epoch 0 (batch = 0): Loss: 1181.134 L: 114.430, 0min4sec 
+Epoch 0 (batch = 10): Loss: 1226.459 L: 113.680, 0min35sec 
+Epoch 0 (batch = 20): Loss: 1798.927 L: 110.372, 0min36sec 
+Epoch 0 (batch = 30): Loss: 2429.109 L: 106.354, 0min36sec 
+Epoch 0 (batch = 40): Loss: 3201.869 L: 101.109, 0min36sec 
+Epoch 0 (batch = 50): Loss: 3967.200 L: 95.860, 0min36sec 
+Epoch 0 (batch = 60): Loss: 4635.191 L: 90.781, 0min36sec 
+Epoch 0 (batch = 70): Loss: 5130.469 L: 86.067, 0min36sec 
+Epoch 0 (batch = 80): Loss: 5511.210 L: 81.972, 0min33sec 
+Epoch 0 (batch = 90): Loss: 5802.473 L: 78.415, 0min33sec 
+Evaluating candidate model on baseline dataset (callback epoch = 0) 
+Epoch 0 candidate mean 52.64860153198242, baseline mean 119.97779846191406 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 0) 
+bl_vals = [17. 20. 16. ... 20. 26. 22.] ,means = 42.63990020751953 

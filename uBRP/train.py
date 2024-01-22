@@ -19,7 +19,14 @@ def train(log_path = None):
     print(train)
     n_encode_layers = 4
     N_samplings = 8
-    log_path = f'./NoAug_x{N_samplings}_Linearx2Init_{n_encode_layers}_layers_0.txt'
+    epochs = 50
+    batch = 128
+    batch_num = 100
+    batch_verbose = 10
+    max_stacks = 3
+    max_tiers = 6
+    n_containers = max_stacks*(max_tiers-2)
+    log_path = f'./{max_stacks}X{max_tiers-2}Problem_NoAug_x{N_samplings}_Linearx2Init_{n_encode_layers}_layers_0_epoch{epochs}.txt'
 
 # 파일이 이미 존재하는지 확인
     if os.path.exists(log_path):
@@ -36,11 +43,11 @@ def train(log_path = None):
     with open(log_path, 'a') as f:
         f.write('\n start training \n')
     
-    model = AttentionModel(device=device, n_encode_layers=n_encode_layers, max_stacks = 3, max_tiers = 5, n_containers = 9)
+    model = AttentionModel(device=device, n_encode_layers=n_encode_layers, max_stacks = max_stacks, max_tiers = max_tiers, n_containers = n_containers)
     model=model.to(device)
     model.train()
 
-    baseline = RolloutBaseline(model, task=None,  device=device,weight_dir = None, log_path=log_path, max_stacks = 3, max_tiers = 5, n_containers = 9)
+    baseline = RolloutBaseline(model, task=None,  device=device,weight_dir = None, log_path=log_path, max_stacks = max_stacks, max_tiers = max_tiers, n_containers = n_containers)
 
     optimizer = optim.Adam(model.parameters(), lr=.0001)
 
@@ -53,8 +60,10 @@ def train(log_path = None):
         with torch.no_grad():
             model.eval()
             bLs = torch.zeros([batch]).to(device)
+            shifted_input = inputs
             for i in range(N_samplings):
-                bL, bll = model(inputs, decode_type='sampling')
+                shifted_input = torch.cat([shifted_input[:, -1:], shifted_input[:, :-1]], dim=1)
+                bL, bll = model(shifted_input, decode_type='sampling')
                 bLs = bLs + bL
             b = bLs/N_samplings
         model.train()
@@ -67,17 +76,13 @@ def train(log_path = None):
 
 
     t1=time()
-    epochs = 30
-    batch = 128
-    batch_verbose = 1
     for epoch in range(epochs):
 
         ave_loss, ave_L = 0., 0.
 
         datat1=time()
-        max_stacks = 3
-        max_tiers = 5
-        dataset=Generator(device, n_samples=128*50, n_containers=9, max_stacks=max_stacks, max_tiers=max_tiers)
+        n_containers = max_stacks * (max_tiers-2)
+        dataset=Generator(device, n_samples=batch*batch_num, n_containers=n_containers, max_stacks=max_stacks, max_tiers=max_tiers)
         datat2=time()
         print('data_gen: %dmin%dsec' % ((datat2 - datat1) // 60, (datat2 - datat1) % 60))
 

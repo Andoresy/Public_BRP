@@ -6,27 +6,34 @@ import torch
 import gc
 if __name__ == '__main__':
     device = 'cuda:0'
-    H,W = 3,4 # ACO 논문 기준 H X W = T X S
+    H,W = 3,3 # ACO 논문 기준 H X W = T X S
     N = H*W
-    model = load_model(device='cuda:0', path="./Train/Exp4_greedy_01/epoch26.pt",n_encode_layers=3, embed_dim=128, n_containers=N, max_stacks=W, max_tiers=H+2)
     data_caserta = data_from_caserta(f'data{H}-{W}-.*', 2).to(device)
     data_greedy = data_from_caserta_for_greedy(f'data{H}-{W}-.*', 2).to(device)
-    print(data_caserta.size())
-    print(data_greedy.size())
-    return_pi = False
-    output = model(data_caserta, decode_type='greedy', return_pi=return_pi)
-    output_ = output[0]
+    shifted_data = data_caserta
+    for i in [32, 33]:
+        sampling_U = 160
+        path = f"./epoch{i}.pt"
+        
+        model = load_model(device='cuda:0', path=path,n_encode_layers=4, embed_dim=128, n_containers=N, max_stacks=W, max_tiers=H+2)
+        return_pi = False
+        total = []
+        for _ in range(sampling_U):
+            output = model(data_caserta, decode_type='sampling', return_pi=return_pi)
+            output_ = output[0]
+            total.append(output_.unsqueeze(0))
+        min_output = torch.cat(total).min(dim=0)[0]
+        print(f"Sampling for {sampling_U} times_{i}th epoch mean: {min_output.mean()}")
     #is_toobig = torch.torch.where(output_ > 80, True, False)
     #is_toobig = torch.nonzero(is_toobig).squeeze()
     #is_toobig_sam = is_toobig[0]
     #print(output_[is_toobig])
-    print("Greedy Mean Locations:",output[0].mean())  # cost: (batch)
     #model(data[is_toobig_sam:is_toobig_sam+1],decode_type='greedy', return_pi=True)
 #    print(output[1])  # ll: (batch)
-    device = 'cuda:0'
 
 
     #---greedy
+    """
     rBRP_cnt = 0
     uBRP_cnt = 0
     rBRP_cnt_ar = []
@@ -49,5 +56,6 @@ if __name__ == '__main__':
     print(f"Avg rBRP_cnt: {rBRP_cnt/cnt}")
     print(f"Avg uBRP_cnt: {uBRP_cnt/cnt}")
     for i in range(cnt):
-        print()
-        print(f"rBRPGR({i}) : {rBRP_cnt_ar[i]} uBRPGR({i}) : {uBRP_cnt_ar[i]} Model({i}): {output_[i]}")
+        pass
+        #print(f"rBRPGR({i}) : {rBRP_cnt_ar[i]} uBRPGR({i}) : {uBRP_cnt_ar[i]} Model({i}): {output_[i]}")  
+        """

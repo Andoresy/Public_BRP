@@ -6,7 +6,7 @@ from data import data_from_caserta, data_from_caserta_for_greedy
 global env
 env = None
 device = 'cuda:0'
-N=12
+N=25
 def reset(data):
     global env 
     env = Env(device, data)
@@ -142,7 +142,7 @@ if __name__ == '__main__':
         (2) 2 -> 해가 있을 충분 조건
         (3) Inf(999) -> 제한 없음 
     """
-    H,W = 3,3 # ACO 논문 기준 H X W = T X S
+    H,W = 5,5 # ACO 논문 기준 H X W = T X S
     rBRP_cnt = 0
     uBRP_cnt = 0
     cnt = 0
