@@ -11,6 +11,8 @@ class Env():
         self.batch, self.max_stacks,self.max_tiers=x.size()
         self.target_stack = None
         self.empty = torch.zeros([self.batch], dtype=torch.bool).to(self.device)
+        self.retrieved = torch.ones([self.batch], dtype=torch.bool).to(self.device)
+        self.prev_action = torch.zeros([self.batch, 2]).to(self.device)
         #True -> Empty / False-> not Empty
     def find_target_stack(self):
         #최고 priority Stack 찾기
@@ -31,6 +33,7 @@ class Env():
         clear_mask = ((target_stack_len -1) == target_stack_mx_index)
         clear_mask = clear_mask
         clear_mask = clear_mask & (torch.where(target_stack_len > 0, True, False)) # 완전히 제거된 그룹은 신경쓸 필요 X
+        self.retrieved = clear_mask.squeeze(-1)
         while torch.sum(clear_mask.squeeze(-1))>0:
             batch_mask = clear_mask.repeat_interleave(self.max_stacks * self.max_tiers).to(self.device)
             batch_mask = torch.reshape(batch_mask, (self.batch, self.max_stacks, self.max_tiers)).to(self.device)
@@ -118,6 +121,7 @@ class Env():
 #        print("input_index:",input_index)
         self.x = self.x.index_put_(input_index, source_top_val.squeeze(-1)).to(self.device)
         self.clear()
+        self.prev_action = actions
     def all_empty(self):
         sum = torch.sum(self.empty.type(torch.int))
         if (sum == self.batch):
@@ -141,10 +145,29 @@ class Env():
         # 대각선 값 설정
         d_tensor[:,:,0] = torch.arange(diagonal_size).to(self.device)
         d_tensor[:,:,1] = torch.arange(diagonal_size).to(self.device)
+
+        #이전 action with not retrieved mask
+        prev_action =self.prev_action
+        swapped_prev_action = prev_action[:, [1, 0]]
+        # Find the indices where is_Retrieved is False
+        indices_to_keep = ~self.retrieved
+        # Filter out rows from new_action_tensor based on the indices
+        filtered_indices = torch.nonzero(indices_to_keep, as_tuple=False).squeeze(dim=1)
+        filter_indices_ = torch.nonzero(indices_to_keep, as_tuple=False)
+        # Filter out rows from new_action_tensor based on the indices
+        filtered_prev_action_tensor = swapped_prev_action[filtered_indices]
+        filter = torch.cat((filter_indices_, filtered_prev_action_tensor), dim=1)
+        flat_filter = filter[:, 0] * mask.size(2) * mask.size(1) + filter[:, 1] * mask.size(2) + filter[:, 2]
+        flat_filter = flat_filter.to(torch.long)
+        # 평탄화된 인덱스를 사용하여 값을 변경 (바로 갔던길 불가)
+        mask.view(-1)[flat_filter] = True
+        #대각 index True
         mask.scatter_(2, d_tensor, 1)
         return mask.view(self.batch, self.max_stacks*self.max_stacks)[:,:,None].to(self.device)
     def create_context_uBRP(self):
         pass
+    """밑에는 rBRP
+    """
     def _create_t1(self):
         self.find_target_stack()
         #mask(batch,max_stacks,1) 1表示那一列不可选，0表示可选
@@ -193,10 +216,11 @@ class Env():
         return torch.sum(log_p.squeeze(-1), 1)
 
 if __name__ == "__main__":
-    data = generate_data('cuda:0')
+    data = generate_data('cuda:0', n_containers = 12, max_stacks=4, max_tiers = 5)
     env = Env('cuda:0', data[:2])
-    env.node_embeddings = torch.randn((2,4,2))
-    env.embed_dim = 2
     env.clear()
+    env.step(torch.tensor([[0,1], [2,3]]).to('cuda:0'))
+
     print(env.x)
+    print(env.create_mask_uBRP().view(2, 4, 4))
 
