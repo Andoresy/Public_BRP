@@ -61,6 +61,8 @@ class RolloutBaseline:
         self.weight_dir = weight_dir
         self.device = device
         self.log_path = log_path
+        #Dataset
+        self.dataset = Generator(self.device, n_samples=self.n_rollout_samples, n_containers = self.n_containers,max_stacks=self.max_stacks,max_tiers=self.max_tiers)
 
         # create and evaluate initial baseline
         self._update_baseline(model, epoch)
@@ -81,8 +83,8 @@ class RolloutBaseline:
             #torch.save(self.model.state_dict(), '%s%s_epoch%s.pt' % (self.weight_dir, self.task, epoch))
 
         self.model = self.model.to(self.device)
-        # We generate a new dataset for baseline model on each baseline update to prevent possible overfitting
-        self.dataset = Generator(self.device, n_samples=self.n_rollout_samples, n_containers = self.n_containers,max_stacks=self.max_stacks,max_tiers=self.max_tiers)
+        # We generate a new dataset for baseline model on each baseline update to prevent possible overfitting _jk: 필요없을것 같음
+        #self.dataset = Generator(self.device, n_samples=self.n_rollout_samples, n_containers = self.n_containers,max_stacks=self.max_stacks,max_tiers=self.max_tiers)
         self.bl_vals = self.rollout(self.model, self.dataset).cpu().numpy()
         self.mean = self.bl_vals.mean()
         self.cur_epoch = epoch

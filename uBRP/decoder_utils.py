@@ -15,7 +15,11 @@ def concat_embedding(node_embeddings, device='cuda:0'):
     newnode_embeddings = newnode_embeddings.view(batch_size, width, width, embed_size * 2)
     newnode_embeddings = newnode_embeddings.transpose(1, 2).contiguous().view(batch_size, width * width, embed_size * 2)
     return newnode_embeddings.to(device)
-
+def concat_graph_embedding(graph_embedding, node_embedding, device = 'cuda:0'):
+    batch_size, width, embed_size = node_embedding.size()
+    _, embed_size_graph = graph_embedding.size()
+    extd_grpah_embedding = graph_embedding.view(batch_size, 1, embed_size_graph).repeat([1, width, 1])
+    return torch.cat([extd_grpah_embedding, node_embedding], dim=2).to(device)
 if __name__ == "__main__":
     # 예제 입력 생성
     batch_size = 1

@@ -1,0 +1,5 @@
+240123_12_42
+ start training 
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 0) 
+bl_vals = [800. 800. 800. ... 800. 800. 800.] ,means = 800.0 
