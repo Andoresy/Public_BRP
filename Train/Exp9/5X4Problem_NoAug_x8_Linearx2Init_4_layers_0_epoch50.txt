@@ -1,0 +1,8 @@
+240123_12_11
+ start training 
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 0) 
+bl_vals = [120. 120. 120. ... 120. 120. 120.] ,means = 120.0 
+Epoch 0 (batch = 0): Loss: 795.108 L: 116.172, 0min4sec 
+Epoch 0 (batch = 10): Loss: 926.583 L: 115.056, 0min36sec 
+Epoch 0 (batch = 20): Loss: 1256.399 L: 113.427, 0min37sec 

@@ -8,7 +8,7 @@ from datetime import datetime
 import os
 from model import AttentionModel
 from baseline import RolloutBaseline
-from data import generate_data, Generator
+from data import generate_data, Generator, MultipleGenerator
 
 def train(log_path = None, dict_file = None):
     torch.backends.cudnn.benchmark = True
@@ -85,13 +85,13 @@ def train(log_path = None, dict_file = None):
 
 
     t1=time()
+    dataset=Generator(device, n_samples=batch*batch_num, n_containers=n_containers, max_stacks=max_stacks, max_tiers=max_tiers)
     for epoch in range(epochs):
 
         ave_loss, ave_L = 0., 0.
 
         datat1=time()
         n_containers = max_stacks * (max_tiers-2)
-        dataset=Generator(device, n_samples=batch*batch_num, n_containers=n_containers, max_stacks=max_stacks, max_tiers=max_tiers)
         datat2=time()
         print('data_gen: %dmin%dsec' % ((datat2 - datat1) // 60, (datat2 - datat1) % 60))
 
@@ -143,7 +143,7 @@ if __name__ == '__main__':
                  "batch_verbose": 10,
                  "max_stacks": 5,
                  "max_tiers": 6,
-                 "baseline_type": "greedy+augmented_sampling",
+                 "baseline_type": "greedy",
                  "lr": 0.0001,
                  "beta": 0.1}
     i = 0

@@ -5,7 +5,7 @@ from encoder import MultiHeadAttention, ScaledDotProductAttention, GraphAttentio
 from Env import Env
 from sampler import TopKSampler, CategoricalSampler
 from data import generate_data
-from decoder_utils import concat_embedding
+from decoder_utils import concat_embedding, concat_graph_embedding
 class Decoder_uBRP(nn.Module):
     def __init__(self, 
                  device, 
@@ -23,17 +23,20 @@ class Decoder_uBRP(nn.Module):
         self.device = device
         self.embed_dim = embed_dim
         self.concat_embed_dim = embed_dim*2
+        self.total_embed_dim = embed_dim*3
         self.return_pi = return_pi
         self.Encoder = GraphAttentionEncoder(n_heads, embed_dim, n_encode_layers, max_stacks, max_tiers, n_containers, ff_hidden=ff_hidden).to(device)
-        self.Wq_fixed = nn.Linear(embed_dim, embed_dim*2, bias=False)
-        self.Wk_2 = nn.Linear(embed_dim*2, embed_dim*2, bias=False)
+        self.Wq_fixed = nn.Linear(embed_dim, embed_dim*3, bias=False)
+        self.Wk_2 = nn.Linear(embed_dim*3, embed_dim*3, bias=False)
 
         self.W_O = nn.Sequential(
+            nn.Linear(embed_dim*3, embed_dim*2),
+            nn.ReLU(),
             nn.Linear(embed_dim*2, embed_dim//2),
             nn.ReLU(),
-            nn.Linear(embed_dim//2, embed_dim//8),
+            nn.Linear(embed_dim//2,embed_dim//4),
             nn.ReLU(),
-            nn.Linear(embed_dim//8,1)
+            nn.Linear(embed_dim//4, 1)
             #nn.Linear(256, 512), # It can be More Deeper
             #nn.ReLU(),
             #nn.Linear(512,256),
@@ -60,9 +63,7 @@ class Decoder_uBRP(nn.Module):
         encoder_output=self.Encoder(env.x)
         node_embeddings, graph_embedding = encoder_output
         concat_node_embeddings = concat_embedding(node_embeddings, device = self.device)
-        env.node_embeddings= concat_node_embeddings
-        self.compute_static(concat_node_embeddings, graph_embedding)
-
+        total_embeddings = concat_graph_embedding(graph_embedding, concat_node_embeddings)
         #mask(batch,max_stacks,1) 
         #step_context=target_stack_embedding(batch, 1, embed_dim) 
         mask = env.create_mask_uBRP()
@@ -77,7 +78,7 @@ class Decoder_uBRP(nn.Module):
         for i in range(n_containers * max_tiers):
 
             # logits (batch,max_stacks)
-            logits = self.compute_dynamic(mask, concat_node_embeddings)
+            logits = self.compute_dynamic(mask, total_embeddings)
             # log_p (batch,max_stacks)
 
             log_p = torch.log_softmax(logits, dim=1)
@@ -111,8 +112,7 @@ class Decoder_uBRP(nn.Module):
             encoder_output = self.Encoder(env.x)
             node_embeddings, graph_embedding = encoder_output
             concat_node_embeddings = concat_embedding(node_embeddings, device= self.device)
-            env.node_embeddings = concat_node_embeddings
-            self.compute_static(concat_node_embeddings, graph_embedding)
+            total_embeddings = concat_graph_embedding(graph_embedding, concat_node_embeddings)
 
             mask = env.create_mask_uBRP()
 #        print('\ncost(Number of Relocations):\n', cost)
