@@ -4,28 +4,31 @@ from GreedyACO import GRE_rBRP, GRE_uBRP
 from data import data_from_caserta, data_from_caserta_for_greedy
 import torch
 import gc
+from tqdm import tqdm
+import time
 if __name__ == '__main__':
     device = 'cuda:0'
-    H,W = 5,4 # ACO 논문 기준 H X W = T X S
+    H,W = 3,8 # ACO 논문 기준 H X W = T X S
     H_plus = 2
     N = H*W
     data_caserta = data_from_caserta(f'data{H}-{W}-.*', H_plus).to(device)
     data_greedy = data_from_caserta_for_greedy(f'data{H}-{W}-.*', H_plus).to(device)
     shifted_data = data_caserta
-    for i in [0,1]:
-        sampling_U = 320
-        path = f"./Train/Exp78/epoch{i}.pt"
+    for i in [42]:
+        sampling_U = 640
+        path = f"./Train/Exp5/epoch{i}.pt"
         model = load_model(device='cuda:0', path=path,n_encode_layers=4, embed_dim=128, n_containers=N, max_stacks=W, max_tiers=H+H_plus)
         return_pi = False
         total = []
         output = model(data_caserta, decode_type='greedy', return_pi=return_pi)
         output_ = output[0]
         total.append(output_.unsqueeze(0))
-        for _ in range(sampling_U):
+        for _ in tqdm(range(sampling_U), desc = f'{i}th epoch sampling:'):
             output = model(data_caserta, decode_type='sampling', return_pi=return_pi)
             output_ = output[0]
             total.append(output_.unsqueeze(0))
         min_output = torch.cat(total).min(dim=0)[0]
+        print(min_output)
         print(f"Sampling Mean Locations for {sampling_U} times_{i}th epoch mean: {min_output.mean()}")
     #is_toobig = torch.torch.where(output_ > 80, True, False)
     #is_toobig = torch.nonzero(is_toobig).squeeze()

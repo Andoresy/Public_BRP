@@ -41,7 +41,7 @@ def train(log_path = None, dict_file = None):
         f.write(dict_file.__str__())
     
     #model = AttentionModel(device=device, n_encode_layers=n_encode_layers, max_stacks = max_stacks, max_tiers = max_tiers+plus_tiers-2, n_containers = n_containers)
-    path = "./Train/Exp78/epoch45.pt" #from previous version
+    path = "./Train/Exp1/epoch45.pt" #from previous version
     model = load_model(device='cuda:0', path=path,n_encode_layers=4, embed_dim=128, n_containers=n_containers, max_stacks=max_stacks, max_tiers=max_tiers+plus_tiers-2)
     model=model.to(device)
     model.train()
@@ -141,11 +141,11 @@ if __name__ == '__main__':
     dict_file = {"n_encode_layers": 4,
                  "N_samplings": 8,
                  "epochs": 50,
-                 "batch": 256,
-                 "batch_num": 50,
+                 "batch": 128,
+                 "batch_num": 100,
                  "batch_verbose": 10,
-                 "max_stacks": 4,
-                 "max_tiers": 7,
+                 "max_stacks": 6,
+                 "max_tiers": 5,
                  "plus_tiers": 2,
                  "baseline_type": "greedy",
                  "lr": 0.00001,
