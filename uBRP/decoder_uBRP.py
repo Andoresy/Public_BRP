@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import math
 from encoder import MultiHeadAttention, ScaledDotProductAttention, GraphAttentionEncoder, SingleHeadAttention
-from Env import Env
+from Env_V2 import Env
 from sampler import TopKSampler, CategoricalSampler
 from data import generate_data
 from decoder_utils import concat_embedding, concat_graph_embedding
