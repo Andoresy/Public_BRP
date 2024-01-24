@@ -75,7 +75,9 @@ def generate_data_Multiple(device, total_n_samples = 100, max_stacks=4, max_tier
 	ratio[-1] *= 3 #원본 개수 늘리기
 	total_sum = sum(ratio)
 	ratio = [r/total_sum for r in ratio]
-	return torch.cat([generate_data(device, int(total_n_samples*ratio[i]), s*(t-2), s, t, seed=None, plus_tiers=max_tiers-t+2, plus_stacks = max_stacks - s) for i,(s,t) in enumerate(sample_indexes)])
+	ratio_num = [int(r*total_n_samples) for r in ratio]
+	ratio_num[-1] += total_n_samples - sum(ratio_num)
+	return torch.cat([generate_data(device, ratio_num[i], s*(t-2), s, t, seed=None, plus_tiers=max_tiers-t+2, plus_stacks = max_stacks - s) for i,(s,t) in enumerate(sample_indexes)])
 class Generator(Dataset):
 	""" https://github.com/utkuozbulak/pytorch-custom-dataset-examples
 		https://github.com/wouterkool/attention-learn-to-route/blob/master/problems/vrp/problem_vrp.py
@@ -83,8 +85,8 @@ class Generator(Dataset):
 	    https://github.com/Rintarooo/VRP_DRL_MHA/pytorch/data.py
 	"""
 	def __init__(self, device, n_samples = 5120,
-				 n_containers = 8,max_stacks=4,max_tiers=4, seed = None):
-		self.data_pos = generate_data(device, n_samples,n_containers, max_stacks,max_tiers, seed=seed)
+				 n_containers = 8,max_stacks=4,max_tiers=4, seed = None, plus_tiers = 2):
+		self.data_pos = generate_data(device, n_samples,n_containers, max_stacks,max_tiers, seed=seed, plus_tiers=plus_tiers)
 		self.n_samples=n_samples
 
 	def __getitem__(self, idx):

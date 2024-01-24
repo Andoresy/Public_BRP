@@ -1,3 +1,0 @@
-240122_23_29
- start training 
-Baseline model copied 

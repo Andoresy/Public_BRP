@@ -160,7 +160,7 @@ class Env():
         flat_filter = filter[:, 0] * mask.size(2) * mask.size(1) + filter[:, 1] * mask.size(2) + filter[:, 2]
         flat_filter = flat_filter.to(torch.long)
         # 평탄화된 인덱스를 사용하여 값을 변경 (바로 갔던길 불가)
-        mask.view(-1)[flat_filter] = True
+        #mask.view(-1)[flat_filter] = True
         #대각 index True
         mask.scatter_(2, d_tensor, 1)
         return mask.view(self.batch, self.max_stacks*self.max_stacks)[:,:,None].to(self.device)
