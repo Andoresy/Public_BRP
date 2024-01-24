@@ -1,32 +1,26 @@
 import torch
 import numpy as np
+from data import generate_data
+from Env_V2 import Env
 original_list = [[[1, 2, 3], [4, 5, 6], [7, 8, 0]], [[7, 8, 9], [10, 11, 22], [4, 5, 6]]]
 
 # 리스트를 PyTorch 텐서로 변환
-tensor = torch.tensor(original_list)
+batch,max_stacks,max_tiers = 2, 3, 4
+n_containers = max_stacks *(max_tiers-2)
+data = generate_data('cuda:0', batch, n_containers, max_stacks, max_tiers)
+binary_x = torch.where(data > 0., 1, 0).to('cuda:0') # Block -> 1 Empty -> 0
+stack_len = torch.sum(binary_x, dim=2).to('cuda:0') #Stack의 Length
+block_nums = torch.sum(stack_len, dim=1).to('cuda:0')
 
-# 텐서의 각 행을 오른쪽으로 한 칸씩 이동
-shifted_tensor = torch.cat([tensor[:, -1:], tensor[:, :-1]], dim=1)
-
-# 이동된 텐서를 리스트로 변환
-shifted_list = shifted_tensor.tolist()
-
-#print(shifted_list)
-graph_embedding = torch.randn([5, 128]).view(5, 1, 128)
-node_embedding = torch.randn([5,16,200])
-extd_grpah_embedding = graph_embedding.repeat([1, 16, 1])
-
-n_containers = 6
-max_stacks = 3
-max_tiers = 4
-device = 'cpu'
-plus_tiers = 3
-plus_stacks = 2
-per = np.arange(0, n_containers, 1)
-np.random.shuffle(per)
-per=torch.FloatTensor((per+1)/(n_containers+1.0))
-data=torch.reshape(per,(max_stacks,max_tiers-2)).to(device)
-data = torch.cat([torch.zeros(plus_stacks, max_tiers-2),data], dim=0)
-data = data[torch.randperm(data.size()[0])]
-add_empty=torch.zeros((max_stacks+plus_stacks,plus_tiers),dtype=float).to(device)
-print(torch.cat( (data,add_empty) ,dim=1).to(device))
+env = Env('cuda:0', data)
+print(data)
+env.clear()
+print(env.x)
+binary_x = torch.where(env.x > 0., 1, 0).to('cuda:0') # Block -> 1 Empty -> 0
+stack_len = torch.sum(binary_x, dim=2).to('cuda:0') #Stack의 Length
+new_block_nums = torch.sum(stack_len, dim=1).to('cuda:0')
+print(block_nums)
+print(new_block_nums)
+new_ratio = (block_nums + 1)/(new_block_nums+1)
+print(new_ratio)
+print(torch.mul(env.x.view(batch, max_stacks*max_tiers), new_ratio.unsqueeze(1)).view(batch, max_stacks, max_tiers))

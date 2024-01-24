@@ -6,7 +6,7 @@ from data import data_from_caserta, data_from_caserta_for_greedy
 global env
 env = None
 device = 'cuda:0'
-N=25
+N=16
 def reset(data):
     global env 
     env = Env(device, data)

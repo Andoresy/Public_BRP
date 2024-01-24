@@ -7,7 +7,7 @@ from time import time
 from datetime import datetime
 import os
 from model import AttentionModel
-from baseline import RolloutBaseline
+from baseline import RolloutBaseline, load_model
 from data import generate_data, Generator, MultipleGenerator
 
 def train(log_path = None, dict_file = None):
@@ -24,6 +24,7 @@ def train(log_path = None, dict_file = None):
     max_stacks = dict_file["max_stacks"] 
     max_tiers = dict_file["max_tiers"]
     baseline_type = dict_file["baseline_type"]
+    plus_tiers = dict_file["plus_tiers"]
     lr = dict_file["lr"]
     beta = dict_file["beta"]
     n_containers = max_stacks*(max_tiers-2)
@@ -37,15 +38,21 @@ def train(log_path = None, dict_file = None):
         f.write(datetime.now().strftime('%y%m%d_%H_%M'))
     with open(log_path, 'a') as f:
         f.write('\n start training \n')
+        f.write(dict_file.__str__())
     
-    model = AttentionModel(device=device, n_encode_layers=n_encode_layers, max_stacks = max_stacks, max_tiers = max_tiers, n_containers = n_containers)
+    #model = AttentionModel(device=device, n_encode_layers=n_encode_layers, max_stacks = max_stacks, max_tiers = max_tiers+plus_tiers-2, n_containers = n_containers)
+    path = "./Train/Exp78/epoch45.pt" #from previous version
+    model = load_model(device='cuda:0', path=path,n_encode_layers=4, embed_dim=128, n_containers=n_containers, max_stacks=max_stacks, max_tiers=max_tiers+plus_tiers-2)
     model=model.to(device)
     model.train()
 
-    baseline = RolloutBaseline(model, task=None,  device=device,weight_dir = None, log_path=log_path, max_stacks = max_stacks, max_tiers = max_tiers, n_containers = n_containers)
+    baseline = RolloutBaseline(model, task=None,  device=device,weight_dir = None, log_path=log_path, max_stacks = max_stacks, max_tiers = max_tiers, plus_tiers = plus_tiers,n_containers = n_containers)
 
     optimizer = optim.Adam(model.parameters(), lr=lr)
-
+    scheduler = optim.lr_scheduler.LambdaLR(optimizer=optimizer,
+                                        lr_lambda=lambda epoch: 0.96 ** epoch,
+                                        last_epoch=-1,
+                                        verbose=False)
     #bs batch steps number of samples = batch * batch_steps
     def rein_loss(model, inputs, bs, t, device):
         with torch.no_grad():
@@ -56,7 +63,7 @@ def train(log_path = None, dict_file = None):
                 for i in range(N_samplings):
                     bL, bll = baseline.model(inputs, decode_type='sampling')
                     bLs = bLs + bL
-                    b = bLs/N_samplings
+                b = bLs/N_samplings
             elif baseline_type == 'augmented_sampling':
                 bLs = torch.zeros([batch]).to(device)
                 shifted_input = inputs
@@ -85,30 +92,27 @@ def train(log_path = None, dict_file = None):
 
 
     t1=time()
-    dataset=Generator(device, n_samples=batch*batch_num, n_containers=n_containers, max_stacks=max_stacks, max_tiers=max_tiers)
     for epoch in range(epochs):
 
         ave_loss, ave_L = 0., 0.
 
         datat1=time()
         n_containers = max_stacks * (max_tiers-2)
+        dataset=Generator(device, n_samples=batch*batch_num, n_containers=n_containers, max_stacks=max_stacks, max_tiers=max_tiers, plus_tiers=plus_tiers)
         datat2=time()
         print('data_gen: %dmin%dsec' % ((datat2 - datat1) // 60, (datat2 - datat1) % 60))
 
-        bs=baseline.eval_all(dataset)
-        bs = bs.view(-1, batch) if bs is not None else None  # bs: (cfg.batch_steps, cfg.batch) or None
+        #bs=baseline.eval_all(dataset)
+        #bs = bs.view(-1, batch) if bs is not None else None  # bs: (cfg.batch_steps, cfg.batch) or None
 
         model.train()
         dataloader=DataLoader(dataset, batch_size = batch, shuffle = True)
         for t, inputs in enumerate(dataloader):
             #print(inputs.size())
-            loss,L_mean=rein_loss(model,inputs,bs,t,device)
+            loss,L_mean=rein_loss(model,inputs,None,t,device)
             optimizer.zero_grad()
             with torch.autograd.set_detect_anomaly(True):
                 loss.backward()
-
-            # print('grad: ', model.Decoder.Wk1.weight.grad[0][0])
-            # https://github.com/wouterkool/attention-learn-to-route/blob/master/train.py
             nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0, norm_type=2)
             optimizer.step()
 
@@ -117,10 +121,8 @@ def train(log_path = None, dict_file = None):
 
             if t % (batch_verbose) == 0:
                 t2 = time()
-                # //60是对小数取整
                 print('Epoch %d (batch = %d): Loss: %1.3f avg_L: %1.3f, batch_Loss: %1.3f batch_L: %1.3f %dmin%dsec' % (
                     epoch, t, ave_loss / (t + 1), ave_L / (t + 1), loss.item(), L_mean.item(), (t2 - t1) // 60, (t2 - t1) % 60))
-                # 如果要把日志文件保存下来
                 if True:
                     with open(log_path, 'a') as f:
                         f.write('Epoch %d (batch = %d): Loss: %1.3f L: %1.3f, %dmin%dsec \n' % (
@@ -128,6 +130,7 @@ def train(log_path = None, dict_file = None):
                 t1 = time()
         model.eval()
         baseline.epoch_callback(model, epoch)
+        scheduler.step()
         torch.save(model.state_dict(), model_save_path + '/epoch%s.pt' % (epoch))
 
     tt2 = time()
@@ -138,13 +141,14 @@ if __name__ == '__main__':
     dict_file = {"n_encode_layers": 4,
                  "N_samplings": 8,
                  "epochs": 50,
-                 "batch": 128,
-                 "batch_num": 100,
+                 "batch": 256,
+                 "batch_num": 50,
                  "batch_verbose": 10,
-                 "max_stacks": 5,
-                 "max_tiers": 6,
+                 "max_stacks": 4,
+                 "max_tiers": 7,
+                 "plus_tiers": 2,
                  "baseline_type": "greedy",
-                 "lr": 0.0001,
+                 "lr": 0.00001,
                  "beta": 0.1}
     i = 0
     newpath = f'./train/Exp{i}' 

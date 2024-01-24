@@ -36,8 +36,9 @@ class RolloutBaseline:
                  embed_dim=128, 
                  n_containers=8, 
                  max_stacks=4, 
-                 max_tiers=4, 
-                 n_rollout_samples=10000,
+                 max_tiers=4,
+                 plus_tiers=2, 
+                 n_rollout_samples=5000,
                  warmup_beta=0.8,
                  warmup_epochs = 1,
                  device='cpu',
@@ -62,7 +63,7 @@ class RolloutBaseline:
         self.device = device
         self.log_path = log_path
         #Dataset
-        self.dataset = Generator(self.device, n_samples=self.n_rollout_samples, n_containers = self.n_containers,max_stacks=self.max_stacks,max_tiers=self.max_tiers)
+        self.dataset = Generator(self.device, n_samples=self.n_rollout_samples, n_containers = self.n_containers,max_stacks=self.max_stacks,max_tiers=self.max_tiers, plus_tiers=plus_tiers)
 
         # create and evaluate initial baseline
         self._update_baseline(model, epoch)
@@ -78,7 +79,8 @@ class RolloutBaseline:
             print('Baseline model copied')
             with open(self.log_path, 'a') as f:
                 f.write('Baseline model copied \n')
-            self.model = self.copy_model(model)
+            #self.model = self.copy_model(model)
+            self.model = model
             # For checkpoint
             #torch.save(self.model.state_dict(), '%s%s_epoch%s.pt' % (self.weight_dir, self.task, epoch))
 
@@ -91,7 +93,7 @@ class RolloutBaseline:
         print(f'_update_baseline : Evaluating baseline model on baseline dataset (epoch = {epoch})')
         with open(self.log_path, 'a') as f:
             f.write(f'_update_baseline : Evaluating baseline model on baseline dataset (epoch = {epoch}) \n')
-        print(f'bl_vals = {self.bl_vals} ,means = {self.mean}')
+        print(f'bl_vals = {self.bl_vals}, bl_vals_sample_nums = {self.bl_vals.size}, means = {self.mean}')
         with open(self.log_path, 'a') as f:
             f.write(f'bl_vals = {self.bl_vals} ,means = {self.mean} \n')
     def ema_eval(self, cost):  # def eval
@@ -140,13 +142,13 @@ class RolloutBaseline:
         with open(self.log_path, 'a') as f:
             f.write(f'Evaluating candidate model on baseline dataset (callback epoch = {self.cur_epoch}) \n')
 
-        model.eval()
+        model.train()
         with torch.no_grad():
             candidate_vals = self.rollout(model=model, dataset=self.dataset).cpu().numpy()  # costs for training model on baseline dataset
         candidate_mean = candidate_vals.mean()
         model.train()
-
         print(f'Epoch {self.cur_epoch} candidate mean {candidate_mean}, baseline mean {self.mean}')
+        print(f'Epoch {self.cur_epoch} candidate # of non_feasible_solutions {torch.sum(torch.tensor(candidate_vals) > 50)}')
         with open(self.log_path, 'a') as f:
             f.write(f'Epoch {self.cur_epoch} candidate mean {candidate_mean}, baseline mean {self.mean} \n')
 
