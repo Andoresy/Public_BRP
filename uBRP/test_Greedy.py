@@ -7,17 +7,19 @@ import gc
 if __name__ == '__main__':
     device = 'cuda:0'
     HWS = [(3,3),(3,4),(3,5),(3,6),(3,7),(3,8),(4,4),(4,5),(4,6),(4,7),(5,4),(5,5),(5,6),(5,7),(5,8),(5,9)]
+    #HWS = [(3,3)]
     for H,W in HWS:
         H_plus = 2
         N = H*W
-        embed_dim = 32
+        embed_dim = 64
         data_caserta = data_from_caserta(f'data{H}-{W}-.*', H_plus).to(device)
         data_greedy = data_from_caserta_for_greedy(f'data{H}-{W}-.*', H_plus).to(device)
-        for i in range(165, 166):
+        for i in range(6,7):
     #        print(data_caserta.size())
     #        print(data_greedy.size())
-            path = f"./Train/Exp22/epoch{i}.pt"
+            path = f"./Train/Exp4/epoch{i}.pt"
             model = load_model(device='cuda:0', path=path,n_encode_layers=4, embed_dim=embed_dim, n_containers=N, max_stacks=W, max_tiers=H+H_plus, is_Test = True)
+            model.eval()
             return_pi = False
             output = model(data_caserta, decode_type='greedy', return_pi=return_pi)
             output_ = output[0]

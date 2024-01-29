@@ -44,7 +44,7 @@ def train(log_path = None, dict_file = None):
     
     model = AttentionModel_LSTM(device=device, n_encode_layers=n_encode_layers, embed_dim=embed_dim, max_stacks = max_stacks, max_tiers = max_tiers+plus_tiers-2, n_containers = n_containers)
     #model = AttentionModel(device=device, n_encode_layers=n_encode_layers, embed_dim=128, max_stacks = max_stacks, max_tiers = max_tiers+plus_tiers-2, n_containers = n_containers)
-    path = "./Train/Exp21/epoch71.pt" #from previous version
+    #path = "./Train/Exp27/epoch38.pt" #from previous version
     #model = load_model(device='cuda:0', path=path,n_encode_layers=4, embed_dim=embed_dim, n_containers=n_containers, max_stacks=max_stacks, max_tiers=max_tiers+plus_tiers-2)
     model=model.to(device)
     model.train()
@@ -144,7 +144,7 @@ def train(log_path = None, dict_file = None):
         model.eval()
         print("lr: ", optimizer.param_groups[0]['lr'])
         baseline.epoch_callback(model, epoch)
-        scheduler.step()
+        #scheduler.step()
         torch.save(model.state_dict(), model_save_path + '/epoch%s.pt' % (epoch))
 
     tt2 = time()
@@ -156,16 +156,16 @@ if __name__ == '__main__':
                  "N_samplings": 8,
                  "epochs": 400,
                  "batch": 64,
-                 "batch_num": 1000,
+                 "batch_num": 500,
                  "batch_verbose": 100,
                  "max_stacks": 3,
                  "max_tiers": 5,
                  "plus_tiers": 2,
-                 "baseline_type": "greedy",
-                 "lr": 0.0001,
+                 "baseline_type": "greedy+new_sampling",
+                 "lr": 0.001,
                  "warmuplr": 0.001,
                  "beta": 0.1,
-                 "embed_dim": 32}
+                 "embed_dim": 64}
     i = 0
     newpath = f'./train/Exp{i}' 
     while os.path.exists(newpath):

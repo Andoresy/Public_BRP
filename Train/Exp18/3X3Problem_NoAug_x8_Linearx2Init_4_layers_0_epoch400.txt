@@ -1,3 +1,0 @@
-240126_21_32
- start training 
-{'n_encode_layers': 4, 'N_samplings': 8, 'epochs': 400, 'batch': 64, 'batch_num': 1000, 'batch_verbose': 100, 'max_stacks': 3, 'max_tiers': 5, 'plus_tiers': 2, 'baseline_type': 'greedy', 'lr': 0.0001, 'warmuplr': 0.001, 'beta': 0.1, 'embed_dim': 32}Baseline model copied 

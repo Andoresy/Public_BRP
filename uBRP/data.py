@@ -123,7 +123,8 @@ class MultipleGenerator():
 		#(max_stacks, max_tiers), dataset = self.datasets_withinfo[idx]
 		return  self.datasets
 	def get_prob_dist(self):
-		lower, upper, scale = 0, self.upper, .5 * (1.03)**self.epoch
+		#lower, upper, scale = 0, self.upper, .5 * (1.03)**self.epoch
+		lower, upper, scale = 0, self.upper, .5 + .3* self.epoch
 		X = stats.truncexpon(b=(upper-lower)/scale, loc=lower, scale=scale) #Truncated Expon
 		data = X.rvs(self.n_samples//self.batch)
 		return torch.tensor(np.rint(data), dtype=torch.long).to(self.device)
@@ -131,4 +132,4 @@ if __name__ == '__main__':
 	#print(data_from_caserta()[39])
     #(data_from_caserta_for_greedy())
     #print(generate_data_Multiple(device = 'cpu', total_n_samples = 100,  max_stacks = 4, max_tiers = 7, plus_tiers = 5)
-	print(MultipleGenerator('cuda:0', epoch=40).type_num_dist)
+	print(MultipleGenerator('cuda:0', epoch=30).type_num_dist)
