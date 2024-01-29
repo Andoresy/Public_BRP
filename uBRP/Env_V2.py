@@ -27,6 +27,7 @@ class Env():
         self.find_target_stack()
         binary_x = torch.where(self.x > 0., 1, 0).to(self.device) # Block -> 1 Empty -> 0
         stack_len = torch.sum(binary_x, dim=2).to(self.device) #Stack의 Length
+        block_nums = torch.sum(stack_len, dim=1).to('cuda:0')
         target_stack_len = torch.gather(stack_len, dim=1, index = self.target_stack[:,None].to(self.device)) #target_stack의 location
         stack_mx_index = torch.argmax(self.x, dim=2).to(self.device)
         target_stack_mx_index = torch.gather(stack_mx_index, dim=1, index=self.target_stack[:,None].to(self.device))
@@ -56,7 +57,11 @@ class Env():
             clear_mask = ((target_stack_len - 1) == target_stack_mx_index)
             clear_mask = clear_mask.to(self.device)
             clear_mask = clear_mask & (torch.where(target_stack_len > 0, True, False).to(self.device))
-        
+        binary_x = torch.where(self.x > 0., 1, 0).to('cuda:0') # Block -> 1 Empty -> 0
+        stack_len = torch.sum(binary_x, dim=2).to('cuda:0') #Stack의 Length
+        new_block_nums = torch.sum(stack_len, dim=1).to('cuda:0')
+        new_ratio = (block_nums + 1)/(new_block_nums+1)
+        self.x = torch.mul(self.x.view(self.batch, self.max_stacks*self.max_tiers), new_ratio.unsqueeze(1)).view(self.batch, self.max_stacks, self.max_tiers).to('cuda:0')
         self._update_empty()
     def _get_step(self, next_node):
         """ next_node : (batch, 1) int, range[0, max_stacks)
@@ -159,7 +164,7 @@ class Env():
         filter = torch.cat((filter_indices_, filtered_prev_action_tensor), dim=1)
         flat_filter = filter[:, 0] * mask.size(2) * mask.size(1) + filter[:, 1] * mask.size(2) + filter[:, 2]
         flat_filter = flat_filter.to(torch.long)
-        # 평탄화된 인덱스를 사용하여 값을 변경 (바로 갔던길 불가)
+        # 평탄화된 인덱스를 사용하여 값을 변경 (바로 갔던길 되돌아 가는길불가)
         #mask.view(-1)[flat_filter] = True
         #대각 index True
         mask.scatter_(2, d_tensor, 1)

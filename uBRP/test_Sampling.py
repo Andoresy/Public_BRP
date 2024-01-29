@@ -8,28 +8,33 @@ from tqdm import tqdm
 import time
 if __name__ == '__main__':
     device = 'cuda:0'
-    H,W = 3,8 # ACO 논문 기준 H X W = T X S
-    H_plus = 2
-    N = H*W
-    data_caserta = data_from_caserta(f'data{H}-{W}-.*', H_plus).to(device)
-    data_greedy = data_from_caserta_for_greedy(f'data{H}-{W}-.*', H_plus).to(device)
-    shifted_data = data_caserta
-    for i in [42]:
-        sampling_U = 640
-        path = f"./Train/Exp5/epoch{i}.pt"
-        model = load_model(device='cuda:0', path=path,n_encode_layers=4, embed_dim=128, n_containers=N, max_stacks=W, max_tiers=H+H_plus)
-        return_pi = False
-        total = []
-        output = model(data_caserta, decode_type='greedy', return_pi=return_pi)
-        output_ = output[0]
-        total.append(output_.unsqueeze(0))
-        for _ in tqdm(range(sampling_U), desc = f'{i}th epoch sampling:'):
-            output = model(data_caserta, decode_type='sampling', return_pi=return_pi)
+    HWS = [(3,3),(3,4),(3,5),(3,6),(3,7),(3,8),(4,4),(4,5),(4,6),(4,7),(5,4),(5,5),(5,6),(5,7),(5,8),(6,6)]
+    HWS = [(4,5)]
+    for H,W in HWS:
+        H_plus = 2
+        Exp_num = 22
+        epochs = [165]
+        embed_dim = 32
+        N = H*W
+        data_caserta = data_from_caserta(f'data{H}-{W}-.*', H_plus).to(device)
+        data_greedy = data_from_caserta_for_greedy(f'data{H}-{W}-.*', H_plus).to(device)
+        shifted_data = data_caserta
+        for i in epochs:
+            path = f"./Train/Exp{Exp_num}/epoch{i}.pt"
+            model = load_model(device='cuda:0', path=path,n_encode_layers=4, embed_dim=embed_dim, n_containers=N, max_stacks=W, max_tiers=H+H_plus, is_Test=True)
+            sampling_U = 640
+            return_pi = False
+            total = []
+            output = model(data_caserta, decode_type='greedy', return_pi=return_pi)
             output_ = output[0]
             total.append(output_.unsqueeze(0))
-        min_output = torch.cat(total).min(dim=0)[0]
-        print(min_output)
-        print(f"Sampling Mean Locations for {sampling_U} times_{i}th epoch mean: {min_output.mean()}")
+            for _ in tqdm(range(sampling_U), desc = f'{i}th epoch sampling:'):
+                output = model(data_caserta, decode_type='new_sampling', return_pi=return_pi)
+                output_ = output[0]
+                total.append(output_.unsqueeze(0))
+            min_output = torch.cat(total).min(dim=0)[0]
+            #print(min_output)
+            print(f"{H}X{W}Sampling Mean Locations for {sampling_U} times_{i}th epoch mean: {min_output.mean()}")
     #is_toobig = torch.torch.where(output_ > 80, True, False)
     #is_toobig = torch.nonzero(is_toobig).squeeze()
     #is_toobig_sam = is_toobig[0]

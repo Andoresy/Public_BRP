@@ -2,8 +2,11 @@ import torch
 import os
 import re
 import numpy as np
+import scipy.stats as stats
 from torch.utils.data.dataset import Dataset
 from torch.utils.data import DataLoader
+"""	GENERATE DATASET FOR TEST
+"""
 def transform_format(instance_file, H_plus, type='greedy'):
     # Read the instance file
     with open(instance_file, 'r') as file:
@@ -27,22 +30,26 @@ def transform_format(instance_file, H_plus, type='greedy'):
 def process_files_with_regex(directory_path, file_regex, H_plus, type = 'greedy'):
     # Use re to find files matching the specified regex pattern
     files = [file for file in os.listdir(directory_path) if re.search(file_regex, file)]
+    #files = [f'data3-3-{i}.dat' for i in range(1, 41)]
     transform_datas = []
+    #print(len(files))
     # Process each matching file
     for file_name in files:
+        #print(file_name)
         file_path = os.path.join(directory_path, file_name)
         transformed_data = transform_format(file_path,H_plus, type)
         transform_datas.append(transformed_data.unsqueeze(0))
     return torch.cat(transform_datas)
-def data_from_caserta_for_greedy(file_regex="data3-3.*", H_plus=2): #dataH-W-N.data, H_plus = Hmax-H
+def data_from_caserta_for_greedy(file_regex="data3-3-.*", H_plus=2): #dataH-W-N.data, H_plus = Hmax-H
     directory_path  = './uBRP\\brp-instances-caserta-etal-2012\\CRPTestcases_Caserta'
     transform_datas = process_files_with_regex(directory_path, file_regex, H_plus)
     return transform_datas
-def data_from_caserta(file_regex="data3-3.*", H_plus=2): #dataH-W-N.data, H_plus = Hmax-H
+def data_from_caserta(file_regex="data3-3-.*", H_plus=2): #dataH-W-N.data, H_plus = Hmax-H
     directory_path  = './uBRP\\brp-instances-caserta-etal-2012\\CRPTestcases_Caserta'
     transform_datas = process_files_with_regex(directory_path, file_regex, H_plus, type='caserta')
     return transform_datas
-
+"""	GENERATE DATASET FOR TRAIN/VAL
+"""
 
 def generate_data(device,n_samples=10,n_containers = 8,max_stacks=4,max_tiers=4, seed = None, plus_tiers = 2, plus_stacks = 0):
 
@@ -95,18 +102,33 @@ class Generator(Dataset):
 	def __len__(self):
 		return self.n_samples
 
-class MultipleGenerator(Dataset):
-	def __init__(self, device, n_samples = 5120,
-				n_containers = 8,max_stacks=4,max_tiers=4, seed = None):
-		self.data_pos = generate_data_Multiple(device, n_samples, max_stacks,max_tiers, plus_tiers=2, seed=seed)
-		self.n_samples=n_samples
+class MultipleGenerator():
+	def __init__(self, device, batch = 64, n_samples = 5120, seed=None, epoch = 0):
+		self.n_samples = n_samples
+		self.batch = batch
+		self.epoch = epoch
+		self.device = device 
+		
+		max_num = 8
+		type_of_Size = sorted([(i,j) for i in range(3,max_num+1) for j in range(i-1, max_num+1)], key = lambda x: x[0]+x[1]) #Should be Tested
+		#type_of_Size = [(i,j) for i in range(3,max_num+1) for j in range(i-1, max_num+1)]
+		
+		self.upper= len(type_of_Size)-1
 
-	def __getitem__(self, idx):
-		return self.data_pos[idx]
-
-	def __len__(self):
-		return self.n_samples
+		self.prob_dist = self.get_prob_dist()
+		self.type_num_dist = [type_of_Size[n] for n in self.prob_dist]
+		self.datasets = [Generator(device = self.device, n_samples=batch, n_containers=ms*(mt), max_stacks=ms, max_tiers=mt+2) for ms, mt in self.type_num_dist]
+		
+	def get_dataset(self):
+		#(max_stacks, max_tiers), dataset = self.datasets_withinfo[idx]
+		return  self.datasets
+	def get_prob_dist(self):
+		lower, upper, scale = 0, self.upper, .5 * (1.03)**self.epoch
+		X = stats.truncexpon(b=(upper-lower)/scale, loc=lower, scale=scale) #Truncated Expon
+		data = X.rvs(self.n_samples//self.batch)
+		return torch.tensor(np.rint(data), dtype=torch.long).to(self.device)
 if __name__ == '__main__':
-    #print(data_from_caserta())
-    #print(generate_data(device = 'cpu', n_samples = 1, n_containers = 20, max_stacks = 4, max_tiers = 7, plus_tiers = 5))
-    print(generate_data_Multiple(device = 'cpu', total_n_samples = 100,  max_stacks = 4, max_tiers = 7, plus_tiers = 5))
+	#print(data_from_caserta()[39])
+    #(data_from_caserta_for_greedy())
+    #print(generate_data_Multiple(device = 'cpu', total_n_samples = 100,  max_stacks = 4, max_tiers = 7, plus_tiers = 5)
+	print(MultipleGenerator('cuda:0', epoch=40).type_num_dist)
