@@ -7,8 +7,10 @@ from tqdm import tqdm
 import copy
 
 from model import AttentionModel
+from model_LSTM import AttentionModel_LSTM
+from model_LSTM_for_test import AttentionModel_LSTM_Test
 from data import Generator
-def load_model(device,path,embed_dim,n_containers,max_stacks,max_tiers,n_encode_layers=3):
+def load_model(device,path,embed_dim,n_containers,max_stacks,max_tiers,n_encode_layers=3, is_Test = False):
     # https://pytorch.org/tutorials/beginner/saving_loading_models.html
 
 
@@ -16,9 +18,13 @@ def load_model(device,path,embed_dim,n_containers,max_stacks,max_tiers,n_encode_
     #原来的模型
     #model_loaded = AttentionModel(embed_dim=embed_dim, n_encode_layers=n_encode_layers, n_heads=8, tanh_clipping=10.,
     #                              FF_hidden=512)
-    model_loaded = AttentionModel(device=device, embed_dim=embed_dim, n_encode_layers=n_encode_layers,
-                           n_heads=8, tanh_clipping=10.
-                           , n_containers=n_containers, max_stacks=max_stacks, max_tiers=max_tiers)
+    
+    model_loaded = AttentionModel_LSTM(device=device, embed_dim=embed_dim, n_encode_layers=n_encode_layers,
+                        n_heads=8, tanh_clipping=10.
+                        , n_containers=n_containers, max_stacks=max_stacks, max_tiers=max_tiers)
+    #model_loaded = AttentionModel(device=device, embed_dim=embed_dim, n_encode_layers=n_encode_layers,
+    #                       n_heads=8, tanh_clipping=10.
+    #                       , n_containers=n_containers, max_stacks=max_stacks, max_tiers=max_tiers)
     #should make cuda:index same
     if torch.cuda.is_available():
         model_loaded.load_state_dict(torch.load(path,map_location={'cuda:0' : device ,'cuda:1': device , 'cuda:2' :device ,
@@ -38,7 +44,7 @@ class RolloutBaseline:
                  max_stacks=4, 
                  max_tiers=4,
                  plus_tiers=2, 
-                 n_rollout_samples=5000,
+                 n_rollout_samples=10000,
                  warmup_beta=0.8,
                  warmup_epochs = 1,
                  device='cpu',
@@ -58,12 +64,13 @@ class RolloutBaseline:
         self.n_containers = n_containers
         self.max_stacks = max_stacks
         self.max_tiers = max_tiers
+        self.plus_tiers = plus_tiers
         #Directory
         self.weight_dir = weight_dir
         self.device = device
         self.log_path = log_path
         #Dataset
-        self.dataset = Generator(self.device, n_samples=self.n_rollout_samples, n_containers = self.n_containers,max_stacks=self.max_stacks,max_tiers=self.max_tiers, plus_tiers=plus_tiers)
+        self.dataset = Generator(self.device, n_samples=self.n_rollout_samples, n_containers = self.n_containers,max_stacks=self.max_stacks,max_tiers=self.max_tiers, plus_tiers=self.plus_tiers)
 
         # create and evaluate initial baseline
         self._update_baseline(model, epoch)
@@ -79,8 +86,7 @@ class RolloutBaseline:
             print('Baseline model copied')
             with open(self.log_path, 'a') as f:
                 f.write('Baseline model copied \n')
-            #self.model = self.copy_model(model)
-            self.model = model
+            self.model = self.copy_model(model)
             # For checkpoint
             #torch.save(self.model.state_dict(), '%s%s_epoch%s.pt' % (self.weight_dir, self.task, epoch))
 
@@ -137,6 +143,7 @@ class RolloutBaseline:
         """Compares current baseline model with the training model and updates baseline if it is improved
         """
         self.cur_epoch = epoch
+        self.dataset = Generator(self.device, n_samples=self.n_rollout_samples, n_containers = self.n_containers,max_stacks=self.max_stacks,max_tiers=self.max_tiers, plus_tiers=self.plus_tiers)
 
         print(f'Evaluating candidate model on baseline dataset (callback epoch = {self.cur_epoch})')
         with open(self.log_path, 'a') as f:
@@ -145,15 +152,17 @@ class RolloutBaseline:
         model.train()
         with torch.no_grad():
             candidate_vals = self.rollout(model=model, dataset=self.dataset).cpu().numpy()  # costs for training model on baseline dataset
+            baseline_vals = self.rollout(model=self.model, dataset=self.dataset).cpu().numpy()
         candidate_mean = candidate_vals.mean()
+        baseline_mean = baseline_vals.mean()
         model.train()
-        print(f'Epoch {self.cur_epoch} candidate mean {candidate_mean}, baseline mean {self.mean}')
+        print(f'Epoch {self.cur_epoch} candidate mean {candidate_mean}, baseline mean {baseline_mean}')
         print(f'Epoch {self.cur_epoch} candidate # of non_feasible_solutions {torch.sum(torch.tensor(candidate_vals) > 50)}')
         with open(self.log_path, 'a') as f:
-            f.write(f'Epoch {self.cur_epoch} candidate mean {candidate_mean}, baseline mean {self.mean} \n')
+            f.write(f'Epoch {self.cur_epoch} candidate mean {candidate_mean}, baseline mean {baseline_mean} \n')
 
-        if candidate_mean < self.mean:
-            t, p = ttest_rel(candidate_vals, self.bl_vals)  # scipy.stats.ttest_rel
+        if candidate_mean < baseline_mean:
+            t, p = ttest_rel(candidate_vals, baseline_vals)  # scipy.stats.ttest_rel
 
             p_val = p / 2
             print(f'p-value: {p_val}')

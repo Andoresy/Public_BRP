@@ -1,0 +1,9 @@
+240126_16_04
+ start training 
+{'n_encode_layers': 4, 'N_samplings': 8, 'epochs': 200, 'batch': 256, 'batch_num': 50, 'batch_verbose': 10, 'max_stacks': 3, 'max_tiers': 5, 'plus_tiers': 2, 'baseline_type': 'greedy', 'lr': 0.0001, 'warmuplr': 0.001, 'beta': 0.1, 'embed_dim': 32}Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 0) 
+bl_vals = [54. 54. 54. ... 54. 54. 54.] ,means = 54.0 
+Epoch 0 (batch = 0): Loss: 221.977 L: 8.617, 0min2sec 
+Epoch 0 (batch = 10): Loss: 114.329 L: 62.709, 0min23sec 
+Epoch 0 (batch = 20): Loss: 60.589 L: 70.126, 0min26sec 
+Epoch 0 (batch = 30): Loss: 41.044 L: 75.956, 0min31sec 

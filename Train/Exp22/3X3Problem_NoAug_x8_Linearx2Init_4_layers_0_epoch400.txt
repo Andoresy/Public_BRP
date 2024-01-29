@@ -1,0 +1,2217 @@
+240126_21_37
+ start training 
+{'n_encode_layers': 4, 'N_samplings': 8, 'epochs': 400, 'batch': 64, 'batch_num': 1000, 'batch_verbose': 100, 'max_stacks': 3, 'max_tiers': 5, 'plus_tiers': 2, 'baseline_type': 'greedy', 'lr': 0.0001, 'warmuplr': 0.001, 'beta': 0.1, 'embed_dim': 32}Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 0) 
+bl_vals = [63. 63. 63. ... 63. 63. 63.] ,means = 63.0 
+Epoch 0 (batch = 0): Loss: 194.524 L: 30.594, 0min11sec 
+Epoch 0 (batch = 100): Loss: 223.912 L: 14.238, 1min56sec 
+Epoch 0 (batch = 200): Loss: 262.010 L: 13.863, 1min50sec 
+Epoch 0 (batch = 300): Loss: 260.003 L: 12.079, 1min14sec 
+Epoch 0 (batch = 400): Loss: 249.764 L: 10.719, 1min6sec 
+Epoch 0 (batch = 500): Loss: 254.288 L: 10.261, 1min13sec 
+Epoch 0 (batch = 600): Loss: 244.502 L: 9.572, 0min57sec 
+Epoch 0 (batch = 700): Loss: 234.940 L: 9.011, 0min56sec 
+Epoch 0 (batch = 800): Loss: 226.048 L: 8.520, 0min53sec 
+Epoch 0 (batch = 900): Loss: 219.078 L: 8.199, 0min59sec 
+Evaluating candidate model on baseline dataset (callback epoch = 0) 
+Epoch 0 candidate mean 61.35309982299805, baseline mean 63.0 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 0) 
+bl_vals = [63. 63. 63. ... 63. 63. 63.] ,means = 61.35309982299805 
+Epoch 1 (batch = 0): Loss: -14.978 L: 7.281, 1min25sec 
+Epoch 1 (batch = 100): Loss: -7.741 L: 4.360, 0min40sec 
+Epoch 1 (batch = 200): Loss: -4.091 L: 4.140, 0min38sec 
+Epoch 1 (batch = 300): Loss: -2.735 L: 3.774, 0min28sec 
+Epoch 1 (batch = 400): Loss: -2.444 L: 3.865, 0min41sec 
+Epoch 1 (batch = 500): Loss: -1.504 L: 3.895, 0min41sec 
+Epoch 1 (batch = 600): Loss: -1.173 L: 3.781, 0min29sec 
+Epoch 1 (batch = 700): Loss: -0.841 L: 3.790, 0min37sec 
+Epoch 1 (batch = 800): Loss: -0.751 L: 3.781, 0min32sec 
+Epoch 1 (batch = 900): Loss: -0.605 L: 3.746, 0min31sec 
+Evaluating candidate model on baseline dataset (callback epoch = 1) 
+Epoch 1 candidate mean 60.84199905395508, baseline mean 61.4906005859375 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 1) 
+bl_vals = [63. 63. 63. ... 63. 63. 63.] ,means = 60.84199905395508 
+Epoch 2 (batch = 0): Loss: -23.134 L: 13.031, 0min55sec 
+Epoch 2 (batch = 100): Loss: -0.354 L: 3.583, 0min32sec 
+Epoch 2 (batch = 200): Loss: -0.504 L: 3.589, 0min31sec 
+Epoch 2 (batch = 300): Loss: -0.491 L: 3.592, 0min37sec 
+Epoch 2 (batch = 400): Loss: -0.166 L: 3.626, 0min33sec 
+Epoch 2 (batch = 500): Loss: -0.361 L: 3.610, 0min31sec 
+Epoch 2 (batch = 600): Loss: -0.357 L: 3.675, 0min40sec 
+Epoch 2 (batch = 700): Loss: -0.269 L: 3.618, 0min29sec 
+Epoch 2 (batch = 800): Loss: -0.246 L: 3.646, 0min36sec 
+Epoch 2 (batch = 900): Loss: -0.254 L: 3.617, 0min38sec 
+Evaluating candidate model on baseline dataset (callback epoch = 2) 
+Epoch 2 candidate mean 61.04669952392578, baseline mean 60.66379928588867 
+Epoch 3 (batch = 0): Loss: 0.000 L: 1.828, 1min4sec 
+Epoch 3 (batch = 100): Loss: 0.168 L: 3.951, 0min36sec 
+Epoch 3 (batch = 200): Loss: -0.238 L: 3.954, 0min42sec 
+Epoch 3 (batch = 300): Loss: -0.258 L: 3.916, 0min34sec 
+Epoch 3 (batch = 400): Loss: -0.378 L: 3.825, 0min33sec 
+Epoch 3 (batch = 500): Loss: -0.336 L: 3.883, 0min37sec 
+Epoch 3 (batch = 600): Loss: -0.273 L: 3.797, 0min29sec 
+Epoch 3 (batch = 700): Loss: -0.168 L: 3.772, 0min33sec 
+Epoch 3 (batch = 800): Loss: -0.190 L: 3.821, 0min40sec 
+Epoch 3 (batch = 900): Loss: -0.183 L: 3.810, 0min35sec 
+Evaluating candidate model on baseline dataset (callback epoch = 3) 
+Epoch 3 candidate mean 49.79199981689453, baseline mean 60.90589904785156 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 3) 
+bl_vals = [63. 22. 40. ... 63. 63. 32.] ,means = 49.79199981689453 
+Epoch 4 (batch = 0): Loss: 0.000 L: 1.734, 1min4sec 
+Epoch 4 (batch = 100): Loss: -0.078 L: 3.668, 0min36sec 
+Epoch 4 (batch = 200): Loss: -0.045 L: 3.642, 0min36sec 
+Epoch 4 (batch = 300): Loss: -0.096 L: 3.613, 0min35sec 
+Epoch 4 (batch = 400): Loss: -0.090 L: 3.667, 0min36sec 
+Epoch 4 (batch = 500): Loss: -0.133 L: 3.636, 0min33sec 
+Epoch 4 (batch = 600): Loss: -0.097 L: 3.602, 0min32sec 
+Epoch 4 (batch = 700): Loss: -0.047 L: 3.610, 0min34sec 
+Epoch 4 (batch = 800): Loss: -0.064 L: 3.594, 0min31sec 
+Epoch 4 (batch = 900): Loss: -0.344 L: 3.702, 0min43sec 
+Evaluating candidate model on baseline dataset (callback epoch = 4) 
+Epoch 4 candidate mean 54.47460174560547, baseline mean 49.9995002746582 
+Epoch 5 (batch = 0): Loss: -0.022 L: 5.312, 1min7sec 
+Epoch 5 (batch = 100): Loss: 0.005 L: 3.866, 0min36sec 
+Epoch 5 (batch = 200): Loss: -0.072 L: 3.888, 0min37sec 
+Epoch 5 (batch = 300): Loss: -0.388 L: 3.872, 0min33sec 
+Epoch 5 (batch = 400): Loss: -0.271 L: 3.959, 0min43sec 
+Epoch 5 (batch = 500): Loss: -0.266 L: 3.892, 0min31sec 
+Epoch 5 (batch = 600): Loss: -0.335 L: 3.892, 0min34sec 
+Epoch 5 (batch = 700): Loss: -0.816 L: 3.990, 0min43sec 
+Epoch 5 (batch = 800): Loss: -0.770 L: 3.921, 0min32sec 
+Epoch 5 (batch = 900): Loss: -0.687 L: 3.902, 0min36sec 
+Evaluating candidate model on baseline dataset (callback epoch = 5) 
+Epoch 5 candidate mean 47.352699279785156, baseline mean 49.73310089111328 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 5) 
+bl_vals = [45. 63. 63. ... 34. 39. 63.] ,means = 47.352699279785156 
+Epoch 6 (batch = 0): Loss: -4.365 L: 23.172, 1min6sec 
+Epoch 6 (batch = 100): Loss: -0.351 L: 4.075, 0min37sec 
+Epoch 6 (batch = 200): Loss: -0.259 L: 3.909, 0min33sec 
+Epoch 6 (batch = 300): Loss: -0.204 L: 3.849, 0min34sec 
+Epoch 6 (batch = 400): Loss: -0.156 L: 3.844, 0min34sec 
+Epoch 6 (batch = 500): Loss: -0.180 L: 3.869, 0min38sec 
+Epoch 6 (batch = 600): Loss: -0.147 L: 3.903, 0min33sec 
+Epoch 6 (batch = 700): Loss: -0.129 L: 3.882, 0min30sec 
+Epoch 6 (batch = 800): Loss: -0.130 L: 3.873, 0min34sec 
+Epoch 6 (batch = 900): Loss: -0.122 L: 3.834, 0min31sec 
+Evaluating candidate model on baseline dataset (callback epoch = 6) 
+Epoch 6 candidate mean 43.481998443603516, baseline mean 47.03960037231445 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 6) 
+bl_vals = [63. 63. 23. ... 63. 63. 27.] ,means = 43.481998443603516 
+Epoch 7 (batch = 0): Loss: 0.000 L: 2.109, 1min38sec 
+Epoch 7 (batch = 100): Loss: -0.042 L: 3.925, 1min3sec 
+Epoch 7 (batch = 200): Loss: -0.204 L: 4.074, 1min12sec 
+Epoch 7 (batch = 300): Loss: -0.170 L: 3.923, 0min58sec 
+Epoch 7 (batch = 400): Loss: -0.162 L: 3.898, 1min3sec 
+Epoch 7 (batch = 500): Loss: -0.140 L: 3.858, 0min30sec 
+Epoch 7 (batch = 600): Loss: -0.189 L: 3.861, 0min36sec 
+Epoch 7 (batch = 700): Loss: -0.167 L: 3.810, 0min30sec 
+Epoch 7 (batch = 800): Loss: -0.158 L: 3.772, 0min30sec 
+Epoch 7 (batch = 900): Loss: -0.143 L: 3.777, 0min32sec 
+Evaluating candidate model on baseline dataset (callback epoch = 7) 
+Epoch 7 candidate mean 33.337100982666016, baseline mean 43.80830001831055 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 7) 
+bl_vals = [63. 29. 35. ... 27. 26. 24.] ,means = 33.337100982666016 
+Epoch 8 (batch = 0): Loss: 0.000 L: 1.812, 1min1sec 
+Epoch 8 (batch = 100): Loss: -0.025 L: 3.710, 0min31sec 
+Epoch 8 (batch = 200): Loss: -0.061 L: 3.814, 0min33sec 
+Epoch 8 (batch = 300): Loss: -0.328 L: 4.011, 0min38sec 
+Epoch 8 (batch = 400): Loss: -0.276 L: 4.066, 0min40sec 
+Epoch 8 (batch = 500): Loss: -0.232 L: 4.038, 0min32sec 
+Epoch 8 (batch = 600): Loss: -0.197 L: 3.980, 0min30sec 
+Epoch 8 (batch = 700): Loss: -0.171 L: 3.915, 0min28sec 
+Epoch 8 (batch = 800): Loss: -0.147 L: 3.917, 0min32sec 
+Epoch 8 (batch = 900): Loss: -0.132 L: 3.920, 0min32sec 
+Evaluating candidate model on baseline dataset (callback epoch = 8) 
+Epoch 8 candidate mean 34.35660171508789, baseline mean 33.20560073852539 
+Epoch 9 (batch = 0): Loss: 0.000 L: 1.828, 0min55sec 
+Epoch 9 (batch = 100): Loss: -0.005 L: 3.993, 0min31sec 
+Epoch 9 (batch = 200): Loss: -0.256 L: 4.020, 0min32sec 
+Epoch 9 (batch = 300): Loss: -0.180 L: 3.939, 0min31sec 
+Epoch 9 (batch = 400): Loss: -0.134 L: 3.837, 0min29sec 
+Epoch 9 (batch = 500): Loss: -0.100 L: 3.873, 0min32sec 
+Epoch 9 (batch = 600): Loss: -0.084 L: 3.800, 0min28sec 
+Epoch 9 (batch = 700): Loss: -0.068 L: 3.871, 0min34sec 
+Epoch 9 (batch = 800): Loss: -0.060 L: 3.882, 0min31sec 
+Epoch 9 (batch = 900): Loss: -0.045 L: 3.845, 0min37sec 
+Evaluating candidate model on baseline dataset (callback epoch = 9) 
+Epoch 9 candidate mean 41.69490051269531, baseline mean 33.310001373291016 
+Epoch 10 (batch = 0): Loss: 0.000 L: 1.781, 1min0sec 
+Epoch 10 (batch = 100): Loss: 0.115 L: 4.379, 0min38sec 
+Epoch 10 (batch = 200): Loss: 0.074 L: 4.072, 0min41sec 
+Epoch 10 (batch = 300): Loss: 0.048 L: 4.118, 1min3sec 
+Epoch 10 (batch = 400): Loss: 0.033 L: 4.061, 0min34sec 
+Epoch 10 (batch = 500): Loss: 0.034 L: 3.982, 1min2sec 
+Epoch 10 (batch = 600): Loss: 0.027 L: 3.985, 0min56sec 
+Epoch 10 (batch = 700): Loss: 0.022 L: 3.934, 0min29sec 
+Epoch 10 (batch = 800): Loss: 0.021 L: 3.915, 0min31sec 
+Epoch 10 (batch = 900): Loss: -0.002 L: 3.957, 0min35sec 
+Evaluating candidate model on baseline dataset (callback epoch = 10) 
+Epoch 10 candidate mean 32.29610061645508, baseline mean 33.31330108642578 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 10) 
+bl_vals = [25. 24. 20. ... 63. 39. 63.] ,means = 32.29610061645508 
+Epoch 11 (batch = 0): Loss: 0.000 L: 2.047, 1min0sec 
+Epoch 11 (batch = 100): Loss: -0.025 L: 4.396, 0min39sec 
+Epoch 11 (batch = 200): Loss: 0.007 L: 4.229, 0min46sec 
+Epoch 11 (batch = 300): Loss: 0.004 L: 3.986, 0min56sec 
+Epoch 11 (batch = 400): Loss: -0.001 L: 3.962, 0min46sec 
+Epoch 11 (batch = 500): Loss: 0.005 L: 3.944, 0min31sec 
+Epoch 11 (batch = 600): Loss: -0.001 L: 3.986, 0min35sec 
+Epoch 11 (batch = 700): Loss: -0.003 L: 3.946, 0min30sec 
+Epoch 11 (batch = 800): Loss: -0.002 L: 3.985, 0min33sec 
+Epoch 11 (batch = 900): Loss: -0.004 L: 3.939, 0min30sec 
+Evaluating candidate model on baseline dataset (callback epoch = 11) 
+Epoch 11 candidate mean 40.159000396728516, baseline mean 32.21390151977539 
+Epoch 12 (batch = 0): Loss: 0.000 L: 1.922, 0min52sec 
+Epoch 12 (batch = 100): Loss: -0.173 L: 4.661, 0min39sec 
+Epoch 12 (batch = 200): Loss: -0.086 L: 4.007, 0min27sec 
+Epoch 12 (batch = 300): Loss: -0.071 L: 4.082, 0min37sec 
+Epoch 12 (batch = 400): Loss: -0.040 L: 4.130, 1min1sec 
+Epoch 12 (batch = 500): Loss: -0.020 L: 4.203, 1min0sec 
+Epoch 12 (batch = 600): Loss: -0.009 L: 4.191, 0min35sec 
+Epoch 12 (batch = 700): Loss: -0.011 L: 4.160, 0min33sec 
+Epoch 12 (batch = 800): Loss: -0.010 L: 4.137, 0min33sec 
+Epoch 12 (batch = 900): Loss: -0.030 L: 4.156, 1min13sec 
+Evaluating candidate model on baseline dataset (callback epoch = 12) 
+Epoch 12 candidate mean 31.483600616455078, baseline mean 32.319000244140625 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 12) 
+bl_vals = [28. 29. 26. ... 63. 63. 27.] ,means = 31.483600616455078 
+Epoch 13 (batch = 0): Loss: 0.000 L: 1.891, 1min19sec 
+Epoch 13 (batch = 100): Loss: -0.014 L: 4.103, 0min34sec 
+Epoch 13 (batch = 200): Loss: -0.002 L: 4.328, 0min41sec 
+Epoch 13 (batch = 300): Loss: -0.024 L: 4.254, 0min32sec 
+Epoch 13 (batch = 400): Loss: -0.028 L: 4.299, 0min34sec 
+Epoch 13 (batch = 500): Loss: -0.024 L: 4.261, 0min31sec 
+Epoch 13 (batch = 600): Loss: -0.019 L: 4.126, 0min28sec 
+Epoch 13 (batch = 700): Loss: -0.023 L: 4.152, 0min35sec 
+Epoch 13 (batch = 800): Loss: -0.025 L: 4.196, 0min35sec 
+Epoch 13 (batch = 900): Loss: -0.029 L: 4.169, 0min31sec 
+Evaluating candidate model on baseline dataset (callback epoch = 13) 
+Epoch 13 candidate mean 34.14149856567383, baseline mean 31.276500701904297 
+Epoch 14 (batch = 0): Loss: 0.000 L: 1.875, 0min56sec 
+Epoch 14 (batch = 100): Loss: -0.131 L: 4.884, 0min37sec 
+Epoch 14 (batch = 200): Loss: -0.074 L: 4.672, 0min36sec 
+Epoch 14 (batch = 300): Loss: -0.077 L: 4.658, 0min36sec 
+Epoch 14 (batch = 400): Loss: -0.077 L: 4.604, 0min38sec 
+Epoch 14 (batch = 500): Loss: -0.090 L: 4.628, 0min36sec 
+Epoch 14 (batch = 600): Loss: -0.084 L: 4.596, 0min35sec 
+Epoch 14 (batch = 700): Loss: -0.143 L: 4.644, 0min38sec 
+Epoch 14 (batch = 800): Loss: -0.129 L: 4.629, 0min37sec 
+Epoch 14 (batch = 900): Loss: -0.127 L: 4.620, 0min36sec 
+Evaluating candidate model on baseline dataset (callback epoch = 14) 
+Epoch 14 candidate mean 40.944698333740234, baseline mean 31.807100296020508 
+Epoch 15 (batch = 0): Loss: 0.000 L: 2.234, 0min57sec 
+Epoch 15 (batch = 100): Loss: -0.663 L: 5.048, 0min45sec 
+Epoch 15 (batch = 200): Loss: -0.347 L: 4.656, 0min34sec 
+Epoch 15 (batch = 300): Loss: -0.227 L: 4.564, 0min35sec 
+Epoch 15 (batch = 400): Loss: -0.174 L: 4.577, 0min36sec 
+Epoch 15 (batch = 500): Loss: -0.132 L: 4.513, 0min33sec 
+Epoch 15 (batch = 600): Loss: -0.100 L: 4.457, 0min36sec 
+Epoch 15 (batch = 700): Loss: -0.076 L: 4.458, 0min40sec 
+Epoch 15 (batch = 800): Loss: -0.090 L: 4.437, 0min36sec 
+Epoch 15 (batch = 900): Loss: -0.120 L: 4.488, 0min37sec 
+Evaluating candidate model on baseline dataset (callback epoch = 15) 
+Epoch 15 candidate mean 35.67279815673828, baseline mean 31.606700897216797 
+Epoch 16 (batch = 0): Loss: 0.000 L: 1.953, 1min0sec 
+Epoch 16 (batch = 100): Loss: -0.078 L: 4.546, 0min37sec 
+Epoch 16 (batch = 200): Loss: -0.047 L: 4.520, 0min37sec 
+Epoch 16 (batch = 300): Loss: -0.131 L: 4.364, 0min33sec 
+Epoch 16 (batch = 400): Loss: -0.104 L: 4.381, 0min33sec 
+Epoch 16 (batch = 500): Loss: -0.084 L: 4.463, 0min41sec 
+Epoch 16 (batch = 600): Loss: -0.070 L: 4.458, 0min36sec 
+Epoch 16 (batch = 700): Loss: -0.097 L: 4.449, 0min35sec 
+Epoch 16 (batch = 800): Loss: -0.089 L: 4.435, 0min34sec 
+Epoch 16 (batch = 900): Loss: -0.099 L: 4.463, 0min37sec 
+Evaluating candidate model on baseline dataset (callback epoch = 16) 
+Epoch 16 candidate mean 39.5635986328125, baseline mean 31.74139976501465 
+Epoch 17 (batch = 0): Loss: 0.000 L: 2.062, 1min2sec 
+Epoch 17 (batch = 100): Loss: -0.061 L: 4.732, 0min38sec 
+Epoch 17 (batch = 200): Loss: -0.076 L: 4.503, 0min35sec 
+Epoch 17 (batch = 300): Loss: -0.058 L: 4.349, 0min31sec 
+Epoch 17 (batch = 400): Loss: -0.056 L: 4.209, 0min31sec 
+Epoch 17 (batch = 500): Loss: -0.054 L: 4.316, 0min36sec 
+Epoch 17 (batch = 600): Loss: -0.046 L: 4.282, 0min32sec 
+Epoch 17 (batch = 700): Loss: -0.041 L: 4.274, 0min33sec 
+Epoch 17 (batch = 800): Loss: -0.042 L: 4.294, 0min37sec 
+Epoch 17 (batch = 900): Loss: -0.045 L: 4.373, 0min38sec 
+Evaluating candidate model on baseline dataset (callback epoch = 17) 
+Epoch 17 candidate mean 30.173099517822266, baseline mean 31.48390007019043 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 17) 
+bl_vals = [22. 14. 23. ... 47. 34. 20.] ,means = 30.173099517822266 
+Epoch 18 (batch = 0): Loss: 0.000 L: 1.812, 1min8sec 
+Epoch 18 (batch = 100): Loss: -0.058 L: 4.540, 0min36sec 
+Epoch 18 (batch = 200): Loss: -0.018 L: 4.609, 0min36sec 
+Epoch 18 (batch = 300): Loss: -0.038 L: 4.727, 0min38sec 
+Epoch 18 (batch = 400): Loss: -0.034 L: 4.535, 0min30sec 
+Epoch 18 (batch = 500): Loss: -0.032 L: 4.464, 0min33sec 
+Epoch 18 (batch = 600): Loss: -0.030 L: 4.399, 0min32sec 
+Epoch 18 (batch = 700): Loss: -0.031 L: 4.404, 0min34sec 
+Epoch 18 (batch = 800): Loss: -0.034 L: 4.385, 0min33sec 
+Epoch 18 (batch = 900): Loss: -0.030 L: 4.369, 0min34sec 
+Evaluating candidate model on baseline dataset (callback epoch = 18) 
+Epoch 18 candidate mean 29.24690055847168, baseline mean 30.255800247192383 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 18) 
+bl_vals = [26. 35. 25. ... 38. 30. 63.] ,means = 29.24690055847168 
+Epoch 19 (batch = 0): Loss: 0.015 L: 5.078, 1min2sec 
+Epoch 19 (batch = 100): Loss: -0.030 L: 4.589, 0min36sec 
+Epoch 19 (batch = 200): Loss: -0.092 L: 4.775, 0min41sec 
+Epoch 19 (batch = 300): Loss: -0.072 L: 4.578, 0min34sec 
+Epoch 19 (batch = 400): Loss: -0.065 L: 4.555, 0min36sec 
+Epoch 19 (batch = 500): Loss: -0.056 L: 4.531, 0min35sec 
+Epoch 19 (batch = 600): Loss: -0.086 L: 4.671, 0min40sec 
+Epoch 19 (batch = 700): Loss: -0.102 L: 4.642, 0min36sec 
+Epoch 19 (batch = 800): Loss: -0.166 L: 4.705, 0min41sec 
+Epoch 19 (batch = 900): Loss: -0.151 L: 4.597, 0min29sec 
+Evaluating candidate model on baseline dataset (callback epoch = 19) 
+Epoch 19 candidate mean 31.38920021057129, baseline mean 29.243900299072266 
+Epoch 20 (batch = 0): Loss: 0.055 L: 5.250, 1min38sec 
+Epoch 20 (batch = 100): Loss: -0.034 L: 4.621, 0min44sec 
+Epoch 20 (batch = 200): Loss: -0.038 L: 4.622, 1min1sec 
+Epoch 20 (batch = 300): Loss: -0.040 L: 4.390, 0min53sec 
+Epoch 20 (batch = 400): Loss: -0.040 L: 4.324, 0min34sec 
+Epoch 20 (batch = 500): Loss: -0.042 L: 4.367, 1min9sec 
+Epoch 20 (batch = 600): Loss: -0.052 L: 4.380, 1min12sec 
+Epoch 20 (batch = 700): Loss: -0.054 L: 4.477, 1min0sec 
+Epoch 20 (batch = 800): Loss: -0.052 L: 4.467, 0min35sec 
+Epoch 20 (batch = 900): Loss: -0.067 L: 4.518, 0min41sec 
+Evaluating candidate model on baseline dataset (callback epoch = 20) 
+Epoch 20 candidate mean 31.999399185180664, baseline mean 29.111900329589844 
+Epoch 21 (batch = 0): Loss: 0.000 L: 1.953, 1min2sec 
+Epoch 21 (batch = 100): Loss: -0.132 L: 4.994, 0min42sec 
+Epoch 21 (batch = 200): Loss: -0.107 L: 4.757, 0min36sec 
+Epoch 21 (batch = 300): Loss: -0.109 L: 4.733, 0min39sec 
+Epoch 21 (batch = 400): Loss: -0.090 L: 4.661, 0min35sec 
+Epoch 21 (batch = 500): Loss: -0.082 L: 4.629, 0min36sec 
+Epoch 21 (batch = 600): Loss: -0.077 L: 4.586, 0min35sec 
+Epoch 21 (batch = 700): Loss: -0.029 L: 4.669, 0min42sec 
+Epoch 21 (batch = 800): Loss: -0.017 L: 4.731, 0min42sec 
+Epoch 21 (batch = 900): Loss: -0.002 L: 4.729, 0min36sec 
+Evaluating candidate model on baseline dataset (callback epoch = 21) 
+Epoch 21 candidate mean 35.758399963378906, baseline mean 29.2450008392334 
+Epoch 22 (batch = 0): Loss: 0.025 L: 10.234, 1min0sec 
+Epoch 22 (batch = 100): Loss: -0.086 L: 4.585, 0min36sec 
+Epoch 22 (batch = 200): Loss: -0.065 L: 4.721, 0min40sec 
+Epoch 22 (batch = 300): Loss: -0.029 L: 4.709, 0min37sec 
+Epoch 22 (batch = 400): Loss: -0.030 L: 4.732, 0min39sec 
+Epoch 22 (batch = 500): Loss: -0.018 L: 4.717, 0min36sec 
+Epoch 22 (batch = 600): Loss: -0.023 L: 4.731, 0min36sec 
+Epoch 22 (batch = 700): Loss: 0.004 L: 4.839, 0min43sec 
+Epoch 22 (batch = 800): Loss: -0.007 L: 4.842, 0min36sec 
+Epoch 22 (batch = 900): Loss: -0.011 L: 4.805, 0min34sec 
+Evaluating candidate model on baseline dataset (callback epoch = 22) 
+Epoch 22 candidate mean 34.235599517822266, baseline mean 28.9507999420166 
+Epoch 23 (batch = 0): Loss: 0.022 L: 4.438, 0min59sec 
+Epoch 23 (batch = 100): Loss: -0.169 L: 4.608, 0min37sec 
+Epoch 23 (batch = 200): Loss: -0.182 L: 4.840, 0min44sec 
+Epoch 23 (batch = 300): Loss: -0.129 L: 4.853, 0min38sec 
+Epoch 23 (batch = 400): Loss: -0.103 L: 4.863, 0min39sec 
+Epoch 23 (batch = 500): Loss: -0.088 L: 4.927, 0min41sec 
+Epoch 23 (batch = 600): Loss: -0.077 L: 4.888, 0min36sec 
+Epoch 23 (batch = 700): Loss: -0.070 L: 4.877, 0min40sec 
+Epoch 23 (batch = 800): Loss: -0.054 L: 4.962, 0min44sec 
+Epoch 23 (batch = 900): Loss: -0.055 L: 4.986, 0min41sec 
+Evaluating candidate model on baseline dataset (callback epoch = 23) 
+Epoch 23 candidate mean 32.76169967651367, baseline mean 29.35650062561035 
+Epoch 24 (batch = 0): Loss: 0.006 L: 9.469, 1min5sec 
+Epoch 24 (batch = 100): Loss: -0.166 L: 5.430, 0min42sec 
+Epoch 24 (batch = 200): Loss: -0.165 L: 5.184, 0min41sec 
+Epoch 24 (batch = 300): Loss: -0.101 L: 5.194, 0min43sec 
+Epoch 24 (batch = 400): Loss: -0.086 L: 5.381, 0min42sec 
+Epoch 24 (batch = 500): Loss: -0.073 L: 5.314, 0min37sec 
+Epoch 24 (batch = 600): Loss: -0.084 L: 5.277, 0min41sec 
+Epoch 24 (batch = 700): Loss: -0.060 L: 5.195, 0min36sec 
+Epoch 24 (batch = 800): Loss: -0.060 L: 5.199, 0min46sec 
+Epoch 24 (batch = 900): Loss: -0.060 L: 5.150, 0min41sec 
+Evaluating candidate model on baseline dataset (callback epoch = 24) 
+Epoch 24 candidate mean 26.845500946044922, baseline mean 29.302499771118164 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 24) 
+bl_vals = [23. 22. 26. ... 27. 12. 30.] ,means = 26.845500946044922 
+Epoch 25 (batch = 0): Loss: 0.000 L: 1.562, 1min12sec 
+Epoch 25 (batch = 100): Loss: -0.048 L: 4.924, 0min39sec 
+Epoch 25 (batch = 200): Loss: 0.034 L: 4.822, 0min38sec 
+Epoch 25 (batch = 300): Loss: 0.021 L: 4.702, 0min39sec 
+Epoch 25 (batch = 400): Loss: -0.100 L: 4.726, 0min50sec 
+Epoch 25 (batch = 500): Loss: -0.102 L: 4.837, 0min44sec 
+Epoch 25 (batch = 600): Loss: -0.093 L: 4.764, 0min35sec 
+Epoch 25 (batch = 700): Loss: -0.079 L: 4.759, 0min38sec 
+Epoch 25 (batch = 800): Loss: -0.071 L: 4.795, 0min37sec 
+Epoch 25 (batch = 900): Loss: -0.062 L: 4.812, 0min39sec 
+Evaluating candidate model on baseline dataset (callback epoch = 25) 
+Epoch 25 candidate mean 30.087499618530273, baseline mean 26.94809913635254 
+Epoch 26 (batch = 0): Loss: 0.000 L: 1.609, 1min6sec 
+Epoch 26 (batch = 100): Loss: -0.060 L: 5.450, 0min45sec 
+Epoch 26 (batch = 200): Loss: -0.127 L: 5.471, 0min43sec 
+Epoch 26 (batch = 300): Loss: -0.134 L: 5.260, 0min41sec 
+Epoch 26 (batch = 400): Loss: -0.102 L: 5.119, 0min36sec 
+Epoch 26 (batch = 500): Loss: -0.088 L: 5.068, 0min39sec 
+Epoch 26 (batch = 600): Loss: -0.097 L: 5.093, 0min48sec 
+Epoch 26 (batch = 700): Loss: -0.090 L: 5.037, 0min36sec 
+Epoch 26 (batch = 800): Loss: -0.083 L: 5.101, 0min45sec 
+Epoch 26 (batch = 900): Loss: -0.041 L: 5.125, 0min41sec 
+Evaluating candidate model on baseline dataset (callback epoch = 26) 
+Epoch 26 candidate mean 32.39569854736328, baseline mean 26.916799545288086 
+Epoch 27 (batch = 0): Loss: -0.021 L: 4.469, 1min3sec 
+Epoch 27 (batch = 100): Loss: -0.132 L: 5.953, 0min47sec 
+Epoch 27 (batch = 200): Loss: -0.057 L: 6.081, 0min43sec 
+Epoch 27 (batch = 300): Loss: -0.068 L: 5.883, 0min47sec 
+Epoch 27 (batch = 400): Loss: -0.058 L: 5.589, 0min34sec 
+Epoch 27 (batch = 500): Loss: -0.069 L: 5.612, 0min45sec 
+Epoch 27 (batch = 600): Loss: -0.020 L: 5.610, 0min43sec 
+Epoch 27 (batch = 700): Loss: -0.018 L: 5.487, 0min37sec 
+Epoch 27 (batch = 800): Loss: -0.022 L: 5.436, 0min40sec 
+Epoch 27 (batch = 900): Loss: -0.011 L: 5.495, 0min46sec 
+Evaluating candidate model on baseline dataset (callback epoch = 27) 
+Epoch 27 candidate mean 27.668699264526367, baseline mean 27.00510025024414 
+Epoch 28 (batch = 0): Loss: -0.011 L: 4.969, 1min6sec 
+Epoch 28 (batch = 100): Loss: -0.040 L: 4.898, 0min38sec 
+Epoch 28 (batch = 200): Loss: -0.017 L: 5.023, 0min41sec 
+Epoch 28 (batch = 300): Loss: -0.007 L: 5.244, 0min47sec 
+Epoch 28 (batch = 400): Loss: -0.002 L: 5.331, 0min45sec 
+Epoch 28 (batch = 500): Loss: 0.018 L: 5.408, 0min45sec 
+Epoch 28 (batch = 600): Loss: 0.001 L: 5.330, 0min41sec 
+Epoch 28 (batch = 700): Loss: -0.020 L: 5.335, 0min40sec 
+Epoch 28 (batch = 800): Loss: -0.011 L: 5.369, 0min46sec 
+Epoch 28 (batch = 900): Loss: -0.004 L: 5.361, 0min40sec 
+Evaluating candidate model on baseline dataset (callback epoch = 28) 
+Epoch 28 candidate mean 30.371599197387695, baseline mean 26.784500122070312 
+Epoch 29 (batch = 0): Loss: -0.063 L: 10.297, 1min5sec 
+Epoch 29 (batch = 100): Loss: 0.203 L: 5.516, 0min43sec 
+Epoch 29 (batch = 200): Loss: 0.105 L: 5.212, 0min39sec 
+Epoch 29 (batch = 300): Loss: 0.086 L: 5.405, 0min46sec 
+Epoch 29 (batch = 400): Loss: 0.150 L: 5.276, 0min40sec 
+Epoch 29 (batch = 500): Loss: 0.146 L: 5.322, 0min42sec 
+Epoch 29 (batch = 600): Loss: 0.159 L: 5.462, 0min48sec 
+Epoch 29 (batch = 700): Loss: 0.157 L: 5.392, 0min39sec 
+Epoch 29 (batch = 800): Loss: 0.106 L: 5.375, 0min41sec 
+Epoch 29 (batch = 900): Loss: 0.087 L: 5.379, 0min48sec 
+Evaluating candidate model on baseline dataset (callback epoch = 29) 
+Epoch 29 candidate mean 28.481399536132812, baseline mean 26.835500717163086 
+Epoch 30 (batch = 0): Loss: -0.056 L: 5.125, 1min7sec 
+Epoch 30 (batch = 100): Loss: -0.058 L: 5.913, 0min49sec 
+Epoch 30 (batch = 200): Loss: -0.032 L: 5.532, 0min38sec 
+Epoch 30 (batch = 300): Loss: -0.024 L: 5.396, 0min37sec 
+Epoch 30 (batch = 400): Loss: -0.022 L: 5.300, 0min39sec 
+Epoch 30 (batch = 500): Loss: -0.053 L: 5.354, 0min41sec 
+Epoch 30 (batch = 600): Loss: -0.091 L: 5.441, 0min45sec 
+Epoch 30 (batch = 700): Loss: -0.052 L: 5.456, 0min42sec 
+Epoch 30 (batch = 800): Loss: -0.044 L: 5.406, 0min37sec 
+Epoch 30 (batch = 900): Loss: -0.033 L: 5.411, 0min43sec 
+Evaluating candidate model on baseline dataset (callback epoch = 30) 
+Epoch 30 candidate mean 27.944299697875977, baseline mean 26.806400299072266 
+Epoch 31 (batch = 0): Loss: 0.054 L: 9.750, 1min7sec 
+Epoch 31 (batch = 100): Loss: 0.040 L: 5.869, 0min43sec 
+Epoch 31 (batch = 200): Loss: 0.032 L: 5.781, 0min43sec 
+Epoch 31 (batch = 300): Loss: 0.093 L: 5.856, 0min46sec 
+Epoch 31 (batch = 400): Loss: 0.060 L: 5.780, 0min41sec 
+Epoch 31 (batch = 500): Loss: 0.072 L: 5.948, 0min52sec 
+Epoch 31 (batch = 600): Loss: 0.086 L: 5.883, 0min41sec 
+Epoch 31 (batch = 700): Loss: 0.079 L: 5.770, 0min39sec 
+Epoch 31 (batch = 800): Loss: 0.048 L: 5.762, 0min44sec 
+Epoch 31 (batch = 900): Loss: 0.065 L: 5.748, 0min42sec 
+Evaluating candidate model on baseline dataset (callback epoch = 31) 
+Epoch 31 candidate mean 30.50670051574707, baseline mean 26.86479949951172 
+Epoch 32 (batch = 0): Loss: 0.171 L: 6.297, 1min8sec 
+Epoch 32 (batch = 100): Loss: -0.109 L: 5.246, 0min42sec 
+Epoch 32 (batch = 200): Loss: -0.009 L: 5.633, 0min43sec 
+Epoch 32 (batch = 300): Loss: -0.024 L: 5.314, 0min36sec 
+Epoch 32 (batch = 400): Loss: -0.047 L: 5.457, 0min46sec 
+Epoch 32 (batch = 500): Loss: 0.022 L: 5.696, 0min52sec 
+Epoch 32 (batch = 600): Loss: 0.018 L: 5.681, 0min42sec 
+Epoch 32 (batch = 700): Loss: 0.021 L: 5.683, 0min42sec 
+Epoch 32 (batch = 800): Loss: 0.048 L: 5.759, 0min48sec 
+Epoch 32 (batch = 900): Loss: 0.039 L: 5.736, 0min42sec 
+Evaluating candidate model on baseline dataset (callback epoch = 32) 
+Epoch 32 candidate mean 27.33690071105957, baseline mean 26.9158992767334 
+Epoch 33 (batch = 0): Loss: 0.000 L: 2.062, 1min15sec 
+Epoch 33 (batch = 100): Loss: 0.357 L: 6.040, 0min43sec 
+Epoch 33 (batch = 200): Loss: 0.181 L: 6.263, 0min51sec 
+Epoch 33 (batch = 300): Loss: 0.129 L: 6.196, 0min47sec 
+Epoch 33 (batch = 400): Loss: 0.135 L: 6.281, 0min45sec 
+Epoch 33 (batch = 500): Loss: 0.109 L: 6.224, 0min44sec 
+Epoch 33 (batch = 600): Loss: 0.135 L: 6.207, 0min47sec 
+Epoch 33 (batch = 700): Loss: 0.180 L: 6.220, 0min50sec 
+Epoch 33 (batch = 800): Loss: 0.149 L: 6.122, 0min42sec 
+Epoch 33 (batch = 900): Loss: 0.127 L: 6.033, 0min41sec 
+Evaluating candidate model on baseline dataset (callback epoch = 33) 
+Epoch 33 candidate mean 35.9734992980957, baseline mean 26.668500900268555 
+Epoch 34 (batch = 0): Loss: -0.038 L: 9.734, 1min10sec 
+Epoch 34 (batch = 100): Loss: -0.013 L: 6.228, 0min49sec 
+Epoch 34 (batch = 200): Loss: -0.070 L: 6.136, 0min44sec 
+Epoch 34 (batch = 300): Loss: -0.118 L: 6.352, 0min49sec 
+Epoch 34 (batch = 400): Loss: -0.133 L: 6.332, 0min50sec 
+Epoch 34 (batch = 500): Loss: -0.100 L: 6.211, 0min42sec 
+Epoch 34 (batch = 600): Loss: -0.086 L: 6.155, 0min47sec 
+Epoch 34 (batch = 700): Loss: -0.106 L: 6.091, 0min47sec 
+Epoch 34 (batch = 800): Loss: -0.105 L: 6.060, 0min45sec 
+Epoch 34 (batch = 900): Loss: -0.032 L: 6.171, 0min53sec 
+Evaluating candidate model on baseline dataset (callback epoch = 34) 
+Epoch 34 candidate mean 26.462499618530273, baseline mean 26.809099197387695 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 34) 
+bl_vals = [22. 63. 24. ... 26. 30. 21.] ,means = 26.462499618530273 
+Epoch 35 (batch = 0): Loss: -0.029 L: 9.531, 1min15sec 
+Epoch 35 (batch = 100): Loss: 0.008 L: 5.928, 0min43sec 
+Epoch 35 (batch = 200): Loss: -0.007 L: 5.849, 0min45sec 
+Epoch 35 (batch = 300): Loss: -0.034 L: 6.147, 0min51sec 
+Epoch 35 (batch = 400): Loss: -0.080 L: 6.439, 0min57sec 
+Epoch 35 (batch = 500): Loss: -0.113 L: 6.419, 0min54sec 
+Epoch 35 (batch = 600): Loss: -0.093 L: 6.436, 0min50sec 
+Epoch 35 (batch = 700): Loss: -0.075 L: 6.406, 0min51sec 
+Epoch 35 (batch = 800): Loss: -0.050 L: 6.420, 0min51sec 
+Epoch 35 (batch = 900): Loss: -0.068 L: 6.367, 0min45sec 
+Evaluating candidate model on baseline dataset (callback epoch = 35) 
+Epoch 35 candidate mean 26.99959945678711, baseline mean 26.578100204467773 
+Epoch 36 (batch = 0): Loss: 0.027 L: 5.000, 1min7sec 
+Epoch 36 (batch = 100): Loss: -0.021 L: 5.917, 0min45sec 
+Epoch 36 (batch = 200): Loss: 0.010 L: 5.855, 0min45sec 
+Epoch 36 (batch = 300): Loss: 0.035 L: 6.101, 0min51sec 
+Epoch 36 (batch = 400): Loss: 0.026 L: 6.062, 0min44sec 
+Epoch 36 (batch = 500): Loss: 0.002 L: 6.101, 0min46sec 
+Epoch 36 (batch = 600): Loss: 0.006 L: 6.111, 0min46sec 
+Epoch 36 (batch = 700): Loss: -0.062 L: 6.238, 0min51sec 
+Epoch 36 (batch = 800): Loss: -0.065 L: 6.241, 0min49sec 
+Epoch 36 (batch = 900): Loss: -0.063 L: 6.222, 0min48sec 
+Evaluating candidate model on baseline dataset (callback epoch = 36) 
+Epoch 36 candidate mean 25.652599334716797, baseline mean 26.267799377441406 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 36) 
+bl_vals = [20. 21. 16. ... 21. 26. 30.] ,means = 25.652599334716797 
+Epoch 37 (batch = 0): Loss: 0.000 L: 1.719, 1min13sec 
+Epoch 37 (batch = 100): Loss: -0.442 L: 7.134, 0min56sec 
+Epoch 37 (batch = 200): Loss: -0.152 L: 6.588, 0min47sec 
+Epoch 37 (batch = 300): Loss: -0.116 L: 6.338, 0min46sec 
+Epoch 37 (batch = 400): Loss: -0.132 L: 6.299, 0min48sec 
+Epoch 37 (batch = 500): Loss: -0.154 L: 6.177, 0min46sec 
+Epoch 37 (batch = 600): Loss: -0.141 L: 6.216, 0min49sec 
+Epoch 37 (batch = 700): Loss: -0.114 L: 6.228, 0min50sec 
+Epoch 37 (batch = 800): Loss: -0.107 L: 6.278, 0min48sec 
+Epoch 37 (batch = 900): Loss: -0.106 L: 6.274, 0min45sec 
+Evaluating candidate model on baseline dataset (callback epoch = 37) 
+Epoch 37 candidate mean 27.465499877929688, baseline mean 25.691200256347656 
+Epoch 38 (batch = 0): Loss: -0.005 L: 5.000, 1min12sec 
+Epoch 38 (batch = 100): Loss: -0.046 L: 6.064, 0min46sec 
+Epoch 38 (batch = 200): Loss: -0.075 L: 6.116, 0min45sec 
+Epoch 38 (batch = 300): Loss: -0.576 L: 6.660, 0min59sec 
+Epoch 38 (batch = 400): Loss: -0.355 L: 6.561, 0min45sec 
+Epoch 38 (batch = 500): Loss: -0.309 L: 6.514, 0min46sec 
+Epoch 38 (batch = 600): Loss: -0.237 L: 6.609, 0min49sec 
+Epoch 38 (batch = 700): Loss: -0.205 L: 6.510, 0min46sec 
+Epoch 38 (batch = 800): Loss: -0.192 L: 6.635, 0min51sec 
+Epoch 38 (batch = 900): Loss: -0.179 L: 6.596, 0min46sec 
+Evaluating candidate model on baseline dataset (callback epoch = 38) 
+Epoch 38 candidate mean 26.153900146484375, baseline mean 25.70549964904785 
+Epoch 39 (batch = 0): Loss: -0.043 L: 4.828, 1min14sec 
+Epoch 39 (batch = 100): Loss: -0.084 L: 6.379, 0min49sec 
+Epoch 39 (batch = 200): Loss: -0.042 L: 6.611, 0min54sec 
+Epoch 39 (batch = 300): Loss: -0.014 L: 6.656, 0min52sec 
+Epoch 39 (batch = 400): Loss: -0.017 L: 6.605, 0min50sec 
+Epoch 39 (batch = 500): Loss: -0.070 L: 6.954, 0min55sec 
+Epoch 39 (batch = 600): Loss: -0.063 L: 6.756, 0min44sec 
+Epoch 39 (batch = 700): Loss: -0.046 L: 6.653, 0min44sec 
+Epoch 39 (batch = 800): Loss: -0.046 L: 6.652, 0min50sec 
+Epoch 39 (batch = 900): Loss: -0.041 L: 6.624, 0min47sec 
+Evaluating candidate model on baseline dataset (callback epoch = 39) 
+Epoch 39 candidate mean 27.222299575805664, baseline mean 25.766000747680664 
+Epoch 40 (batch = 0): Loss: 0.044 L: 6.016, 1min11sec 
+Epoch 40 (batch = 100): Loss: -0.027 L: 6.751, 0min52sec 
+Epoch 40 (batch = 200): Loss: -0.017 L: 7.397, 1min1sec 
+Epoch 40 (batch = 300): Loss: -0.036 L: 6.889, 0min42sec 
+Epoch 40 (batch = 400): Loss: -0.201 L: 7.054, 0min56sec 
+Epoch 40 (batch = 500): Loss: -0.138 L: 6.998, 0min54sec 
+Epoch 40 (batch = 600): Loss: -0.079 L: 6.859, 0min42sec 
+Epoch 40 (batch = 700): Loss: -0.069 L: 6.817, 0min52sec 
+Epoch 40 (batch = 800): Loss: -0.051 L: 6.872, 0min56sec 
+Epoch 40 (batch = 900): Loss: -0.046 L: 6.769, 0min44sec 
+Evaluating candidate model on baseline dataset (callback epoch = 40) 
+Epoch 40 candidate mean 27.06130027770996, baseline mean 25.774599075317383 
+Epoch 41 (batch = 0): Loss: 0.046 L: 9.312, 1min17sec 
+Epoch 41 (batch = 100): Loss: 0.062 L: 6.763, 0min53sec 
+Epoch 41 (batch = 200): Loss: -0.013 L: 6.627, 0min49sec 
+Epoch 41 (batch = 300): Loss: -0.018 L: 6.483, 0min48sec 
+Epoch 41 (batch = 400): Loss: -0.237 L: 6.761, 1min0sec 
+Epoch 41 (batch = 500): Loss: -0.252 L: 7.064, 1min2sec 
+Epoch 41 (batch = 600): Loss: -0.168 L: 7.075, 0min51sec 
+Epoch 41 (batch = 700): Loss: -0.147 L: 7.123, 0min51sec 
+Epoch 41 (batch = 800): Loss: -0.114 L: 7.172, 0min51sec 
+Epoch 41 (batch = 900): Loss: -0.077 L: 7.402, 1min6sec 
+Evaluating candidate model on baseline dataset (callback epoch = 41) 
+Epoch 41 candidate mean 25.909099578857422, baseline mean 25.653200149536133 
+Epoch 42 (batch = 0): Loss: -0.039 L: 5.375, 1min10sec 
+Epoch 42 (batch = 100): Loss: 0.001 L: 6.151, 0min47sec 
+Epoch 42 (batch = 200): Loss: -0.061 L: 6.701, 0min54sec 
+Epoch 42 (batch = 300): Loss: 0.039 L: 6.661, 0min46sec 
+Epoch 42 (batch = 400): Loss: 0.035 L: 6.624, 0min48sec 
+Epoch 42 (batch = 500): Loss: 0.007 L: 6.569, 0min48sec 
+Epoch 42 (batch = 600): Loss: 0.048 L: 6.885, 1min0sec 
+Epoch 42 (batch = 700): Loss: 0.054 L: 6.850, 0min49sec 
+Epoch 42 (batch = 800): Loss: 0.085 L: 6.937, 0min55sec 
+Epoch 42 (batch = 900): Loss: 0.085 L: 6.924, 0min51sec 
+Evaluating candidate model on baseline dataset (callback epoch = 42) 
+Epoch 42 candidate mean 24.5625, baseline mean 25.66550064086914 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 42) 
+bl_vals = [63. 22. 23. ... 32. 16. 33.] ,means = 24.5625 
+Epoch 43 (batch = 0): Loss: 0.025 L: 4.875, 1min31sec 
+Epoch 43 (batch = 100): Loss: -0.074 L: 6.136, 0min45sec 
+Epoch 43 (batch = 200): Loss: -0.135 L: 6.639, 0min49sec 
+Epoch 43 (batch = 300): Loss: -0.105 L: 6.886, 0min57sec 
+Epoch 43 (batch = 400): Loss: -0.278 L: 7.388, 1min1sec 
+Epoch 43 (batch = 500): Loss: -0.231 L: 7.090, 0min46sec 
+Epoch 43 (batch = 600): Loss: -0.221 L: 7.051, 0min51sec 
+Epoch 43 (batch = 700): Loss: -0.307 L: 7.274, 1min4sec 
+Epoch 43 (batch = 800): Loss: -0.353 L: 7.259, 0min50sec 
+Epoch 43 (batch = 900): Loss: -0.325 L: 7.240, 0min56sec 
+Evaluating candidate model on baseline dataset (callback epoch = 43) 
+Epoch 43 candidate mean 24.888700485229492, baseline mean 24.491199493408203 
+Epoch 44 (batch = 0): Loss: 0.000 L: 1.531, 1min19sec 
+Epoch 44 (batch = 100): Loss: -0.090 L: 7.296, 0min51sec 
+Epoch 44 (batch = 200): Loss: -0.068 L: 6.895, 0min50sec 
+Epoch 44 (batch = 300): Loss: -0.086 L: 6.903, 0min51sec 
+Epoch 44 (batch = 400): Loss: -0.138 L: 6.983, 0min54sec 
+Epoch 44 (batch = 500): Loss: -0.124 L: 6.848, 0min46sec 
+Epoch 44 (batch = 600): Loss: -0.096 L: 7.116, 1min0sec 
+Epoch 44 (batch = 700): Loss: -0.097 L: 7.146, 0min51sec 
+Epoch 44 (batch = 800): Loss: -0.105 L: 7.114, 0min52sec 
+Epoch 44 (batch = 900): Loss: -0.113 L: 7.099, 0min52sec 
+Evaluating candidate model on baseline dataset (callback epoch = 44) 
+Epoch 44 candidate mean 28.087799072265625, baseline mean 24.5393009185791 
+Epoch 45 (batch = 0): Loss: -0.045 L: 6.234, 1min17sec 
+Epoch 45 (batch = 100): Loss: -0.931 L: 8.006, 0min59sec 
+Epoch 45 (batch = 200): Loss: -0.578 L: 7.660, 0min50sec 
+Epoch 45 (batch = 300): Loss: -0.395 L: 8.636, 1min5sec 
+Epoch 45 (batch = 400): Loss: -0.337 L: 8.427, 0min56sec 
+Epoch 45 (batch = 500): Loss: -0.329 L: 8.555, 1min2sec 
+Epoch 45 (batch = 600): Loss: -0.289 L: 8.449, 0min56sec 
+Epoch 45 (batch = 700): Loss: -0.281 L: 8.423, 1min1sec 
+Epoch 45 (batch = 800): Loss: -0.280 L: 8.259, 0min53sec 
+Epoch 45 (batch = 900): Loss: -0.254 L: 8.042, 0min46sec 
+Evaluating candidate model on baseline dataset (callback epoch = 45) 
+Epoch 45 candidate mean 25.210399627685547, baseline mean 24.698999404907227 
+Epoch 46 (batch = 0): Loss: 0.001 L: 5.859, 1min21sec 
+Epoch 46 (batch = 100): Loss: -0.318 L: 7.704, 0min59sec 
+Epoch 46 (batch = 200): Loss: -0.301 L: 8.250, 1min1sec 
+Epoch 46 (batch = 300): Loss: -0.247 L: 8.216, 0min59sec 
+Epoch 46 (batch = 400): Loss: -0.238 L: 8.367, 1min1sec 
+Epoch 46 (batch = 500): Loss: -0.238 L: 8.385, 0min58sec 
+Epoch 46 (batch = 600): Loss: -0.255 L: 8.305, 0min58sec 
+Epoch 46 (batch = 700): Loss: -0.240 L: 8.241, 0min56sec 
+Epoch 46 (batch = 800): Loss: -0.283 L: 8.181, 0min57sec 
+Epoch 46 (batch = 900): Loss: -0.277 L: 8.097, 0min54sec 
+Evaluating candidate model on baseline dataset (callback epoch = 46) 
+Epoch 46 candidate mean 23.919300079345703, baseline mean 24.63680076599121 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 46) 
+bl_vals = [19. 30. 16. ... 18. 63. 19.] ,means = 23.919300079345703 
+Epoch 47 (batch = 0): Loss: 0.039 L: 11.234, 1min21sec 
+Epoch 47 (batch = 100): Loss: 0.034 L: 6.886, 0min52sec 
+Epoch 47 (batch = 200): Loss: -0.072 L: 7.106, 0min52sec 
+Epoch 47 (batch = 300): Loss: -0.072 L: 7.189, 0min54sec 
+Epoch 47 (batch = 400): Loss: -0.086 L: 7.638, 1min7sec 
+Epoch 47 (batch = 500): Loss: -0.188 L: 7.936, 1min7sec 
+Epoch 47 (batch = 600): Loss: -0.138 L: 8.414, 1min7sec 
+Epoch 47 (batch = 700): Loss: -0.126 L: 8.278, 0min53sec 
+Epoch 47 (batch = 800): Loss: -0.129 L: 8.054, 0min48sec 
+Epoch 47 (batch = 900): Loss: -0.114 L: 8.079, 0min56sec 
+Evaluating candidate model on baseline dataset (callback epoch = 47) 
+Epoch 47 candidate mean 23.93790054321289, baseline mean 24.12700080871582 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 47) 
+bl_vals = [18. 31. 29. ... 18. 22. 28.] ,means = 23.93790054321289 
+Epoch 48 (batch = 0): Loss: 0.000 L: 4.750, 1min20sec 
+Epoch 48 (batch = 100): Loss: -0.136 L: 8.553, 0min58sec 
+Epoch 48 (batch = 200): Loss: -0.152 L: 8.608, 0min58sec 
+Epoch 48 (batch = 300): Loss: -0.141 L: 8.121, 0min53sec 
+Epoch 48 (batch = 400): Loss: -0.127 L: 7.989, 0min58sec 
+Epoch 48 (batch = 500): Loss: -0.088 L: 8.046, 0min57sec 
+Epoch 48 (batch = 600): Loss: -0.057 L: 7.956, 0min51sec 
+Epoch 48 (batch = 700): Loss: -0.073 L: 8.066, 1min2sec 
+Epoch 48 (batch = 800): Loss: -0.096 L: 8.006, 0min55sec 
+Epoch 48 (batch = 900): Loss: -0.115 L: 8.036, 0min58sec 
+Evaluating candidate model on baseline dataset (callback epoch = 48) 
+Epoch 48 candidate mean 23.997800827026367, baseline mean 23.956499099731445 
+Epoch 49 (batch = 0): Loss: 0.000 L: 1.812, 1min25sec 
+Epoch 49 (batch = 100): Loss: -0.290 L: 7.930, 1min3sec 
+Epoch 49 (batch = 200): Loss: -0.422 L: 7.915, 0min57sec 
+Epoch 49 (batch = 300): Loss: -0.471 L: 8.368, 1min7sec 
+Epoch 49 (batch = 400): Loss: -0.408 L: 8.368, 1min3sec 
+Epoch 49 (batch = 500): Loss: -0.401 L: 8.689, 1min5sec 
+Epoch 49 (batch = 600): Loss: -0.339 L: 8.491, 0min54sec 
+Epoch 49 (batch = 700): Loss: -0.277 L: 8.384, 0min52sec 
+Epoch 49 (batch = 800): Loss: -0.283 L: 8.370, 1min0sec 
+Epoch 49 (batch = 900): Loss: -0.235 L: 8.307, 0min53sec 
+Evaluating candidate model on baseline dataset (callback epoch = 49) 
+Epoch 49 candidate mean 26.1564998626709, baseline mean 23.818599700927734 
+Epoch 50 (batch = 0): Loss: -0.249 L: 16.047, 1min24sec 
+Epoch 50 (batch = 100): Loss: -0.166 L: 8.330, 0min58sec 
+Epoch 50 (batch = 200): Loss: -0.050 L: 7.959, 0min55sec 
+Epoch 50 (batch = 300): Loss: -0.085 L: 8.191, 1min0sec 
+Epoch 50 (batch = 400): Loss: -0.293 L: 8.374, 1min0sec 
+Epoch 50 (batch = 500): Loss: -0.343 L: 8.576, 1min4sec 
+Epoch 50 (batch = 600): Loss: -0.280 L: 8.476, 0min57sec 
+Epoch 50 (batch = 700): Loss: -0.256 L: 8.509, 0min59sec 
+Epoch 50 (batch = 800): Loss: -0.226 L: 8.479, 0min56sec 
+Epoch 50 (batch = 900): Loss: -0.193 L: 8.424, 0min56sec 
+Evaluating candidate model on baseline dataset (callback epoch = 50) 
+Epoch 50 candidate mean 22.704099655151367, baseline mean 23.909900665283203 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 50) 
+bl_vals = [23. 16. 24. ... 18. 25. 16.] ,means = 22.704099655151367 
+Epoch 51 (batch = 0): Loss: -0.057 L: 5.125, 1min23sec 
+Epoch 51 (batch = 100): Loss: 0.025 L: 9.060, 0min59sec 
+Epoch 51 (batch = 200): Loss: -0.112 L: 9.623, 1min13sec 
+Epoch 51 (batch = 300): Loss: -0.126 L: 9.475, 1min3sec 
+Epoch 51 (batch = 400): Loss: -0.123 L: 9.354, 1min3sec 
+Epoch 51 (batch = 500): Loss: -0.213 L: 9.204, 0min58sec 
+Epoch 51 (batch = 600): Loss: -0.195 L: 9.049, 0min57sec 
+Epoch 51 (batch = 700): Loss: -0.152 L: 9.025, 0min57sec 
+Epoch 51 (batch = 800): Loss: -0.146 L: 8.801, 0min52sec 
+Epoch 51 (batch = 900): Loss: -0.138 L: 8.574, 0min46sec 
+Evaluating candidate model on baseline dataset (callback epoch = 51) 
+Epoch 51 candidate mean 23.130699157714844, baseline mean 22.786800384521484 
+Epoch 52 (batch = 0): Loss: 0.007 L: 4.875, 1min27sec 
+Epoch 52 (batch = 100): Loss: -0.017 L: 8.101, 0min56sec 
+Epoch 52 (batch = 200): Loss: -0.107 L: 8.100, 0min56sec 
+Epoch 52 (batch = 300): Loss: -0.220 L: 8.612, 1min4sec 
+Epoch 52 (batch = 400): Loss: -0.217 L: 8.641, 0min56sec 
+Epoch 52 (batch = 500): Loss: -0.204 L: 8.650, 0min55sec 
+Epoch 52 (batch = 600): Loss: -0.196 L: 8.646, 1min2sec 
+Epoch 52 (batch = 700): Loss: -0.188 L: 8.388, 0min47sec 
+Epoch 52 (batch = 800): Loss: -0.155 L: 8.382, 0min56sec 
+Epoch 52 (batch = 900): Loss: -0.176 L: 8.450, 1min4sec 
+Evaluating candidate model on baseline dataset (callback epoch = 52) 
+Epoch 52 candidate mean 23.017099380493164, baseline mean 22.891000747680664 
+Epoch 53 (batch = 0): Loss: -0.493 L: 15.312, 1min26sec 
+Epoch 53 (batch = 100): Loss: -0.310 L: 9.959, 1min8sec 
+Epoch 53 (batch = 200): Loss: -1.046 L: 10.567, 1min9sec 
+Epoch 53 (batch = 300): Loss: -0.866 L: 10.121, 1min7sec 
+Epoch 53 (batch = 400): Loss: -0.790 L: 10.192, 1min13sec 
+Epoch 53 (batch = 500): Loss: -0.916 L: 9.934, 1min3sec 
+Epoch 53 (batch = 600): Loss: -0.949 L: 9.880, 1min10sec 
+Epoch 53 (batch = 700): Loss: -0.825 L: 9.654, 0min56sec 
+Epoch 53 (batch = 800): Loss: -0.856 L: 9.667, 1min12sec 
+Epoch 53 (batch = 900): Loss: -0.852 L: 9.670, 1min6sec 
+Evaluating candidate model on baseline dataset (callback epoch = 53) 
+Epoch 53 candidate mean 23.537399291992188, baseline mean 22.6697998046875 
+Epoch 54 (batch = 0): Loss: -0.068 L: 6.062, 1min23sec 
+Epoch 54 (batch = 100): Loss: -0.480 L: 9.493, 1min9sec 
+Epoch 54 (batch = 200): Loss: -0.517 L: 9.680, 1min13sec 
+Epoch 54 (batch = 300): Loss: -0.589 L: 9.570, 1min8sec 
+Epoch 54 (batch = 400): Loss: -0.439 L: 9.238, 0min57sec 
+Epoch 54 (batch = 500): Loss: -0.481 L: 9.458, 1min20sec 
+Epoch 54 (batch = 600): Loss: -0.388 L: 9.394, 1min4sec 
+Epoch 54 (batch = 700): Loss: -0.376 L: 9.321, 1min4sec 
+Epoch 54 (batch = 800): Loss: -0.363 L: 9.499, 1min9sec 
+Epoch 54 (batch = 900): Loss: -0.379 L: 9.461, 0min59sec 
+Evaluating candidate model on baseline dataset (callback epoch = 54) 
+Epoch 54 candidate mean 24.20949935913086, baseline mean 22.795299530029297 
+Epoch 55 (batch = 0): Loss: -1.153 L: 26.031, 1min36sec 
+Epoch 55 (batch = 100): Loss: -0.078 L: 10.476, 1min13sec 
+Epoch 55 (batch = 200): Loss: 0.188 L: 10.582, 1min12sec 
+Epoch 55 (batch = 300): Loss: 0.211 L: 10.584, 1min12sec 
+Epoch 55 (batch = 400): Loss: 0.022 L: 10.639, 1min16sec 
+Epoch 55 (batch = 500): Loss: 0.025 L: 10.441, 1min7sec 
+Epoch 55 (batch = 600): Loss: -0.106 L: 10.618, 1min11sec 
+Epoch 55 (batch = 700): Loss: -0.231 L: 10.539, 1min11sec 
+Epoch 55 (batch = 800): Loss: -0.213 L: 10.495, 1min8sec 
+Epoch 55 (batch = 900): Loss: -0.221 L: 10.572, 1min12sec 
+Evaluating candidate model on baseline dataset (callback epoch = 55) 
+Epoch 55 candidate mean 23.681299209594727, baseline mean 22.72249984741211 
+Epoch 56 (batch = 0): Loss: -0.062 L: 4.859, 1min28sec 
+Epoch 56 (batch = 100): Loss: -0.376 L: 8.673, 1min1sec 
+Epoch 56 (batch = 200): Loss: -0.226 L: 8.355, 0min56sec 
+Epoch 56 (batch = 300): Loss: -0.115 L: 8.650, 1min1sec 
+Epoch 56 (batch = 400): Loss: -0.140 L: 8.482, 0min58sec 
+Epoch 56 (batch = 500): Loss: -0.238 L: 8.801, 1min12sec 
+Epoch 56 (batch = 600): Loss: -0.225 L: 8.578, 0min54sec 
+Epoch 56 (batch = 700): Loss: -0.212 L: 8.675, 1min3sec 
+Epoch 56 (batch = 800): Loss: -0.179 L: 8.806, 1min1sec 
+Epoch 56 (batch = 900): Loss: -0.234 L: 8.827, 1min4sec 
+Evaluating candidate model on baseline dataset (callback epoch = 56) 
+Epoch 56 candidate mean 22.168399810791016, baseline mean 22.80940055847168 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 56) 
+bl_vals = [18. 25. 26. ... 42. 20. 22.] ,means = 22.168399810791016 
+Epoch 57 (batch = 0): Loss: 0.000 L: 4.719, 1min39sec 
+Epoch 57 (batch = 100): Loss: -0.333 L: 11.104, 1min17sec 
+Epoch 57 (batch = 200): Loss: -0.241 L: 10.263, 1min6sec 
+Epoch 57 (batch = 300): Loss: -0.216 L: 9.989, 1min5sec 
+Epoch 57 (batch = 400): Loss: -0.267 L: 10.043, 1min7sec 
+Epoch 57 (batch = 500): Loss: -1.338 L: 9.959, 1min3sec 
+Epoch 57 (batch = 600): Loss: -1.141 L: 10.039, 1min11sec 
+Epoch 57 (batch = 700): Loss: -1.204 L: 10.224, 1min9sec 
+Epoch 57 (batch = 800): Loss: -1.012 L: 10.423, 1min17sec 
+Epoch 57 (batch = 900): Loss: -0.901 L: 10.363, 1min11sec 
+Evaluating candidate model on baseline dataset (callback epoch = 57) 
+Epoch 57 candidate mean 22.684799194335938, baseline mean 22.209699630737305 
+Epoch 58 (batch = 0): Loss: -20.597 L: 37.312, 1min43sec 
+Epoch 58 (batch = 100): Loss: 0.218 L: 9.884, 1min5sec 
+Epoch 58 (batch = 200): Loss: 0.073 L: 9.254, 1min2sec 
+Epoch 58 (batch = 300): Loss: -0.594 L: 9.104, 0min58sec 
+Epoch 58 (batch = 400): Loss: -0.945 L: 10.133, 1min32sec 
+Epoch 58 (batch = 500): Loss: -1.066 L: 9.957, 1min9sec 
+Epoch 58 (batch = 600): Loss: -0.954 L: 9.786, 1min5sec 
+Epoch 58 (batch = 700): Loss: -0.800 L: 10.143, 1min22sec 
+Epoch 58 (batch = 800): Loss: -0.750 L: 10.107, 1min9sec 
+Epoch 58 (batch = 900): Loss: -0.683 L: 10.201, 1min17sec 
+Evaluating candidate model on baseline dataset (callback epoch = 58) 
+Epoch 58 candidate mean 22.464099884033203, baseline mean 22.086000442504883 
+Epoch 59 (batch = 0): Loss: 0.000 L: 1.688, 1min29sec 
+Epoch 59 (batch = 100): Loss: -0.179 L: 11.546, 1min20sec 
+Epoch 59 (batch = 200): Loss: -0.108 L: 11.887, 1min19sec 
+Epoch 59 (batch = 300): Loss: -0.113 L: 12.079, 1min16sec 
+Epoch 59 (batch = 400): Loss: -0.100 L: 11.442, 1min6sec 
+Epoch 59 (batch = 500): Loss: -0.081 L: 11.030, 1min1sec 
+Epoch 59 (batch = 600): Loss: -0.298 L: 11.247, 1min19sec 
+Epoch 59 (batch = 700): Loss: -0.275 L: 11.456, 1min17sec 
+Epoch 59 (batch = 800): Loss: -0.210 L: 11.375, 1min8sec 
+Epoch 59 (batch = 900): Loss: -0.187 L: 11.145, 1min0sec 
+Evaluating candidate model on baseline dataset (callback epoch = 59) 
+Epoch 59 candidate mean 22.366500854492188, baseline mean 22.201799392700195 
+Epoch 60 (batch = 0): Loss: 0.000 L: 2.078, 1min43sec 
+Epoch 60 (batch = 100): Loss: -0.187 L: 9.636, 1min10sec 
+Epoch 60 (batch = 200): Loss: -0.051 L: 10.899, 1min18sec 
+Epoch 60 (batch = 300): Loss: -0.227 L: 11.157, 1min22sec 
+Epoch 60 (batch = 400): Loss: -0.248 L: 10.807, 1min9sec 
+Epoch 60 (batch = 500): Loss: -0.314 L: 10.758, 1min8sec 
+Epoch 60 (batch = 600): Loss: -0.263 L: 10.755, 1min12sec 
+Epoch 60 (batch = 700): Loss: -0.271 L: 10.553, 1min8sec 
+Epoch 60 (batch = 800): Loss: -0.313 L: 10.580, 1min10sec 
+Epoch 60 (batch = 900): Loss: -0.279 L: 10.744, 1min22sec 
+Evaluating candidate model on baseline dataset (callback epoch = 60) 
+Epoch 60 candidate mean 21.843599319458008, baseline mean 22.220199584960938 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 60) 
+bl_vals = [21. 18. 18. ... 29. 20. 18.] ,means = 21.843599319458008 
+Epoch 61 (batch = 0): Loss: -0.217 L: 4.828, 1min21sec 
+Epoch 61 (batch = 100): Loss: -0.393 L: 8.978, 1min2sec 
+Epoch 61 (batch = 200): Loss: -0.412 L: 9.716, 1min14sec 
+Epoch 61 (batch = 300): Loss: -0.321 L: 9.920, 1min13sec 
+Epoch 61 (batch = 400): Loss: -0.266 L: 10.455, 1min23sec 
+Epoch 61 (batch = 500): Loss: -0.242 L: 10.396, 1min11sec 
+Epoch 61 (batch = 600): Loss: -0.297 L: 10.356, 1min12sec 
+Epoch 61 (batch = 700): Loss: -0.295 L: 10.452, 1min16sec 
+Epoch 61 (batch = 800): Loss: -0.302 L: 10.427, 1min8sec 
+Epoch 61 (batch = 900): Loss: -0.451 L: 10.552, 1min17sec 
+Evaluating candidate model on baseline dataset (callback epoch = 61) 
+Epoch 61 candidate mean 22.020700454711914, baseline mean 21.76140022277832 
+Epoch 62 (batch = 0): Loss: -0.355 L: 9.547, 1min36sec 
+Epoch 62 (batch = 100): Loss: -1.421 L: 12.003, 1min24sec 
+Epoch 62 (batch = 200): Loss: -0.870 L: 11.919, 1min14sec 
+Epoch 62 (batch = 300): Loss: -1.315 L: 12.225, 1min23sec 
+Epoch 62 (batch = 400): Loss: -1.123 L: 12.157, 1min18sec 
+Epoch 62 (batch = 500): Loss: -1.570 L: 12.182, 1min22sec 
+Epoch 62 (batch = 600): Loss: -1.422 L: 11.931, 1min17sec 
+Epoch 62 (batch = 700): Loss: -1.270 L: 11.835, 1min14sec 
+Epoch 62 (batch = 800): Loss: -1.097 L: 11.778, 1min14sec 
+Epoch 62 (batch = 900): Loss: -1.029 L: 11.734, 1min15sec 
+Evaluating candidate model on baseline dataset (callback epoch = 62) 
+Epoch 62 candidate mean 22.258499145507812, baseline mean 21.779600143432617 
+Epoch 63 (batch = 0): Loss: -1.625 L: 19.562, 1min46sec 
+Epoch 63 (batch = 100): Loss: -0.082 L: 11.259, 1min13sec 
+Epoch 63 (batch = 200): Loss: -0.104 L: 11.608, 1min21sec 
+Epoch 63 (batch = 300): Loss: -0.833 L: 12.099, 1min28sec 
+Epoch 63 (batch = 400): Loss: -1.884 L: 12.454, 1min29sec 
+Epoch 63 (batch = 500): Loss: -1.481 L: 12.018, 1min8sec 
+Epoch 63 (batch = 600): Loss: -1.289 L: 11.885, 1min19sec 
+Epoch 63 (batch = 700): Loss: -1.146 L: 11.855, 1min19sec 
+Epoch 63 (batch = 800): Loss: -1.004 L: 11.808, 1min15sec 
+Epoch 63 (batch = 900): Loss: -0.938 L: 11.767, 1min21sec 
+Evaluating candidate model on baseline dataset (callback epoch = 63) 
+Epoch 63 candidate mean 21.809999465942383, baseline mean 21.833900451660156 
+Epoch 64 (batch = 0): Loss: 0.000 L: 1.906, 1min34sec 
+Epoch 64 (batch = 100): Loss: -0.386 L: 10.510, 1min14sec 
+Epoch 64 (batch = 200): Loss: 0.099 L: 11.342, 1min17sec 
+Epoch 64 (batch = 300): Loss: -0.134 L: 11.232, 1min11sec 
+Epoch 64 (batch = 400): Loss: -0.497 L: 11.963, 1min28sec 
+Epoch 64 (batch = 500): Loss: -0.668 L: 12.170, 1min22sec 
+Epoch 64 (batch = 600): Loss: -0.772 L: 12.198, 1min20sec 
+Epoch 64 (batch = 700): Loss: -0.695 L: 12.389, 1min28sec 
+Epoch 64 (batch = 800): Loss: -0.638 L: 12.544, 1min27sec 
+Epoch 64 (batch = 900): Loss: -0.746 L: 12.363, 1min12sec 
+Evaluating candidate model on baseline dataset (callback epoch = 64) 
+Epoch 64 candidate mean 21.764999389648438, baseline mean 21.826400756835938 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 64) 
+bl_vals = [20. 24. 25. ... 18. 32. 28.] ,means = 21.764999389648438 
+Epoch 65 (batch = 0): Loss: 0.039 L: 6.047, 1min47sec 
+Epoch 65 (batch = 100): Loss: -0.574 L: 13.995, 1min32sec 
+Epoch 65 (batch = 200): Loss: -0.073 L: 13.167, 1min21sec 
+Epoch 65 (batch = 300): Loss: -0.848 L: 13.882, 1min35sec 
+Epoch 65 (batch = 400): Loss: -0.720 L: 12.862, 1min6sec 
+Epoch 65 (batch = 500): Loss: -0.729 L: 12.223, 1min8sec 
+Epoch 65 (batch = 600): Loss: -3.971 L: 12.846, 1min38sec 
+Epoch 65 (batch = 700): Loss: -3.926 L: 12.592, 1min16sec 
+Epoch 65 (batch = 800): Loss: -3.972 L: 13.022, 1min33sec 
+Epoch 65 (batch = 900): Loss: -3.671 L: 13.041, 1min28sec 
+Evaluating candidate model on baseline dataset (callback epoch = 65) 
+Epoch 65 candidate mean 21.69969940185547, baseline mean 21.7106990814209 
+Epoch 66 (batch = 0): Loss: 0.028 L: 9.297, 1min36sec 
+Epoch 66 (batch = 100): Loss: -0.716 L: 10.519, 1min9sec 
+Epoch 66 (batch = 200): Loss: -0.926 L: 11.381, 1min21sec 
+Epoch 66 (batch = 300): Loss: -0.501 L: 10.929, 1min6sec 
+Epoch 66 (batch = 400): Loss: -0.468 L: 10.853, 1min15sec 
+Epoch 66 (batch = 500): Loss: -1.076 L: 11.310, 1min25sec 
+Epoch 66 (batch = 600): Loss: -0.947 L: 11.305, 1min19sec 
+Epoch 66 (batch = 700): Loss: -0.826 L: 11.412, 1min19sec 
+Epoch 66 (batch = 800): Loss: -0.772 L: 11.459, 1min23sec 
+Epoch 66 (batch = 900): Loss: -0.750 L: 11.748, 1min27sec 
+Evaluating candidate model on baseline dataset (callback epoch = 66) 
+Epoch 66 candidate mean 21.680500030517578, baseline mean 21.681699752807617 
+Epoch 67 (batch = 0): Loss: -10.198 L: 55.734, 1min54sec 
+Epoch 67 (batch = 100): Loss: -1.848 L: 13.636, 1min26sec 
+Epoch 67 (batch = 200): Loss: -1.129 L: 12.826, 1min21sec 
+Epoch 67 (batch = 300): Loss: -0.922 L: 12.147, 1min11sec 
+Epoch 67 (batch = 400): Loss: -1.056 L: 12.435, 1min26sec 
+Epoch 67 (batch = 500): Loss: -0.805 L: 12.658, 1min28sec 
+Epoch 67 (batch = 600): Loss: -0.779 L: 12.679, 1min27sec 
+Epoch 67 (batch = 700): Loss: -0.650 L: 12.814, 1min30sec 
+Epoch 67 (batch = 800): Loss: -0.606 L: 12.909, 1min36sec 
+Epoch 67 (batch = 900): Loss: -0.642 L: 12.840, 1min19sec 
+Evaluating candidate model on baseline dataset (callback epoch = 67) 
+Epoch 67 candidate mean 21.69860076904297, baseline mean 21.709699630737305 
+Epoch 68 (batch = 0): Loss: -0.008 L: 5.609, 1min43sec 
+Epoch 68 (batch = 100): Loss: 0.370 L: 10.980, 1min15sec 
+Epoch 68 (batch = 200): Loss: -1.421 L: 12.037, 1min27sec 
+Epoch 68 (batch = 300): Loss: -1.735 L: 12.668, 1min28sec 
+Epoch 68 (batch = 400): Loss: -1.336 L: 11.927, 1min7sec 
+Epoch 68 (batch = 500): Loss: -1.005 L: 12.522, 1min34sec 
+Epoch 68 (batch = 600): Loss: -1.879 L: 12.787, 1min28sec 
+Epoch 68 (batch = 700): Loss: -2.083 L: 13.021, 1min35sec 
+Epoch 68 (batch = 800): Loss: -2.250 L: 13.062, 1min31sec 
+Epoch 68 (batch = 900): Loss: -2.005 L: 12.922, 1min17sec 
+Evaluating candidate model on baseline dataset (callback epoch = 68) 
+Epoch 68 candidate mean 21.60700035095215, baseline mean 21.71540069580078 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 68) 
+bl_vals = [19. 15. 22. ... 21. 17. 18.] ,means = 21.60700035095215 
+Epoch 69 (batch = 0): Loss: -1.863 L: 29.047, 1min58sec 
+Epoch 69 (batch = 100): Loss: -0.385 L: 13.969, 1min40sec 
+Epoch 69 (batch = 200): Loss: -0.953 L: 13.035, 1min15sec 
+Epoch 69 (batch = 300): Loss: -0.688 L: 13.048, 1min30sec 
+Epoch 69 (batch = 400): Loss: -0.459 L: 13.065, 1min22sec 
+Epoch 69 (batch = 500): Loss: -0.497 L: 13.097, 1min25sec 
+Epoch 69 (batch = 600): Loss: -0.357 L: 12.857, 1min19sec 
+Epoch 69 (batch = 700): Loss: -0.334 L: 12.525, 1min10sec 
+Epoch 69 (batch = 800): Loss: -0.383 L: 12.503, 1min23sec 
+Epoch 69 (batch = 900): Loss: -0.376 L: 12.833, 1min31sec 
+Evaluating candidate model on baseline dataset (callback epoch = 69) 
+Epoch 69 candidate mean 21.857999801635742, baseline mean 21.639400482177734 
+Epoch 70 (batch = 0): Loss: -28.200 L: 35.188, 1min45sec 
+Epoch 70 (batch = 100): Loss: -0.750 L: 11.773, 1min19sec 
+Epoch 70 (batch = 200): Loss: 0.561 L: 13.402, 1min35sec 
+Epoch 70 (batch = 300): Loss: -0.109 L: 14.162, 1min39sec 
+Epoch 70 (batch = 400): Loss: 0.017 L: 13.570, 1min15sec 
+Epoch 70 (batch = 500): Loss: 0.078 L: 13.386, 1min25sec 
+Epoch 70 (batch = 600): Loss: -0.003 L: 13.102, 1min17sec 
+Epoch 70 (batch = 700): Loss: -0.096 L: 13.224, 1min29sec 
+Epoch 70 (batch = 800): Loss: -0.029 L: 13.309, 1min26sec 
+Epoch 70 (batch = 900): Loss: 0.013 L: 13.304, 1min22sec 
+Evaluating candidate model on baseline dataset (callback epoch = 70) 
+Epoch 70 candidate mean 21.414199829101562, baseline mean 21.621700286865234 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 70) 
+bl_vals = [20. 29. 16. ... 27. 21. 17.] ,means = 21.414199829101562 
+Epoch 71 (batch = 0): Loss: 0.000 L: 1.719, 1min58sec 
+Epoch 71 (batch = 100): Loss: 0.054 L: 13.798, 1min34sec 
+Epoch 71 (batch = 200): Loss: -0.504 L: 13.611, 1min24sec 
+Epoch 71 (batch = 300): Loss: -0.631 L: 12.908, 1min14sec 
+Epoch 71 (batch = 400): Loss: -0.635 L: 13.179, 1min30sec 
+Epoch 71 (batch = 500): Loss: -1.774 L: 13.707, 1min38sec 
+Epoch 71 (batch = 600): Loss: -1.775 L: 13.835, 1min28sec 
+Epoch 71 (batch = 700): Loss: -1.938 L: 14.236, 1min43sec 
+Epoch 71 (batch = 800): Loss: -1.774 L: 14.470, 1min39sec 
+Epoch 71 (batch = 900): Loss: -1.672 L: 14.389, 1min28sec 
+Evaluating candidate model on baseline dataset (callback epoch = 71) 
+Epoch 71 candidate mean 21.309200286865234, baseline mean 21.386699676513672 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 71) 
+bl_vals = [24. 25. 22. ... 21. 20. 28.] ,means = 21.309200286865234 
+Epoch 72 (batch = 0): Loss: 0.057 L: 9.594, 1min53sec 
+Epoch 72 (batch = 100): Loss: -0.514 L: 12.503, 1min17sec 
+Epoch 72 (batch = 200): Loss: -0.810 L: 13.103, 1min29sec 
+Epoch 72 (batch = 300): Loss: -0.998 L: 12.896, 1min19sec 
+Epoch 72 (batch = 400): Loss: -1.485 L: 13.069, 1min26sec 
+Epoch 72 (batch = 500): Loss: -1.833 L: 13.090, 1min22sec 
+Epoch 72 (batch = 600): Loss: -1.555 L: 12.972, 1min19sec 
+Epoch 72 (batch = 700): Loss: -1.266 L: 13.609, 1min45sec 
+Epoch 72 (batch = 800): Loss: -1.173 L: 13.811, 1min37sec 
+Epoch 72 (batch = 900): Loss: -1.117 L: 13.788, 1min25sec 
+Evaluating candidate model on baseline dataset (callback epoch = 72) 
+Epoch 72 candidate mean 21.288799285888672, baseline mean 21.329599380493164 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 72) 
+bl_vals = [17. 18. 17. ... 22. 19. 25.] ,means = 21.288799285888672 
+Epoch 73 (batch = 0): Loss: 50.563 L: 81.344, 1min57sec 
+Epoch 73 (batch = 100): Loss: -0.312 L: 16.887, 1min37sec 
+Epoch 73 (batch = 200): Loss: -1.315 L: 16.403, 1min36sec 
+Epoch 73 (batch = 300): Loss: -1.065 L: 15.318, 1min26sec 
+Epoch 73 (batch = 400): Loss: -1.062 L: 14.946, 1min29sec 
+Epoch 73 (batch = 500): Loss: -0.956 L: 14.808, 1min27sec 
+Epoch 73 (batch = 600): Loss: -0.939 L: 14.851, 1min35sec 
+Epoch 73 (batch = 700): Loss: -1.202 L: 14.999, 1min32sec 
+Epoch 73 (batch = 800): Loss: -1.090 L: 15.289, 1min42sec 
+Epoch 73 (batch = 900): Loss: -0.946 L: 15.138, 1min23sec 
+Evaluating candidate model on baseline dataset (callback epoch = 73) 
+Epoch 73 candidate mean 21.226200103759766, baseline mean 21.264400482177734 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 73) 
+bl_vals = [18. 25. 18. ... 23. 22. 21.] ,means = 21.226200103759766 
+Epoch 74 (batch = 0): Loss: 0.000 L: 5.094, 1min49sec 
+Epoch 74 (batch = 100): Loss: -0.270 L: 16.289, 1min41sec 
+Epoch 74 (batch = 200): Loss: -0.446 L: 15.589, 1min31sec 
+Epoch 74 (batch = 300): Loss: -1.393 L: 15.421, 1min32sec 
+Epoch 74 (batch = 400): Loss: -1.175 L: 14.982, 1min28sec 
+Epoch 74 (batch = 500): Loss: -0.860 L: 15.071, 1min33sec 
+Epoch 74 (batch = 600): Loss: -0.644 L: 15.169, 1min33sec 
+Epoch 74 (batch = 700): Loss: -0.585 L: 15.195, 1min37sec 
+Epoch 74 (batch = 800): Loss: -0.572 L: 15.018, 1min29sec 
+Epoch 74 (batch = 900): Loss: -0.399 L: 14.923, 1min31sec 
+Evaluating candidate model on baseline dataset (callback epoch = 74) 
+Epoch 74 candidate mean 21.659400939941406, baseline mean 21.20330047607422 
+Epoch 75 (batch = 0): Loss: -0.055 L: 5.734, 1min59sec 
+Epoch 75 (batch = 100): Loss: 0.088 L: 18.156, 1min48sec 
+Epoch 75 (batch = 200): Loss: 0.056 L: 17.488, 1min46sec 
+Epoch 75 (batch = 300): Loss: -0.630 L: 16.452, 1min34sec 
+Epoch 75 (batch = 400): Loss: -2.034 L: 16.232, 1min37sec 
+Epoch 75 (batch = 500): Loss: -1.692 L: 15.637, 1min32sec 
+Epoch 75 (batch = 600): Loss: -1.359 L: 15.289, 1min28sec 
+Epoch 75 (batch = 700): Loss: -1.086 L: 15.181, 1min27sec 
+Epoch 75 (batch = 800): Loss: -0.888 L: 15.038, 1min28sec 
+Epoch 75 (batch = 900): Loss: -0.740 L: 15.158, 1min40sec 
+Evaluating candidate model on baseline dataset (callback epoch = 75) 
+Epoch 75 candidate mean 21.12809944152832, baseline mean 21.27359962463379 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 75) 
+bl_vals = [23. 23. 19. ... 17. 22. 23.] ,means = 21.12809944152832 
+Epoch 76 (batch = 0): Loss: -0.188 L: 13.938, 2min8sec 
+Epoch 76 (batch = 100): Loss: -0.210 L: 14.095, 1min28sec 
+Epoch 76 (batch = 200): Loss: -0.523 L: 13.797, 1min20sec 
+Epoch 76 (batch = 300): Loss: -0.911 L: 14.209, 1min35sec 
+Epoch 76 (batch = 400): Loss: -3.411 L: 14.872, 1min44sec 
+Epoch 76 (batch = 500): Loss: -3.086 L: 14.838, 1min31sec 
+Epoch 76 (batch = 600): Loss: -2.764 L: 14.950, 1min37sec 
+Epoch 76 (batch = 700): Loss: -2.514 L: 14.947, 1min34sec 
+Epoch 76 (batch = 800): Loss: -2.399 L: 14.960, 1min37sec 
+Epoch 76 (batch = 900): Loss: -2.848 L: 15.072, 1min35sec 
+Evaluating candidate model on baseline dataset (callback epoch = 76) 
+Epoch 76 candidate mean 21.385900497436523, baseline mean 21.102800369262695 
+Epoch 77 (batch = 0): Loss: -74.320 L: 86.250, 2min1sec 
+Epoch 77 (batch = 100): Loss: -5.779 L: 16.666, 1min31sec 
+Epoch 77 (batch = 200): Loss: -3.783 L: 16.993, 1min51sec 
+Epoch 77 (batch = 300): Loss: -2.733 L: 16.467, 1min40sec 
+Epoch 77 (batch = 400): Loss: -2.451 L: 16.220, 1min41sec 
+Epoch 77 (batch = 500): Loss: -2.047 L: 16.354, 1min42sec 
+Epoch 77 (batch = 600): Loss: -2.074 L: 16.281, 1min40sec 
+Epoch 77 (batch = 700): Loss: -2.942 L: 16.300, 1min38sec 
+Epoch 77 (batch = 800): Loss: -3.373 L: 16.509, 1min49sec 
+Epoch 77 (batch = 900): Loss: -3.167 L: 16.496, 1min45sec 
+Evaluating candidate model on baseline dataset (callback epoch = 77) 
+Epoch 77 candidate mean 21.21150016784668, baseline mean 21.039100646972656 
+Epoch 78 (batch = 0): Loss: 0.007 L: 4.859, 2min10sec 
+Epoch 78 (batch = 100): Loss: -4.060 L: 18.722, 1min49sec 
+Epoch 78 (batch = 200): Loss: -2.782 L: 18.372, 1min56sec 
+Epoch 78 (batch = 300): Loss: -1.995 L: 18.215, 1min45sec 
+Epoch 78 (batch = 400): Loss: -1.780 L: 17.568, 1min42sec 
+Epoch 78 (batch = 500): Loss: -2.040 L: 18.005, 1min54sec 
+Epoch 78 (batch = 600): Loss: -1.816 L: 17.608, 1min38sec 
+Epoch 78 (batch = 700): Loss: -1.747 L: 17.390, 1min39sec 
+Epoch 78 (batch = 800): Loss: -1.614 L: 17.468, 1min47sec 
+Epoch 78 (batch = 900): Loss: -1.804 L: 17.479, 1min45sec 
+Evaluating candidate model on baseline dataset (callback epoch = 78) 
+Epoch 78 candidate mean 21.002199172973633, baseline mean 21.05299949645996 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 78) 
+bl_vals = [18. 17. 10. ... 23. 18. 17.] ,means = 21.002199172973633 
+Epoch 79 (batch = 0): Loss: 0.080 L: 6.203, 2min14sec 
+Epoch 79 (batch = 100): Loss: -0.351 L: 15.938, 1min40sec 
+Epoch 79 (batch = 200): Loss: -0.921 L: 16.787, 1min45sec 
+Epoch 79 (batch = 300): Loss: -1.236 L: 16.114, 1min33sec 
+Epoch 79 (batch = 400): Loss: -2.015 L: 16.587, 1min49sec 
+Epoch 79 (batch = 500): Loss: -1.746 L: 17.046, 1min48sec 
+Epoch 79 (batch = 600): Loss: -1.555 L: 17.284, 1min48sec 
+Epoch 79 (batch = 700): Loss: -1.483 L: 16.925, 1min35sec 
+Epoch 79 (batch = 800): Loss: -1.627 L: 17.372, 2min3sec 
+Epoch 79 (batch = 900): Loss: -1.571 L: 17.440, 1min48sec 
+Evaluating candidate model on baseline dataset (callback epoch = 79) 
+Epoch 79 candidate mean 21.086700439453125, baseline mean 21.055400848388672 
+Epoch 80 (batch = 0): Loss: -0.266 L: 11.359, 1min54sec 
+Epoch 80 (batch = 100): Loss: -0.966 L: 17.849, 1min47sec 
+Epoch 80 (batch = 200): Loss: -1.779 L: 16.184, 1min36sec 
+Epoch 80 (batch = 300): Loss: -3.034 L: 16.240, 1min37sec 
+Epoch 80 (batch = 400): Loss: -2.511 L: 15.720, 1min30sec 
+Epoch 80 (batch = 500): Loss: -2.200 L: 15.796, 1min41sec 
+Epoch 80 (batch = 600): Loss: -1.916 L: 15.523, 1min29sec 
+Epoch 80 (batch = 700): Loss: -1.821 L: 16.028, 1min55sec 
+Epoch 80 (batch = 800): Loss: -1.782 L: 16.175, 1min43sec 
+Epoch 80 (batch = 900): Loss: -1.644 L: 16.359, 1min44sec 
+Evaluating candidate model on baseline dataset (callback epoch = 80) 
+Epoch 80 candidate mean 22.266300201416016, baseline mean 20.998600006103516 
+Epoch 81 (batch = 0): Loss: -0.054 L: 5.812, 2min11sec 
+Epoch 81 (batch = 100): Loss: -33.779 L: 20.269, 1min51sec 
+Epoch 81 (batch = 200): Loss: -17.395 L: 19.840, 1min57sec 
+Epoch 81 (batch = 300): Loss: -12.397 L: 19.054, 1min44sec 
+Epoch 81 (batch = 400): Loss: -10.247 L: 18.682, 1min45sec 
+Epoch 81 (batch = 500): Loss: -8.634 L: 18.009, 1min39sec 
+Epoch 81 (batch = 600): Loss: -7.373 L: 18.131, 1min55sec 
+Epoch 81 (batch = 700): Loss: -6.777 L: 18.417, 2min2sec 
+Epoch 81 (batch = 800): Loss: -6.354 L: 18.192, 1min44sec 
+Epoch 81 (batch = 900): Loss: -5.940 L: 18.064, 1min40sec 
+Evaluating candidate model on baseline dataset (callback epoch = 81) 
+Epoch 81 candidate mean 21.22960090637207, baseline mean 20.981000900268555 
+Epoch 82 (batch = 0): Loss: -0.025 L: 6.031, 2min8sec 
+Epoch 82 (batch = 100): Loss: -2.957 L: 16.337, 1min45sec 
+Epoch 82 (batch = 200): Loss: -2.666 L: 17.820, 1min57sec 
+Epoch 82 (batch = 300): Loss: -3.852 L: 18.432, 1min53sec 
+Epoch 82 (batch = 400): Loss: -3.177 L: 17.657, 1min41sec 
+Epoch 82 (batch = 500): Loss: -3.279 L: 17.464, 1min42sec 
+Epoch 82 (batch = 600): Loss: -3.189 L: 17.024, 1min33sec 
+Epoch 82 (batch = 700): Loss: -2.836 L: 17.207, 1min52sec 
+Epoch 82 (batch = 800): Loss: -2.615 L: 17.236, 1min46sec 
+Epoch 82 (batch = 900): Loss: -2.528 L: 17.354, 1min53sec 
+Evaluating candidate model on baseline dataset (callback epoch = 82) 
+Epoch 82 candidate mean 21.039100646972656, baseline mean 21.093700408935547 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 82) 
+bl_vals = [21. 21. 21. ... 20. 22. 24.] ,means = 21.039100646972656 
+Epoch 83 (batch = 0): Loss: 0.000 L: 4.969, 1min58sec 
+Epoch 83 (batch = 100): Loss: -0.580 L: 14.158, 1min31sec 
+Epoch 83 (batch = 200): Loss: -2.597 L: 16.962, 1min56sec 
+Epoch 83 (batch = 300): Loss: -2.182 L: 17.941, 2min2sec 
+Epoch 83 (batch = 400): Loss: -8.189 L: 18.324, 1min49sec 
+Epoch 83 (batch = 500): Loss: -12.154 L: 18.742, 1min50sec 
+Epoch 83 (batch = 600): Loss: -10.205 L: 18.930, 1min55sec 
+Epoch 83 (batch = 700): Loss: -9.023 L: 18.988, 1min53sec 
+Epoch 83 (batch = 800): Loss: -8.113 L: 18.805, 1min48sec 
+Epoch 83 (batch = 900): Loss: -7.646 L: 18.903, 1min55sec 
+Evaluating candidate model on baseline dataset (callback epoch = 83) 
+Epoch 83 candidate mean 21.13909912109375, baseline mean 20.981700897216797 
+Epoch 84 (batch = 0): Loss: -0.052 L: 34.281, 2min19sec 
+Epoch 84 (batch = 100): Loss: -0.737 L: 18.151, 1min44sec 
+Epoch 84 (batch = 200): Loss: -1.021 L: 17.693, 1min46sec 
+Epoch 84 (batch = 300): Loss: -1.840 L: 18.024, 1min50sec 
+Epoch 84 (batch = 400): Loss: -1.500 L: 18.266, 1min52sec 
+Epoch 84 (batch = 500): Loss: -1.480 L: 18.389, 1min54sec 
+Epoch 84 (batch = 600): Loss: -1.215 L: 18.035, 1min39sec 
+Epoch 84 (batch = 700): Loss: -1.321 L: 18.256, 2min0sec 
+Epoch 84 (batch = 800): Loss: -1.111 L: 18.004, 1min38sec 
+Epoch 84 (batch = 900): Loss: -0.954 L: 18.356, 2min4sec 
+Evaluating candidate model on baseline dataset (callback epoch = 84) 
+Epoch 84 candidate mean 21.005699157714844, baseline mean 20.975799560546875 
+Epoch 85 (batch = 0): Loss: 0.000 L: 5.000, 2min18sec 
+Epoch 85 (batch = 100): Loss: -0.860 L: 16.365, 1min39sec 
+Epoch 85 (batch = 200): Loss: -0.588 L: 18.859, 2min3sec 
+Epoch 85 (batch = 300): Loss: -0.886 L: 18.914, 1min58sec 
+Epoch 85 (batch = 400): Loss: -0.841 L: 17.934, 1min37sec 
+Epoch 85 (batch = 500): Loss: -0.795 L: 18.198, 1min55sec 
+Epoch 85 (batch = 600): Loss: -0.556 L: 18.421, 1min57sec 
+Epoch 85 (batch = 700): Loss: -0.648 L: 18.671, 2min1sec 
+Epoch 85 (batch = 800): Loss: -0.734 L: 19.339, 2min14sec 
+Epoch 85 (batch = 900): Loss: -0.706 L: 18.745, 1min31sec 
+Evaluating candidate model on baseline dataset (callback epoch = 85) 
+Epoch 85 candidate mean 20.866100311279297, baseline mean 21.00510025024414 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 85) 
+bl_vals = [24. 24. 15. ... 23. 22. 19.] ,means = 20.866100311279297 
+Epoch 86 (batch = 0): Loss: -3.888 L: 18.781, 2min24sec 
+Epoch 86 (batch = 100): Loss: -0.214 L: 18.825, 1min50sec 
+Epoch 86 (batch = 200): Loss: -0.823 L: 18.873, 1min52sec 
+Epoch 86 (batch = 300): Loss: -0.706 L: 18.809, 1min52sec 
+Epoch 86 (batch = 400): Loss: -3.359 L: 19.558, 2min5sec 
+Epoch 86 (batch = 500): Loss: -2.930 L: 19.461, 1min56sec 
+Epoch 86 (batch = 600): Loss: -4.030 L: 19.905, 2min8sec 
+Epoch 86 (batch = 700): Loss: -3.864 L: 19.984, 2min7sec 
+Epoch 86 (batch = 800): Loss: -3.371 L: 19.756, 1min45sec 
+Epoch 86 (batch = 900): Loss: -2.959 L: 19.678, 1min54sec 
+Evaluating candidate model on baseline dataset (callback epoch = 86) 
+Epoch 86 candidate mean 21.151100158691406, baseline mean 20.8705997467041 
+Epoch 87 (batch = 0): Loss: -38.757 L: 67.266, 2min13sec 
+Epoch 87 (batch = 100): Loss: -8.063 L: 22.900, 2min8sec 
+Epoch 87 (batch = 200): Loss: -5.586 L: 21.334, 2min2sec 
+Epoch 87 (batch = 300): Loss: -5.590 L: 21.811, 2min9sec 
+Epoch 87 (batch = 400): Loss: -5.724 L: 21.201, 1min52sec 
+Epoch 87 (batch = 500): Loss: -4.551 L: 21.491, 2min10sec 
+Epoch 87 (batch = 600): Loss: -5.012 L: 20.771, 1min44sec 
+Epoch 87 (batch = 700): Loss: -4.389 L: 20.735, 2min3sec 
+Epoch 87 (batch = 800): Loss: -4.148 L: 20.557, 2min0sec 
+Epoch 87 (batch = 900): Loss: -3.919 L: 20.510, 1min52sec 
+Evaluating candidate model on baseline dataset (callback epoch = 87) 
+Epoch 87 candidate mean 21.008499145507812, baseline mean 20.847999572753906 
+Epoch 88 (batch = 0): Loss: -0.433 L: 21.719, 1min57sec 
+Epoch 88 (batch = 100): Loss: -12.155 L: 24.932, 2min21sec 
+Epoch 88 (batch = 200): Loss: -12.953 L: 23.830, 2min11sec 
+Epoch 88 (batch = 300): Loss: -8.961 L: 22.289, 1min56sec 
+Epoch 88 (batch = 400): Loss: -6.920 L: 22.513, 2min26sec 
+Epoch 88 (batch = 500): Loss: -5.789 L: 22.334, 2min5sec 
+Epoch 88 (batch = 600): Loss: -5.442 L: 21.927, 2min5sec 
+Epoch 88 (batch = 700): Loss: -4.597 L: 21.780, 2min7sec 
+Epoch 88 (batch = 800): Loss: -4.696 L: 21.748, 2min2sec 
+Epoch 88 (batch = 900): Loss: -4.202 L: 21.518, 2min1sec 
+Evaluating candidate model on baseline dataset (callback epoch = 88) 
+Epoch 88 candidate mean 20.886699676513672, baseline mean 20.891599655151367 
+Epoch 89 (batch = 0): Loss: -0.012 L: 5.016, 2min23sec 
+Epoch 89 (batch = 100): Loss: -0.992 L: 18.400, 1min54sec 
+Epoch 89 (batch = 200): Loss: -1.087 L: 18.649, 1min57sec 
+Epoch 89 (batch = 300): Loss: -1.663 L: 20.518, 2min19sec 
+Epoch 89 (batch = 400): Loss: -0.885 L: 20.416, 2min1sec 
+Epoch 89 (batch = 500): Loss: -1.893 L: 20.691, 2min6sec 
+Epoch 89 (batch = 600): Loss: -1.540 L: 20.987, 2min11sec 
+Epoch 89 (batch = 700): Loss: -1.103 L: 20.904, 2min1sec 
+Epoch 89 (batch = 800): Loss: -2.189 L: 21.118, 2min15sec 
+Epoch 89 (batch = 900): Loss: -2.255 L: 21.109, 2min1sec 
+Evaluating candidate model on baseline dataset (callback epoch = 89) 
+Epoch 89 candidate mean 20.899799346923828, baseline mean 20.860599517822266 
+Epoch 90 (batch = 0): Loss: -0.492 L: 16.828, 2min18sec 
+Epoch 90 (batch = 100): Loss: -0.009 L: 20.319, 2min3sec 
+Epoch 90 (batch = 200): Loss: -0.524 L: 20.463, 2min0sec 
+Epoch 90 (batch = 300): Loss: -1.098 L: 20.895, 2min10sec 
+Epoch 90 (batch = 400): Loss: -1.886 L: 21.030, 2min6sec 
+Epoch 90 (batch = 500): Loss: -1.621 L: 20.664, 2min0sec 
+Epoch 90 (batch = 600): Loss: -1.654 L: 20.549, 1min59sec 
+Epoch 90 (batch = 700): Loss: -1.455 L: 20.633, 2min9sec 
+Epoch 90 (batch = 800): Loss: -1.180 L: 20.721, 2min6sec 
+Epoch 90 (batch = 900): Loss: -1.230 L: 20.553, 2min2sec 
+Evaluating candidate model on baseline dataset (callback epoch = 90) 
+Epoch 90 candidate mean 20.85810089111328, baseline mean 20.860000610351562 
+Epoch 91 (batch = 0): Loss: 0.000 L: 1.828, 2min9sec 
+Epoch 91 (batch = 100): Loss: -3.236 L: 21.848, 2min11sec 
+Epoch 91 (batch = 200): Loss: -1.223 L: 23.317, 2min28sec 
+Epoch 91 (batch = 300): Loss: -1.457 L: 23.093, 2min12sec 
+Epoch 91 (batch = 400): Loss: -1.189 L: 22.608, 2min3sec 
+Epoch 91 (batch = 500): Loss: -0.898 L: 22.210, 2min0sec 
+Epoch 91 (batch = 600): Loss: -1.552 L: 21.760, 2min0sec 
+Epoch 91 (batch = 700): Loss: -1.645 L: 22.007, 2min18sec 
+Epoch 91 (batch = 800): Loss: -1.209 L: 22.017, 2min7sec 
+Epoch 91 (batch = 900): Loss: -1.209 L: 22.122, 2min13sec 
+Evaluating candidate model on baseline dataset (callback epoch = 91) 
+Epoch 91 candidate mean 20.801799774169922, baseline mean 20.890100479125977 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 91) 
+bl_vals = [21. 22. 14. ... 24. 22. 26.] ,means = 20.801799774169922 
+Epoch 92 (batch = 0): Loss: 0.000 L: 1.984, 2min30sec 
+Epoch 92 (batch = 100): Loss: -0.539 L: 18.830, 1min57sec 
+Epoch 92 (batch = 200): Loss: -0.808 L: 18.559, 1min55sec 
+Epoch 92 (batch = 300): Loss: -0.982 L: 19.914, 2min9sec 
+Epoch 92 (batch = 400): Loss: -1.134 L: 20.093, 1min59sec 
+Epoch 92 (batch = 500): Loss: -1.141 L: 20.299, 2min4sec 
+Epoch 92 (batch = 600): Loss: -1.479 L: 20.271, 2min2sec 
+Epoch 92 (batch = 700): Loss: -1.434 L: 20.019, 1min53sec 
+Epoch 92 (batch = 800): Loss: -1.517 L: 20.718, 2min29sec 
+Epoch 92 (batch = 900): Loss: -1.599 L: 20.374, 1min50sec 
+Evaluating candidate model on baseline dataset (callback epoch = 92) 
+Epoch 92 candidate mean 20.837799072265625, baseline mean 20.789899826049805 
+Epoch 93 (batch = 0): Loss: 3.945 L: 38.812, 2min22sec 
+Epoch 93 (batch = 100): Loss: -2.537 L: 19.947, 1min58sec 
+Epoch 93 (batch = 200): Loss: -2.958 L: 20.035, 1min57sec 
+Epoch 93 (batch = 300): Loss: -2.363 L: 19.832, 1min57sec 
+Epoch 93 (batch = 400): Loss: -2.514 L: 20.804, 2min18sec 
+Epoch 93 (batch = 500): Loss: -2.490 L: 20.262, 1min54sec 
+Epoch 93 (batch = 600): Loss: -2.469 L: 20.501, 2min7sec 
+Epoch 93 (batch = 700): Loss: -2.576 L: 20.474, 2min4sec 
+Epoch 93 (batch = 800): Loss: -2.893 L: 20.444, 1min58sec 
+Epoch 93 (batch = 900): Loss: -2.925 L: 20.526, 2min6sec 
+Evaluating candidate model on baseline dataset (callback epoch = 93) 
+Epoch 93 candidate mean 21.182600021362305, baseline mean 20.752599716186523 
+Epoch 94 (batch = 0): Loss: -25.363 L: 32.578, 2min35sec 
+Epoch 94 (batch = 100): Loss: -27.148 L: 22.541, 2min5sec 
+Epoch 94 (batch = 200): Loss: -15.064 L: 22.489, 2min15sec 
+Epoch 94 (batch = 300): Loss: -11.011 L: 21.607, 1min56sec 
+Epoch 94 (batch = 400): Loss: -8.970 L: 21.803, 2min12sec 
+Epoch 94 (batch = 500): Loss: -8.167 L: 21.599, 2min11sec 
+Epoch 94 (batch = 600): Loss: -7.293 L: 21.760, 2min8sec 
+Epoch 94 (batch = 700): Loss: -7.458 L: 21.797, 2min10sec 
+Epoch 94 (batch = 800): Loss: -7.455 L: 21.922, 2min16sec 
+Epoch 94 (batch = 900): Loss: -7.213 L: 22.087, 2min20sec 
+Evaluating candidate model on baseline dataset (callback epoch = 94) 
+Epoch 94 candidate mean 20.728900909423828, baseline mean 20.7455997467041 
+Epoch 95 (batch = 0): Loss: 0.000 L: 6.094, 2min30sec 
+Epoch 95 (batch = 100): Loss: -0.948 L: 23.976, 2min23sec 
+Epoch 95 (batch = 200): Loss: -1.238 L: 22.857, 2min6sec 
+Epoch 95 (batch = 300): Loss: -2.038 L: 22.165, 2min14sec 
+Epoch 95 (batch = 400): Loss: -2.385 L: 21.455, 2min0sec 
+Epoch 95 (batch = 500): Loss: -1.987 L: 21.208, 2min5sec 
+Epoch 95 (batch = 600): Loss: -1.833 L: 20.921, 1min58sec 
+Epoch 95 (batch = 700): Loss: -2.066 L: 20.951, 2min10sec 
+Epoch 95 (batch = 800): Loss: -2.295 L: 21.332, 2min26sec 
+Epoch 95 (batch = 900): Loss: -2.456 L: 21.578, 2min21sec 
+Evaluating candidate model on baseline dataset (callback epoch = 95) 
+Epoch 95 candidate mean 20.779199600219727, baseline mean 20.74650001525879 
+Epoch 96 (batch = 0): Loss: 0.000 L: 2.094, 2min47sec 
+Epoch 96 (batch = 100): Loss: -1.794 L: 20.374, 2min4sec 
+Epoch 96 (batch = 200): Loss: -0.886 L: 21.470, 2min13sec 
+Epoch 96 (batch = 300): Loss: -0.701 L: 21.787, 2min16sec 
+Epoch 96 (batch = 400): Loss: -0.744 L: 21.573, 2min6sec 
+Epoch 96 (batch = 500): Loss: -1.957 L: 21.931, 2min16sec 
+Epoch 96 (batch = 600): Loss: -2.104 L: 21.443, 1min58sec 
+Epoch 96 (batch = 700): Loss: -1.963 L: 21.484, 2min5sec 
+Epoch 96 (batch = 800): Loss: -1.619 L: 21.764, 2min16sec 
+Epoch 96 (batch = 900): Loss: -1.849 L: 22.234, 2min28sec 
+Evaluating candidate model on baseline dataset (callback epoch = 96) 
+Epoch 96 candidate mean 20.821699142456055, baseline mean 20.758899688720703 
+Epoch 97 (batch = 0): Loss: -67.974 L: 81.688, 2min49sec 
+Epoch 97 (batch = 100): Loss: -1.923 L: 23.529, 2min15sec 
+Epoch 97 (batch = 200): Loss: -2.747 L: 23.333, 2min15sec 
+Epoch 97 (batch = 300): Loss: -2.103 L: 22.664, 2min2sec 
+Epoch 97 (batch = 400): Loss: -2.890 L: 23.389, 2min27sec 
+Epoch 97 (batch = 500): Loss: -2.961 L: 23.511, 2min18sec 
+Epoch 97 (batch = 600): Loss: -2.776 L: 23.648, 2min17sec 
+Epoch 97 (batch = 700): Loss: -2.429 L: 23.261, 2min2sec 
+Epoch 97 (batch = 800): Loss: -4.909 L: 23.349, 2min16sec 
+Epoch 97 (batch = 900): Loss: -4.460 L: 23.255, 2min11sec 
+Evaluating candidate model on baseline dataset (callback epoch = 97) 
+Epoch 97 candidate mean 20.701799392700195, baseline mean 20.768800735473633 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 97) 
+bl_vals = [17. 23. 22. ... 18. 21. 24.] ,means = 20.701799392700195 
+Epoch 98 (batch = 0): Loss: 9.371 L: 59.641, 2min44sec 
+Epoch 98 (batch = 100): Loss: -1.567 L: 23.033, 2min8sec 
+Epoch 98 (batch = 200): Loss: -0.838 L: 22.601, 2min10sec 
+Epoch 98 (batch = 300): Loss: -0.690 L: 23.124, 2min21sec 
+Epoch 98 (batch = 400): Loss: -0.876 L: 23.408, 2min23sec 
+Epoch 98 (batch = 500): Loss: -0.980 L: 23.473, 2min10sec 
+Epoch 98 (batch = 600): Loss: -0.659 L: 23.207, 2min10sec 
+Epoch 98 (batch = 700): Loss: -0.747 L: 23.115, 2min12sec 
+Epoch 98 (batch = 800): Loss: -0.986 L: 23.523, 2min30sec 
+Epoch 98 (batch = 900): Loss: -0.885 L: 23.621, 2min17sec 
+Evaluating candidate model on baseline dataset (callback epoch = 98) 
+Epoch 98 candidate mean 20.696199417114258, baseline mean 20.724700927734375 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 98) 
+bl_vals = [24. 18. 23. ... 15. 24. 22.] ,means = 20.696199417114258 
+Epoch 99 (batch = 0): Loss: 0.000 L: 4.516, 2min31sec 
+Epoch 99 (batch = 100): Loss: -1.498 L: 20.876, 2min0sec 
+Epoch 99 (batch = 200): Loss: -2.016 L: 22.364, 2min23sec 
+Epoch 99 (batch = 300): Loss: -3.041 L: 23.271, 2min27sec 
+Epoch 99 (batch = 400): Loss: -3.841 L: 23.191, 2min20sec 
+Epoch 99 (batch = 500): Loss: -4.099 L: 23.397, 2min24sec 
+Epoch 99 (batch = 600): Loss: -3.896 L: 23.689, 2min26sec 
+Epoch 99 (batch = 700): Loss: -3.642 L: 23.382, 2min7sec 
+Epoch 99 (batch = 800): Loss: -4.184 L: 23.501, 2min26sec 
+Epoch 99 (batch = 900): Loss: -4.003 L: 23.360, 2min10sec 
+Evaluating candidate model on baseline dataset (callback epoch = 99) 
+Epoch 99 candidate mean 20.681499481201172, baseline mean 20.74139976501465 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 99) 
+bl_vals = [22. 21. 27. ... 17. 18. 23.] ,means = 20.681499481201172 
+Epoch 100 (batch = 0): Loss: -0.471 L: 31.453, 2min29sec 
+Epoch 100 (batch = 100): Loss: -2.893 L: 24.707, 2min22sec 
+Epoch 100 (batch = 200): Loss: -2.963 L: 24.933, 2min24sec 
+Epoch 100 (batch = 300): Loss: -2.371 L: 23.722, 2min7sec 
+Epoch 100 (batch = 400): Loss: -2.161 L: 23.841, 2min25sec 
+Epoch 100 (batch = 500): Loss: -1.635 L: 23.968, 2min23sec 
+Epoch 100 (batch = 600): Loss: -1.082 L: 23.963, 2min22sec 
+Epoch 100 (batch = 700): Loss: -0.935 L: 24.087, 2min24sec 
+Epoch 100 (batch = 800): Loss: -0.923 L: 24.402, 2min27sec 
+Epoch 100 (batch = 900): Loss: -0.780 L: 24.565, 2min32sec 
+Evaluating candidate model on baseline dataset (callback epoch = 100) 
+Epoch 100 candidate mean 20.521799087524414, baseline mean 20.580400466918945 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 100) 
+bl_vals = [20. 19. 15. ... 20. 16. 21.] ,means = 20.521799087524414 
+Epoch 101 (batch = 0): Loss: 0.000 L: 4.875, 2min40sec 
+Epoch 101 (batch = 100): Loss: -4.870 L: 23.049, 2min11sec 
+Epoch 101 (batch = 200): Loss: -2.350 L: 23.732, 2min19sec 
+Epoch 101 (batch = 300): Loss: -1.481 L: 23.190, 2min12sec 
+Epoch 101 (batch = 400): Loss: -1.671 L: 23.852, 2min25sec 
+Epoch 101 (batch = 500): Loss: -1.866 L: 23.914, 2min17sec 
+Epoch 101 (batch = 600): Loss: -2.227 L: 23.856, 2min17sec 
+Epoch 101 (batch = 700): Loss: -2.030 L: 23.608, 2min10sec 
+Epoch 101 (batch = 800): Loss: -1.927 L: 23.337, 2min8sec 
+Epoch 101 (batch = 900): Loss: -3.882 L: 23.865, 2min41sec 
+Evaluating candidate model on baseline dataset (callback epoch = 101) 
+Epoch 101 candidate mean 20.622900009155273, baseline mean 20.54450035095215 
+Epoch 102 (batch = 0): Loss: -0.121 L: 14.750, 2min36sec 
+Epoch 102 (batch = 100): Loss: -0.414 L: 25.735, 2min25sec 
+Epoch 102 (batch = 200): Loss: -0.982 L: 24.159, 2min10sec 
+Epoch 102 (batch = 300): Loss: -0.457 L: 24.744, 2min27sec 
+Epoch 102 (batch = 400): Loss: -0.350 L: 23.827, 2min9sec 
+Epoch 102 (batch = 500): Loss: -0.441 L: 23.458, 2min5sec 
+Epoch 102 (batch = 600): Loss: -0.553 L: 23.419, 2min25sec 
+Epoch 102 (batch = 700): Loss: -3.758 L: 24.376, 2min41sec 
+Epoch 102 (batch = 800): Loss: -3.449 L: 24.745, 2min36sec 
+Epoch 102 (batch = 900): Loss: -3.558 L: 24.719, 2min19sec 
+Evaluating candidate model on baseline dataset (callback epoch = 102) 
+Epoch 102 candidate mean 20.71299934387207, baseline mean 20.672700881958008 
+Epoch 103 (batch = 0): Loss: -0.243 L: 15.547, 2min45sec 
+Epoch 103 (batch = 100): Loss: 0.313 L: 21.921, 2min10sec 
+Epoch 103 (batch = 200): Loss: -4.937 L: 26.147, 2min47sec 
+Epoch 103 (batch = 300): Loss: -3.311 L: 24.640, 2min10sec 
+Epoch 103 (batch = 400): Loss: -3.063 L: 24.222, 2min18sec 
+Epoch 103 (batch = 500): Loss: -3.444 L: 23.854, 2min11sec 
+Epoch 103 (batch = 600): Loss: -3.404 L: 23.644, 2min16sec 
+Epoch 103 (batch = 700): Loss: -2.888 L: 23.620, 2min20sec 
+Epoch 103 (batch = 800): Loss: -2.721 L: 23.674, 2min17sec 
+Epoch 103 (batch = 900): Loss: -2.760 L: 23.953, 2min26sec 
+Evaluating candidate model on baseline dataset (callback epoch = 103) 
+Epoch 103 candidate mean 20.673900604248047, baseline mean 20.64929962158203 
+Epoch 104 (batch = 0): Loss: 2.401 L: 48.109, 2min52sec 
+Epoch 104 (batch = 100): Loss: -1.583 L: 21.787, 2min9sec 
+Epoch 104 (batch = 200): Loss: -1.135 L: 22.282, 2min12sec 
+Epoch 104 (batch = 300): Loss: -0.991 L: 22.982, 2min27sec 
+Epoch 104 (batch = 400): Loss: -1.419 L: 23.726, 2min35sec 
+Epoch 104 (batch = 500): Loss: -1.241 L: 23.871, 2min21sec 
+Epoch 104 (batch = 600): Loss: -1.394 L: 23.682, 2min10sec 
+Epoch 104 (batch = 700): Loss: -1.161 L: 23.699, 2min15sec 
+Epoch 104 (batch = 800): Loss: -1.309 L: 24.347, 2min44sec 
+Epoch 104 (batch = 900): Loss: -1.753 L: 24.433, 2min28sec 
+Evaluating candidate model on baseline dataset (callback epoch = 104) 
+Epoch 104 candidate mean 20.614900588989258, baseline mean 20.63990020751953 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 104) 
+bl_vals = [17. 22. 21. ... 18. 23. 25.] ,means = 20.614900588989258 
+Epoch 105 (batch = 0): Loss: 3.108 L: 71.922, 2min40sec 
+Epoch 105 (batch = 100): Loss: -4.621 L: 27.085, 2min29sec 
+Epoch 105 (batch = 200): Loss: -2.648 L: 25.028, 2min20sec 
+Epoch 105 (batch = 300): Loss: -2.493 L: 25.384, 2min30sec 
+Epoch 105 (batch = 400): Loss: -2.138 L: 25.060, 2min21sec 
+Epoch 105 (batch = 500): Loss: -1.488 L: 24.660, 2min12sec 
+Epoch 105 (batch = 600): Loss: -1.097 L: 24.531, 2min20sec 
+Epoch 105 (batch = 700): Loss: -0.829 L: 24.344, 2min20sec 
+Epoch 105 (batch = 800): Loss: -1.021 L: 24.554, 2min32sec 
+Epoch 105 (batch = 900): Loss: -1.035 L: 24.632, 2min30sec 
+Evaluating candidate model on baseline dataset (callback epoch = 105) 
+Epoch 105 candidate mean 20.536500930786133, baseline mean 20.53969955444336 
+Epoch 106 (batch = 0): Loss: -0.251 L: 30.891, 3min16sec 
+Epoch 106 (batch = 100): Loss: -1.848 L: 23.380, 2min14sec 
+Epoch 106 (batch = 200): Loss: -2.740 L: 24.958, 2min29sec 
+Epoch 106 (batch = 300): Loss: -2.487 L: 25.717, 2min35sec 
+Epoch 106 (batch = 400): Loss: -2.299 L: 26.215, 2min41sec 
+Epoch 106 (batch = 500): Loss: -1.770 L: 26.141, 2min26sec 
+Epoch 106 (batch = 600): Loss: -2.053 L: 26.323, 2min34sec 
+Epoch 106 (batch = 700): Loss: -1.630 L: 26.623, 2min44sec 
+Epoch 106 (batch = 800): Loss: -1.314 L: 26.300, 2min24sec 
+Epoch 106 (batch = 900): Loss: -1.060 L: 26.178, 2min30sec 
+Evaluating candidate model on baseline dataset (callback epoch = 106) 
+Epoch 106 candidate mean 20.61240005493164, baseline mean 20.511600494384766 
+Epoch 107 (batch = 0): Loss: 0.317 L: 25.797, 2min57sec 
+Epoch 107 (batch = 100): Loss: -1.327 L: 21.539, 2min10sec 
+Epoch 107 (batch = 200): Loss: 0.497 L: 24.526, 2min40sec 
+Epoch 107 (batch = 300): Loss: 0.439 L: 24.828, 2min29sec 
+Epoch 107 (batch = 400): Loss: 0.510 L: 24.866, 2min22sec 
+Epoch 107 (batch = 500): Loss: -5.181 L: 25.726, 2min39sec 
+Epoch 107 (batch = 600): Loss: -9.026 L: 26.004, 2min26sec 
+Epoch 107 (batch = 700): Loss: -7.619 L: 25.654, 2min21sec 
+Epoch 107 (batch = 800): Loss: -6.442 L: 25.576, 2min29sec 
+Epoch 107 (batch = 900): Loss: -5.506 L: 25.817, 3min27sec 
+Evaluating candidate model on baseline dataset (callback epoch = 107) 
+Epoch 107 candidate mean 20.614999771118164, baseline mean 20.54599952697754 
+Epoch 108 (batch = 0): Loss: 0.018 L: 5.781, 5min4sec 
+Epoch 108 (batch = 100): Loss: 0.839 L: 27.379, 5min46sec 
+Epoch 108 (batch = 200): Loss: 0.204 L: 26.653, 5min19sec 
+Epoch 108 (batch = 300): Loss: 0.260 L: 27.618, 4min54sec 
+Epoch 108 (batch = 400): Loss: 0.962 L: 27.696, 4min43sec 
+Epoch 108 (batch = 500): Loss: 1.281 L: 27.632, 4min20sec 
+Epoch 108 (batch = 600): Loss: 0.729 L: 27.353, 4min10sec 
+Epoch 108 (batch = 700): Loss: 0.844 L: 27.096, 4min6sec 
+Epoch 108 (batch = 800): Loss: 0.811 L: 26.664, 4min18sec 
+Epoch 108 (batch = 900): Loss: 0.818 L: 26.658, 4min31sec 
+Evaluating candidate model on baseline dataset (callback epoch = 108) 
+Epoch 108 candidate mean 20.577899932861328, baseline mean 20.604700088500977 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 108) 
+bl_vals = [25. 23. 20. ... 16. 22. 24.] ,means = 20.577899932861328 
+Epoch 109 (batch = 0): Loss: -1.340 L: 30.094, 4min52sec 
+Epoch 109 (batch = 100): Loss: -0.466 L: 26.581, 4min44sec 
+Epoch 109 (batch = 200): Loss: -0.936 L: 26.947, 2min50sec 
+Epoch 109 (batch = 300): Loss: -7.531 L: 27.592, 3min31sec 
+Epoch 109 (batch = 400): Loss: -6.302 L: 26.860, 2min34sec 
+Epoch 109 (batch = 500): Loss: -5.576 L: 26.259, 2min42sec 
+Epoch 109 (batch = 600): Loss: -5.117 L: 25.686, 3min59sec 
+Epoch 109 (batch = 700): Loss: -4.688 L: 25.908, 5min33sec 
+Epoch 109 (batch = 800): Loss: -10.134 L: 26.760, 5min31sec 
+Epoch 109 (batch = 900): Loss: -11.199 L: 26.733, 4min22sec 
+Evaluating candidate model on baseline dataset (callback epoch = 109) 
+Epoch 109 candidate mean 20.530000686645508, baseline mean 20.559099197387695 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 109) 
+bl_vals = [19. 18. 18. ... 14. 23. 24.] ,means = 20.530000686645508 
+Epoch 110 (batch = 0): Loss: 0.000 L: 1.703, 5min2sec 
+Epoch 110 (batch = 100): Loss: -2.772 L: 24.574, 5min30sec 
+Epoch 110 (batch = 200): Loss: -2.465 L: 27.068, 5min10sec 
+Epoch 110 (batch = 300): Loss: -2.198 L: 25.918, 3min43sec 
+Epoch 110 (batch = 400): Loss: -1.902 L: 24.836, 4min58sec 
+Epoch 110 (batch = 500): Loss: -1.911 L: 25.197, 2min47sec 
+Epoch 110 (batch = 600): Loss: -1.876 L: 25.649, 5min28sec 
+Epoch 110 (batch = 700): Loss: -1.756 L: 25.701, 4min53sec 
+Epoch 110 (batch = 800): Loss: -1.932 L: 25.535, 4min39sec 
+Epoch 110 (batch = 900): Loss: -1.684 L: 25.528, 4min25sec 
+Evaluating candidate model on baseline dataset (callback epoch = 110) 
+Epoch 110 candidate mean 20.619199752807617, baseline mean 20.550100326538086 
+Epoch 111 (batch = 0): Loss: -0.063 L: 6.109, 4min58sec 
+Epoch 111 (batch = 100): Loss: -1.200 L: 26.261, 2min31sec 
+Epoch 111 (batch = 200): Loss: -1.390 L: 28.054, 5min29sec 
+Epoch 111 (batch = 300): Loss: -1.707 L: 28.309, 3min51sec 
+Epoch 111 (batch = 400): Loss: -1.296 L: 27.175, 2min24sec 
+Epoch 111 (batch = 500): Loss: -1.912 L: 26.947, 2min29sec 
+Epoch 111 (batch = 600): Loss: -1.797 L: 26.725, 2min22sec 
+Epoch 111 (batch = 700): Loss: -1.375 L: 26.204, 4min5sec 
+Epoch 111 (batch = 800): Loss: -1.093 L: 25.918, 4min44sec 
+Epoch 111 (batch = 900): Loss: -1.167 L: 25.737, 2min17sec 
+Evaluating candidate model on baseline dataset (callback epoch = 111) 
+Epoch 111 candidate mean 20.592599868774414, baseline mean 20.553300857543945 
+Epoch 112 (batch = 0): Loss: -1.039 L: 40.359, 5min19sec 
+Epoch 112 (batch = 100): Loss: -0.304 L: 27.089, 5min4sec 
+Epoch 112 (batch = 200): Loss: -1.738 L: 27.188, 3min46sec 
+Epoch 112 (batch = 300): Loss: -1.451 L: 26.700, 2min58sec 
+Epoch 112 (batch = 400): Loss: -1.683 L: 26.504, 2min39sec 
+Epoch 112 (batch = 500): Loss: -1.842 L: 27.243, 2min52sec 
+Epoch 112 (batch = 600): Loss: -1.600 L: 27.138, 2min31sec 
+Epoch 112 (batch = 700): Loss: -1.548 L: 26.575, 3min56sec 
+Epoch 112 (batch = 800): Loss: -1.548 L: 26.444, 4min34sec 
+Epoch 112 (batch = 900): Loss: -1.602 L: 26.661, 5min20sec 
+Evaluating candidate model on baseline dataset (callback epoch = 112) 
+Epoch 112 candidate mean 20.578399658203125, baseline mean 20.513599395751953 
+Epoch 113 (batch = 0): Loss: 0.004 L: 6.562, 7min12sec 
+Epoch 113 (batch = 100): Loss: -0.628 L: 25.618, 5min56sec 
+Epoch 113 (batch = 200): Loss: -1.091 L: 26.477, 6min12sec 
+Epoch 113 (batch = 300): Loss: -0.693 L: 26.275, 5min56sec 
+Epoch 113 (batch = 400): Loss: -0.879 L: 26.442, 6min33sec 
+Epoch 113 (batch = 500): Loss: -0.803 L: 26.839, 6min31sec 
+Epoch 113 (batch = 600): Loss: -1.273 L: 27.175, 6min23sec 
+Epoch 113 (batch = 700): Loss: -1.323 L: 26.957, 5min54sec 
+Epoch 113 (batch = 800): Loss: -1.211 L: 27.048, 6min37sec 
+Epoch 113 (batch = 900): Loss: -1.452 L: 27.292, 6min32sec 
+Evaluating candidate model on baseline dataset (callback epoch = 113) 
+Epoch 113 candidate mean 20.417999267578125, baseline mean 20.475299835205078 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 113) 
+bl_vals = [21. 19. 28. ... 19. 19. 18.] ,means = 20.417999267578125 
+Epoch 114 (batch = 0): Loss: -0.309 L: 26.656, 7min39sec 
+Epoch 114 (batch = 100): Loss: -2.533 L: 26.907, 6min6sec 
+Epoch 114 (batch = 200): Loss: -7.697 L: 28.216, 6min35sec 
+Epoch 114 (batch = 300): Loss: -4.831 L: 27.678, 6min13sec 
+Epoch 114 (batch = 400): Loss: -4.351 L: 27.873, 6min14sec 
+Epoch 114 (batch = 500): Loss: -4.195 L: 27.920, 6min29sec 
+Epoch 114 (batch = 600): Loss: -3.682 L: 27.704, 6min5sec 
+Epoch 114 (batch = 700): Loss: -5.082 L: 27.551, 6min10sec 
+Epoch 114 (batch = 800): Loss: -4.596 L: 27.789, 6min25sec 
+Epoch 114 (batch = 900): Loss: -4.508 L: 27.791, 6min22sec 
+Evaluating candidate model on baseline dataset (callback epoch = 114) 
+Epoch 114 candidate mean 20.555400848388672, baseline mean 20.434600830078125 
+Epoch 115 (batch = 0): Loss: -0.038 L: 9.469, 7min8sec 
+Epoch 115 (batch = 100): Loss: -2.143 L: 29.389, 6min43sec 
+Epoch 115 (batch = 200): Loss: -2.162 L: 30.061, 7min19sec 
+Epoch 115 (batch = 300): Loss: -1.650 L: 29.193, 6min35sec 
+Epoch 115 (batch = 400): Loss: -1.505 L: 28.362, 5min43sec 
+Epoch 115 (batch = 500): Loss: -1.420 L: 27.632, 5min55sec 
+Epoch 115 (batch = 600): Loss: -5.420 L: 28.225, 6min49sec 
+Epoch 115 (batch = 700): Loss: -4.701 L: 27.323, 5min17sec 
+Epoch 115 (batch = 800): Loss: -4.306 L: 27.486, 6min29sec 
+Epoch 115 (batch = 900): Loss: -4.610 L: 27.255, 5min46sec 
+Evaluating candidate model on baseline dataset (callback epoch = 115) 
+Epoch 115 candidate mean 20.54360008239746, baseline mean 20.464500427246094 
+Epoch 116 (batch = 0): Loss: 0.010 L: 14.516, 6min41sec 
+Epoch 116 (batch = 100): Loss: -2.713 L: 26.199, 5min51sec 
+Epoch 116 (batch = 200): Loss: -2.216 L: 26.244, 6min2sec 
+Epoch 116 (batch = 300): Loss: -1.723 L: 26.235, 5min55sec 
+Epoch 116 (batch = 400): Loss: -1.086 L: 26.831, 6min39sec 
+Epoch 116 (batch = 500): Loss: -1.035 L: 26.607, 6min5sec 
+Epoch 116 (batch = 600): Loss: -4.050 L: 26.802, 6min7sec 
+Epoch 116 (batch = 700): Loss: -3.764 L: 26.451, 5min53sec 
+Epoch 116 (batch = 800): Loss: -3.439 L: 26.495, 6min7sec 
+Epoch 116 (batch = 900): Loss: -6.127 L: 26.702, 6min18sec 
+Evaluating candidate model on baseline dataset (callback epoch = 116) 
+Epoch 116 candidate mean 20.513700485229492, baseline mean 20.493900299072266 
+Epoch 117 (batch = 0): Loss: 0.302 L: 15.047, 7min14sec 
+Epoch 117 (batch = 100): Loss: 0.386 L: 24.141, 5min38sec 
+Epoch 117 (batch = 200): Loss: 0.317 L: 24.214, 5min43sec 
+Epoch 117 (batch = 300): Loss: -0.046 L: 23.525, 5min28sec 
+Epoch 117 (batch = 400): Loss: 0.051 L: 24.397, 6min22sec 
+Epoch 117 (batch = 500): Loss: 0.195 L: 24.656, 6min9sec 
+Epoch 117 (batch = 600): Loss: 0.285 L: 24.675, 5min40sec 
+Epoch 117 (batch = 700): Loss: 0.283 L: 25.193, 6min30sec 
+Epoch 117 (batch = 800): Loss: -0.005 L: 25.145, 5min59sec 
+Epoch 117 (batch = 900): Loss: 0.066 L: 25.493, 6min14sec 
+Evaluating candidate model on baseline dataset (callback epoch = 117) 
+Epoch 117 candidate mean 20.51289939880371, baseline mean 20.464799880981445 
+Epoch 118 (batch = 0): Loss: -1.051 L: 24.281, 6min53sec 
+Epoch 118 (batch = 100): Loss: -4.597 L: 27.623, 6min10sec 
+Epoch 118 (batch = 200): Loss: -1.467 L: 28.007, 6min22sec 
+Epoch 118 (batch = 300): Loss: -0.887 L: 28.687, 6min27sec 
+Epoch 118 (batch = 400): Loss: -0.552 L: 28.739, 6min28sec 
+Epoch 118 (batch = 500): Loss: 0.101 L: 28.742, 6min28sec 
+Epoch 118 (batch = 600): Loss: -0.086 L: 28.408, 6min3sec 
+Epoch 118 (batch = 700): Loss: -0.339 L: 28.209, 5min54sec 
+Epoch 118 (batch = 800): Loss: -1.220 L: 28.663, 7min24sec 
+Epoch 118 (batch = 900): Loss: -1.045 L: 28.697, 6min44sec 
+Evaluating candidate model on baseline dataset (callback epoch = 118) 
+Epoch 118 candidate mean 20.374399185180664, baseline mean 20.47330093383789 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 118) 
+bl_vals = [24. 17. 16. ... 21. 18. 20.] ,means = 20.374399185180664 
+Epoch 119 (batch = 0): Loss: 1.345 L: 41.719, 7min33sec 
+Epoch 119 (batch = 100): Loss: -1.381 L: 28.607, 6min28sec 
+Epoch 119 (batch = 200): Loss: -3.177 L: 27.829, 6min8sec 
+Epoch 119 (batch = 300): Loss: -4.317 L: 27.961, 6min29sec 
+Epoch 119 (batch = 400): Loss: -4.274 L: 28.006, 6min29sec 
+Epoch 119 (batch = 500): Loss: -3.930 L: 28.066, 6min38sec 
+Epoch 119 (batch = 600): Loss: -3.870 L: 27.894, 6min13sec 
+Epoch 119 (batch = 700): Loss: -3.693 L: 27.534, 5min55sec 
+Epoch 119 (batch = 800): Loss: -3.555 L: 27.265, 5min41sec 
+Epoch 119 (batch = 900): Loss: -3.393 L: 27.096, 6min1sec 
+Evaluating candidate model on baseline dataset (callback epoch = 119) 
+Epoch 119 candidate mean 20.470399856567383, baseline mean 20.432600021362305 
+Epoch 120 (batch = 0): Loss: -0.252 L: 15.250, 6min35sec 
+Epoch 120 (batch = 100): Loss: -3.866 L: 28.281, 6min10sec 
+Epoch 120 (batch = 200): Loss: -2.826 L: 27.856, 6min33sec 
+Epoch 120 (batch = 300): Loss: -3.444 L: 27.825, 6min27sec 
+Epoch 120 (batch = 400): Loss: -3.063 L: 27.200, 5min57sec 
+Epoch 120 (batch = 500): Loss: -3.213 L: 27.886, 6min48sec 
+Epoch 120 (batch = 600): Loss: -3.142 L: 28.037, 6min35sec 
+Epoch 120 (batch = 700): Loss: -3.086 L: 27.935, 6min18sec 
+Epoch 120 (batch = 800): Loss: -2.864 L: 27.850, 6min8sec 
+Epoch 120 (batch = 900): Loss: -2.697 L: 28.087, 6min54sec 
+Evaluating candidate model on baseline dataset (callback epoch = 120) 
+Epoch 120 candidate mean 20.425199508666992, baseline mean 20.42919921875 
+Epoch 121 (batch = 0): Loss: -0.116 L: 14.625, 7min17sec 
+Epoch 121 (batch = 100): Loss: -3.375 L: 28.331, 6min33sec 
+Epoch 121 (batch = 200): Loss: -2.695 L: 26.525, 5min51sec 
+Epoch 121 (batch = 300): Loss: -2.181 L: 27.300, 6min44sec 
+Epoch 121 (batch = 400): Loss: -2.700 L: 27.228, 6min29sec 
+Epoch 121 (batch = 500): Loss: -2.979 L: 27.311, 6min13sec 
+Epoch 121 (batch = 600): Loss: -3.679 L: 27.446, 7min1sec 
+Epoch 121 (batch = 700): Loss: -4.361 L: 28.240, 7min17sec 
+Epoch 121 (batch = 800): Loss: -4.157 L: 28.590, 6min50sec 
+Epoch 121 (batch = 900): Loss: -3.815 L: 28.344, 6min11sec 
+Evaluating candidate model on baseline dataset (callback epoch = 121) 
+Epoch 121 candidate mean 20.424800872802734, baseline mean 20.40730094909668 
+Epoch 122 (batch = 0): Loss: 0.050 L: 11.516, 7min11sec 
+Epoch 122 (batch = 100): Loss: -4.824 L: 30.894, 4min12sec 
+Epoch 122 (batch = 200): Loss: -3.756 L: 29.886, 4min28sec 
+Epoch 122 (batch = 300): Loss: -3.317 L: 29.555, 4min39sec 
+Epoch 122 (batch = 400): Loss: -4.818 L: 30.556, 5min47sec 
+Epoch 122 (batch = 500): Loss: -4.103 L: 31.048, 3min16sec 
+Epoch 122 (batch = 600): Loss: -3.977 L: 30.678, 2min47sec 
+Epoch 122 (batch = 700): Loss: -3.379 L: 30.556, 2min48sec 
+Epoch 122 (batch = 800): Loss: -3.766 L: 30.522, 2min48sec 
+Epoch 122 (batch = 900): Loss: -3.681 L: 30.330, 2min42sec 
+Evaluating candidate model on baseline dataset (callback epoch = 122) 
+Epoch 122 candidate mean 20.41010093688965, baseline mean 20.383699417114258 
+Epoch 123 (batch = 0): Loss: 0.000 L: 4.828, 2min53sec 
+Epoch 123 (batch = 100): Loss: -5.902 L: 28.916, 2min42sec 
+Epoch 123 (batch = 200): Loss: -5.179 L: 29.220, 2min46sec 
+Epoch 123 (batch = 300): Loss: -5.062 L: 30.856, 3min9sec 
+Epoch 123 (batch = 400): Loss: -5.297 L: 29.940, 2min31sec 
+Epoch 123 (batch = 500): Loss: -4.661 L: 29.198, 2min25sec 
+Epoch 123 (batch = 600): Loss: -4.418 L: 28.957, 2min35sec 
+Epoch 123 (batch = 700): Loss: -3.814 L: 28.884, 2min35sec 
+Epoch 123 (batch = 800): Loss: -3.897 L: 28.714, 2min29sec 
+Epoch 123 (batch = 900): Loss: -3.834 L: 28.623, 2min30sec 
+Evaluating candidate model on baseline dataset (callback epoch = 123) 
+Epoch 123 candidate mean 20.41189956665039, baseline mean 20.399799346923828 
+Epoch 124 (batch = 0): Loss: -2.969 L: 41.781, 2min51sec 
+Epoch 124 (batch = 100): Loss: -0.559 L: 29.080, 2min41sec 
+Epoch 124 (batch = 200): Loss: -1.612 L: 30.037, 2min51sec 
+Epoch 124 (batch = 300): Loss: -1.498 L: 29.235, 2min31sec 
+Epoch 124 (batch = 400): Loss: -1.701 L: 29.533, 2min50sec 
+Epoch 124 (batch = 500): Loss: -1.518 L: 29.185, 2min33sec 
+Epoch 124 (batch = 600): Loss: -1.738 L: 29.156, 2min40sec 
+Epoch 124 (batch = 700): Loss: -2.081 L: 29.218, 2min42sec 
+Epoch 124 (batch = 800): Loss: -2.134 L: 28.940, 2min34sec 
+Epoch 124 (batch = 900): Loss: -2.196 L: 28.773, 2min29sec 
+Evaluating candidate model on baseline dataset (callback epoch = 124) 
+Epoch 124 candidate mean 20.325199127197266, baseline mean 20.39579963684082 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 124) 
+bl_vals = [24. 17. 17. ... 22. 17. 19.] ,means = 20.325199127197266 
+Epoch 125 (batch = 0): Loss: 0.037 L: 11.609, 3min14sec 
+Epoch 125 (batch = 100): Loss: -3.205 L: 26.113, 2min26sec 
+Epoch 125 (batch = 200): Loss: -2.914 L: 27.773, 2min48sec 
+Epoch 125 (batch = 300): Loss: -4.079 L: 29.232, 2min52sec 
+Epoch 125 (batch = 400): Loss: -4.219 L: 28.867, 2min34sec 
+Epoch 125 (batch = 500): Loss: -3.668 L: 28.022, 2min20sec 
+Epoch 125 (batch = 600): Loss: -3.768 L: 28.370, 2min52sec 
+Epoch 125 (batch = 700): Loss: -3.479 L: 28.062, 2min31sec 
+Epoch 125 (batch = 800): Loss: -3.377 L: 28.270, 2min49sec 
+Epoch 125 (batch = 900): Loss: -3.235 L: 28.606, 2min50sec 
+Evaluating candidate model on baseline dataset (callback epoch = 125) 
+Epoch 125 candidate mean 20.45170021057129, baseline mean 20.272600173950195 
+Epoch 126 (batch = 0): Loss: -0.122 L: 48.859, 3min7sec 
+Epoch 126 (batch = 100): Loss: -2.439 L: 26.985, 2min34sec 
+Epoch 126 (batch = 200): Loss: -2.651 L: 27.681, 2min38sec 
+Epoch 126 (batch = 300): Loss: -2.803 L: 28.203, 2min42sec 
+Epoch 126 (batch = 400): Loss: -3.202 L: 29.346, 2min55sec 
+Epoch 126 (batch = 500): Loss: -2.997 L: 29.603, 2min50sec 
+Epoch 126 (batch = 600): Loss: -3.634 L: 30.131, 3min0sec 
+Epoch 126 (batch = 700): Loss: -3.068 L: 30.209, 2min52sec 
+Epoch 126 (batch = 800): Loss: -2.880 L: 29.991, 2min37sec 
+Epoch 126 (batch = 900): Loss: -2.889 L: 29.481, 2min26sec 
+Evaluating candidate model on baseline dataset (callback epoch = 126) 
+Epoch 126 candidate mean 20.417699813842773, baseline mean 20.354799270629883 
+Epoch 127 (batch = 0): Loss: 0.019 L: 5.859, 3min9sec 
+Epoch 127 (batch = 100): Loss: -2.450 L: 30.638, 2min50sec 
+Epoch 127 (batch = 200): Loss: -2.457 L: 30.255, 2min47sec 
+Epoch 127 (batch = 300): Loss: -2.774 L: 31.041, 3min2sec 
+Epoch 127 (batch = 400): Loss: -3.531 L: 31.053, 2min54sec 
+Epoch 127 (batch = 500): Loss: -3.340 L: 30.081, 2min32sec 
+Epoch 127 (batch = 600): Loss: -3.320 L: 30.195, 2min52sec 
+Epoch 127 (batch = 700): Loss: -3.402 L: 30.266, 2min52sec 
+Epoch 127 (batch = 800): Loss: -3.174 L: 30.601, 2min57sec 
+Epoch 127 (batch = 900): Loss: -2.792 L: 30.386, 2min41sec 
+Evaluating candidate model on baseline dataset (callback epoch = 127) 
+Epoch 127 candidate mean 20.391700744628906, baseline mean 20.33930015563965 
+Epoch 128 (batch = 0): Loss: -0.058 L: 10.859, 3min11sec 
+Epoch 128 (batch = 100): Loss: -1.123 L: 30.587, 2min48sec 
+Epoch 128 (batch = 200): Loss: -0.897 L: 28.941, 2min30sec 
+Epoch 128 (batch = 300): Loss: -1.641 L: 28.952, 2min40sec 
+Epoch 128 (batch = 400): Loss: -1.861 L: 30.036, 3min5sec 
+Epoch 128 (batch = 500): Loss: -1.915 L: 30.956, 3min8sec 
+Epoch 128 (batch = 600): Loss: -1.962 L: 30.930, 2min57sec 
+Epoch 128 (batch = 700): Loss: -2.103 L: 30.619, 2min43sec 
+Epoch 128 (batch = 800): Loss: -7.000 L: 30.787, 2min57sec 
+Epoch 128 (batch = 900): Loss: -6.923 L: 30.531, 2min44sec 
+Evaluating candidate model on baseline dataset (callback epoch = 128) 
+Epoch 128 candidate mean 20.335800170898438, baseline mean 20.305500030517578 
+Epoch 129 (batch = 0): Loss: 0.086 L: 16.953, 3min12sec 
+Epoch 129 (batch = 100): Loss: -3.815 L: 28.896, 2min43sec 
+Epoch 129 (batch = 200): Loss: -2.194 L: 30.849, 2min53sec 
+Epoch 129 (batch = 300): Loss: -2.151 L: 30.253, 2min44sec 
+Epoch 129 (batch = 400): Loss: -1.914 L: 29.589, 2min34sec 
+Epoch 129 (batch = 500): Loss: -1.902 L: 29.182, 2min33sec 
+Epoch 129 (batch = 600): Loss: -1.884 L: 29.465, 2min50sec 
+Epoch 129 (batch = 700): Loss: -1.995 L: 29.694, 2min54sec 
+Epoch 129 (batch = 800): Loss: -2.039 L: 29.792, 2min52sec 
+Epoch 129 (batch = 900): Loss: -1.934 L: 29.957, 3min1sec 
+Evaluating candidate model on baseline dataset (callback epoch = 129) 
+Epoch 129 candidate mean 20.40290069580078, baseline mean 20.359800338745117 
+Epoch 130 (batch = 0): Loss: -1.057 L: 23.375, 3min0sec 
+Epoch 130 (batch = 100): Loss: -1.266 L: 30.710, 2min45sec 
+Epoch 130 (batch = 200): Loss: -0.888 L: 31.435, 2min58sec 
+Epoch 130 (batch = 300): Loss: -1.258 L: 31.350, 2min48sec 
+Epoch 130 (batch = 400): Loss: -0.872 L: 30.872, 2min44sec 
+Epoch 130 (batch = 500): Loss: -13.479 L: 32.010, 3min8sec 
+Epoch 130 (batch = 600): Loss: -13.960 L: 31.351, 2min34sec 
+Epoch 130 (batch = 700): Loss: -12.194 L: 30.970, 2min37sec 
+Epoch 130 (batch = 800): Loss: -10.844 L: 30.702, 2min42sec 
+Epoch 130 (batch = 900): Loss: -9.738 L: 31.091, 3min5sec 
+Evaluating candidate model on baseline dataset (callback epoch = 130) 
+Epoch 130 candidate mean 20.394800186157227, baseline mean 20.32349967956543 
+Epoch 131 (batch = 0): Loss: -0.199 L: 13.031, 3min18sec 
+Epoch 131 (batch = 100): Loss: -3.844 L: 29.216, 2min47sec 
+Epoch 131 (batch = 200): Loss: -2.520 L: 29.503, 2min46sec 
+Epoch 131 (batch = 300): Loss: -1.924 L: 30.470, 2min58sec 
+Epoch 131 (batch = 400): Loss: -1.601 L: 30.435, 2min54sec 
+Epoch 131 (batch = 500): Loss: -1.897 L: 30.628, 2min56sec 
+Epoch 131 (batch = 600): Loss: -1.800 L: 30.614, 2min50sec 
+Epoch 131 (batch = 700): Loss: -1.593 L: 30.386, 2min40sec 
+Epoch 131 (batch = 800): Loss: -2.787 L: 30.587, 2min58sec 
+Epoch 131 (batch = 900): Loss: -2.536 L: 30.299, 2min35sec 
+Evaluating candidate model on baseline dataset (callback epoch = 131) 
+Epoch 131 candidate mean 20.35059928894043, baseline mean 20.3302001953125 
+Epoch 132 (batch = 0): Loss: -0.881 L: 20.859, 3min0sec 
+Epoch 132 (batch = 100): Loss: -0.628 L: 27.774, 2min39sec 
+Epoch 132 (batch = 200): Loss: -1.282 L: 28.518, 2min48sec 
+Epoch 132 (batch = 300): Loss: -1.050 L: 29.191, 2min50sec 
+Epoch 132 (batch = 400): Loss: -1.118 L: 29.246, 2min44sec 
+Epoch 132 (batch = 500): Loss: -1.349 L: 29.701, 2min58sec 
+Epoch 132 (batch = 600): Loss: -1.185 L: 30.408, 3min13sec 
+Epoch 132 (batch = 700): Loss: -1.343 L: 30.593, 3min5sec 
+Epoch 132 (batch = 800): Loss: -1.724 L: 30.624, 2min56sec 
+Epoch 132 (batch = 900): Loss: -1.769 L: 30.821, 2min58sec 
+Evaluating candidate model on baseline dataset (callback epoch = 132) 
+Epoch 132 candidate mean 20.328100204467773, baseline mean 20.33180046081543 
+Epoch 133 (batch = 0): Loss: 6.156 L: 53.859, 3min3sec 
+Epoch 133 (batch = 100): Loss: -0.942 L: 31.986, 3min3sec 
+Epoch 133 (batch = 200): Loss: -1.390 L: 31.708, 2min59sec 
+Epoch 133 (batch = 300): Loss: -1.019 L: 31.154, 2min46sec 
+Epoch 133 (batch = 400): Loss: -1.264 L: 30.824, 2min45sec 
+Epoch 133 (batch = 500): Loss: -1.405 L: 31.239, 3min0sec 
+Epoch 133 (batch = 600): Loss: -1.158 L: 30.823, 2min43sec 
+Epoch 133 (batch = 700): Loss: -1.255 L: 30.807, 2min58sec 
+Epoch 133 (batch = 800): Loss: -1.271 L: 30.531, 2min40sec 
+Epoch 133 (batch = 900): Loss: -2.337 L: 30.794, 3min8sec 
+Evaluating candidate model on baseline dataset (callback epoch = 133) 
+Epoch 133 candidate mean 20.35810089111328, baseline mean 20.263099670410156 
+Epoch 134 (batch = 0): Loss: 0.000 L: 1.781, 3min10sec 
+Epoch 134 (batch = 100): Loss: -1.049 L: 30.679, 2min56sec 
+Epoch 134 (batch = 200): Loss: -1.445 L: 31.608, 3min1sec 
+Epoch 134 (batch = 300): Loss: -1.372 L: 31.279, 2min49sec 
+Epoch 134 (batch = 400): Loss: -1.070 L: 31.015, 2min54sec 
+Epoch 134 (batch = 500): Loss: -1.536 L: 31.351, 3min5sec 
+Epoch 134 (batch = 600): Loss: -1.734 L: 31.283, 2min51sec 
+Epoch 134 (batch = 700): Loss: -1.608 L: 31.430, 2min58sec 
+Epoch 134 (batch = 800): Loss: -1.659 L: 31.602, 3min7sec 
+Epoch 134 (batch = 900): Loss: -2.741 L: 31.487, 2min49sec 
+Evaluating candidate model on baseline dataset (callback epoch = 134) 
+Epoch 134 candidate mean 20.313400268554688, baseline mean 20.3262996673584 
+Epoch 135 (batch = 0): Loss: -3.921 L: 72.578, 3min12sec 
+Epoch 135 (batch = 100): Loss: -3.759 L: 31.060, 2min51sec 
+Epoch 135 (batch = 200): Loss: -4.048 L: 32.897, 3min9sec 
+Epoch 135 (batch = 300): Loss: -2.933 L: 31.976, 2min45sec 
+Epoch 135 (batch = 400): Loss: -2.013 L: 31.592, 2min48sec 
+Epoch 135 (batch = 500): Loss: -1.879 L: 31.501, 3min1sec 
+Epoch 135 (batch = 600): Loss: -3.427 L: 31.710, 3min5sec 
+Epoch 135 (batch = 700): Loss: -3.057 L: 31.372, 2min48sec 
+Epoch 135 (batch = 800): Loss: -2.835 L: 31.044, 2min40sec 
+Epoch 135 (batch = 900): Loss: -3.183 L: 31.118, 2min54sec 
+Evaluating candidate model on baseline dataset (callback epoch = 135) 
+Epoch 135 candidate mean 20.26420021057129, baseline mean 20.31599998474121 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 135) 
+bl_vals = [17. 17. 17. ... 28. 20. 15.] ,means = 20.26420021057129 
+Epoch 136 (batch = 0): Loss: -0.458 L: 23.594, 2min56sec 
+Epoch 136 (batch = 100): Loss: -0.727 L: 29.232, 2min40sec 
+Epoch 136 (batch = 200): Loss: -0.918 L: 29.096, 2min42sec 
+Epoch 136 (batch = 300): Loss: -1.531 L: 29.832, 2min56sec 
+Epoch 136 (batch = 400): Loss: -1.424 L: 29.682, 2min38sec 
+Epoch 136 (batch = 500): Loss: -1.131 L: 29.786, 2min52sec 
+Epoch 136 (batch = 600): Loss: -1.320 L: 29.483, 2min42sec 
+Epoch 136 (batch = 700): Loss: -1.434 L: 29.292, 2min42sec 
+Epoch 136 (batch = 800): Loss: -1.876 L: 29.365, 2min42sec 
+Epoch 136 (batch = 900): Loss: -1.920 L: 29.386, 2min47sec 
+Evaluating candidate model on baseline dataset (callback epoch = 136) 
+Epoch 136 candidate mean 20.32379913330078, baseline mean 20.271699905395508 
+Epoch 137 (batch = 0): Loss: -0.007 L: 10.500, 3min21sec 
+Epoch 137 (batch = 100): Loss: -1.653 L: 34.728, 5min20sec 
+Epoch 137 (batch = 200): Loss: -2.071 L: 32.692, 5min51sec 
+Epoch 137 (batch = 300): Loss: -2.007 L: 31.267, 5min25sec 
+Epoch 137 (batch = 400): Loss: -2.187 L: 30.920, 5min44sec 
+Epoch 137 (batch = 500): Loss: -2.204 L: 31.142, 6min0sec 
+Epoch 137 (batch = 600): Loss: -2.305 L: 31.118, 5min57sec 
+Epoch 137 (batch = 700): Loss: -2.124 L: 30.643, 5min17sec 
+Epoch 137 (batch = 800): Loss: -2.204 L: 30.874, 6min26sec 
+Epoch 137 (batch = 900): Loss: -2.112 L: 31.039, 7min10sec 
+Evaluating candidate model on baseline dataset (callback epoch = 137) 
+Epoch 137 candidate mean 20.33049964904785, baseline mean 20.31559944152832 
+Epoch 138 (batch = 0): Loss: -0.627 L: 34.031, 8min4sec 
+Epoch 138 (batch = 100): Loss: -0.885 L: 30.490, 7min11sec 
+Epoch 138 (batch = 200): Loss: -2.016 L: 29.558, 6min36sec 
+Epoch 138 (batch = 300): Loss: -1.509 L: 29.210, 7min17sec 
+Epoch 138 (batch = 400): Loss: -1.089 L: 29.849, 4min17sec 
+Epoch 138 (batch = 500): Loss: -1.444 L: 30.594, 2min59sec 
+Epoch 138 (batch = 600): Loss: -1.622 L: 30.750, 2min57sec 
+Epoch 138 (batch = 700): Loss: -1.483 L: 31.120, 2min58sec 
+Epoch 138 (batch = 800): Loss: -1.407 L: 31.278, 2min54sec 
+Epoch 138 (batch = 900): Loss: -1.414 L: 31.236, 2min52sec 
+Evaluating candidate model on baseline dataset (callback epoch = 138) 
+Epoch 138 candidate mean 20.237300872802734, baseline mean 20.250699996948242 
+Epoch 139 (batch = 0): Loss: -1.825 L: 33.906, 2min57sec 
+Epoch 139 (batch = 100): Loss: -0.789 L: 28.297, 2min41sec 
+Epoch 139 (batch = 200): Loss: -0.606 L: 28.776, 2min43sec 
+Epoch 139 (batch = 300): Loss: -0.829 L: 29.221, 2min50sec 
+Epoch 139 (batch = 400): Loss: -0.789 L: 29.406, 2min45sec 
+Epoch 139 (batch = 500): Loss: -0.843 L: 30.188, 3min39sec 
+Epoch 139 (batch = 600): Loss: -0.890 L: 30.189, 5min45sec 
+Epoch 139 (batch = 700): Loss: -1.370 L: 30.169, 3min26sec 
+Epoch 139 (batch = 800): Loss: -4.010 L: 30.713, 4min13sec 
+Epoch 139 (batch = 900): Loss: -3.748 L: 30.655, 5min43sec 
+Evaluating candidate model on baseline dataset (callback epoch = 139) 
+Epoch 139 candidate mean 20.264799118041992, baseline mean 20.250200271606445 
+Epoch 140 (batch = 0): Loss: -7.297 L: 69.922, 6min48sec 
+Epoch 140 (batch = 100): Loss: -2.005 L: 30.172, 5min50sec 
+Epoch 140 (batch = 200): Loss: -4.586 L: 31.748, 6min22sec 
+Epoch 140 (batch = 300): Loss: -4.444 L: 32.581, 6min38sec 
+Epoch 140 (batch = 400): Loss: -5.373 L: 31.762, 4min8sec 
+Epoch 140 (batch = 500): Loss: -4.485 L: 32.578, 3min10sec 
+Epoch 140 (batch = 600): Loss: -3.906 L: 32.406, 2min50sec 
+Epoch 140 (batch = 700): Loss: -3.633 L: 31.859, 2min40sec 
+Epoch 140 (batch = 800): Loss: -3.759 L: 31.719, 2min46sec 
+Epoch 140 (batch = 900): Loss: -3.487 L: 31.748, 2min57sec 
+Evaluating candidate model on baseline dataset (callback epoch = 140) 
+Epoch 140 candidate mean 20.224899291992188, baseline mean 20.233299255371094 
+Epoch 141 (batch = 0): Loss: 22.802 L: 79.062, 3min36sec 
+Epoch 141 (batch = 100): Loss: -0.905 L: 30.792, 2min45sec 
+Epoch 141 (batch = 200): Loss: -1.429 L: 30.724, 2min53sec 
+Epoch 141 (batch = 300): Loss: -1.135 L: 30.863, 2min49sec 
+Epoch 141 (batch = 400): Loss: -1.073 L: 30.449, 2min39sec 
+Epoch 141 (batch = 500): Loss: -1.238 L: 30.645, 2min58sec 
+Epoch 141 (batch = 600): Loss: -1.424 L: 30.786, 2min52sec 
+Epoch 141 (batch = 700): Loss: -1.434 L: 30.497, 2min39sec 
+Epoch 141 (batch = 800): Loss: -1.365 L: 30.975, 3min4sec 
+Epoch 141 (batch = 900): Loss: -1.445 L: 31.338, 2min59sec 
+Evaluating candidate model on baseline dataset (callback epoch = 141) 
+Epoch 141 candidate mean 20.26300048828125, baseline mean 20.258100509643555 
+Epoch 142 (batch = 0): Loss: -6.253 L: 37.781, 3min4sec 
+Epoch 142 (batch = 100): Loss: -1.564 L: 33.423, 3min7sec 
+Epoch 142 (batch = 200): Loss: -0.580 L: 32.089, 2min49sec 
+Epoch 142 (batch = 300): Loss: -2.295 L: 32.728, 3min6sec 
+Epoch 142 (batch = 400): Loss: -1.882 L: 32.391, 2min53sec 
+Epoch 142 (batch = 500): Loss: -1.812 L: 32.710, 3min2sec 
+Epoch 142 (batch = 600): Loss: -1.873 L: 33.120, 3min13sec 
+Epoch 142 (batch = 700): Loss: -1.703 L: 32.209, 2min28sec 
+Epoch 142 (batch = 800): Loss: -2.198 L: 32.210, 2min57sec 
+Epoch 142 (batch = 900): Loss: -2.048 L: 32.448, 3min2sec 
+Evaluating candidate model on baseline dataset (callback epoch = 142) 
+Epoch 142 candidate mean 20.276199340820312, baseline mean 20.28380012512207 
+Epoch 143 (batch = 0): Loss: -0.673 L: 34.312, 3min40sec 
+Epoch 143 (batch = 100): Loss: -2.873 L: 32.636, 2min59sec 
+Epoch 143 (batch = 200): Loss: -1.677 L: 31.868, 2min56sec 
+Epoch 143 (batch = 300): Loss: -0.820 L: 31.410, 2min43sec 
+Epoch 143 (batch = 400): Loss: -0.777 L: 31.421, 2min47sec 
+Epoch 143 (batch = 500): Loss: -0.815 L: 30.877, 2min37sec 
+Epoch 143 (batch = 600): Loss: -0.827 L: 31.267, 3min3sec 
+Epoch 143 (batch = 700): Loss: -0.820 L: 30.797, 2min32sec 
+Epoch 143 (batch = 800): Loss: -0.700 L: 30.694, 2min42sec 
+Epoch 143 (batch = 900): Loss: -0.768 L: 30.504, 2min42sec 
+Evaluating candidate model on baseline dataset (callback epoch = 143) 
+Epoch 143 candidate mean 20.208999633789062, baseline mean 20.257600784301758 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 143) 
+bl_vals = [26. 18. 22. ... 23. 20. 20.] ,means = 20.208999633789062 
+Epoch 144 (batch = 0): Loss: 0.021 L: 9.172, 3min25sec 
+Epoch 144 (batch = 100): Loss: 0.057 L: 31.600, 2min58sec 
+Epoch 144 (batch = 200): Loss: -0.255 L: 30.595, 2min43sec 
+Epoch 144 (batch = 300): Loss: -0.172 L: 31.515, 2min58sec 
+Epoch 144 (batch = 400): Loss: -0.350 L: 31.921, 2min55sec 
+Epoch 144 (batch = 500): Loss: -0.364 L: 31.778, 2min46sec 
+Epoch 144 (batch = 600): Loss: -0.470 L: 31.704, 2min49sec 
+Epoch 144 (batch = 700): Loss: -0.612 L: 31.529, 2min41sec 
+Epoch 144 (batch = 800): Loss: -0.626 L: 31.705, 3min0sec 
+Epoch 144 (batch = 900): Loss: -0.697 L: 31.778, 2min54sec 
+Evaluating candidate model on baseline dataset (callback epoch = 144) 
+Epoch 144 candidate mean 20.310199737548828, baseline mean 20.27549934387207 
+Epoch 145 (batch = 0): Loss: -0.026 L: 9.453, 3min2sec 
+Epoch 145 (batch = 100): Loss: -0.116 L: 30.306, 2min46sec 
+Epoch 145 (batch = 200): Loss: -0.685 L: 30.946, 2min48sec 
+Epoch 145 (batch = 300): Loss: -1.255 L: 31.120, 2min47sec 
+Epoch 145 (batch = 400): Loss: -2.824 L: 31.600, 3min1sec 
+Epoch 145 (batch = 500): Loss: -3.113 L: 30.957, 2min35sec 
+Epoch 145 (batch = 600): Loss: -2.885 L: 31.275, 3min0sec 
+Epoch 145 (batch = 700): Loss: -2.445 L: 31.329, 2min55sec 
+Epoch 145 (batch = 800): Loss: -2.553 L: 31.160, 2min42sec 
+Epoch 145 (batch = 900): Loss: -2.697 L: 31.320, 2min53sec 
+Evaluating candidate model on baseline dataset (callback epoch = 145) 
+Epoch 145 candidate mean 20.295499801635742, baseline mean 20.220399856567383 
+Epoch 146 (batch = 0): Loss: -11.470 L: 59.719, 3min7sec 
+Epoch 146 (batch = 100): Loss: -5.001 L: 32.408, 2min53sec 
+Epoch 146 (batch = 200): Loss: -4.749 L: 31.120, 2min51sec 
+Epoch 146 (batch = 300): Loss: -4.891 L: 31.097, 2min50sec 
+Epoch 146 (batch = 400): Loss: -5.165 L: 30.220, 2min33sec 
+Epoch 146 (batch = 500): Loss: -4.994 L: 30.557, 2min57sec 
+Epoch 146 (batch = 600): Loss: -4.909 L: 31.091, 3min7sec 
+Epoch 146 (batch = 700): Loss: -4.416 L: 31.163, 2min52sec 
+Epoch 146 (batch = 800): Loss: -4.188 L: 31.047, 2min44sec 
+Epoch 146 (batch = 900): Loss: -3.751 L: 31.136, 2min53sec 
+Evaluating candidate model on baseline dataset (callback epoch = 146) 
+Epoch 146 candidate mean 20.192100524902344, baseline mean 20.193899154663086 
+Epoch 147 (batch = 0): Loss: 0.199 L: 24.719, 3min9sec 
+Epoch 147 (batch = 100): Loss: -1.988 L: 35.959, 3min20sec 
+Epoch 147 (batch = 200): Loss: -1.918 L: 33.715, 2min47sec 
+Epoch 147 (batch = 300): Loss: -1.696 L: 32.350, 2min38sec 
+Epoch 147 (batch = 400): Loss: -1.722 L: 32.273, 2min55sec 
+Epoch 147 (batch = 500): Loss: -1.226 L: 32.562, 2min58sec 
+Epoch 147 (batch = 600): Loss: -1.171 L: 31.749, 2min31sec 
+Epoch 147 (batch = 700): Loss: -1.075 L: 31.860, 2min56sec 
+Epoch 147 (batch = 800): Loss: -0.873 L: 31.764, 2min49sec 
+Epoch 147 (batch = 900): Loss: -0.954 L: 31.736, 2min57sec 
+Evaluating candidate model on baseline dataset (callback epoch = 147) 
+Epoch 147 candidate mean 20.247400283813477, baseline mean 20.254100799560547 
+Epoch 148 (batch = 0): Loss: -0.032 L: 6.250, 3min15sec 
+Epoch 148 (batch = 100): Loss: -0.833 L: 31.637, 2min57sec 
+Epoch 148 (batch = 200): Loss: -0.230 L: 30.878, 2min43sec 
+Epoch 148 (batch = 300): Loss: -0.573 L: 30.528, 2min42sec 
+Epoch 148 (batch = 400): Loss: -1.902 L: 31.055, 2min58sec 
+Epoch 148 (batch = 500): Loss: -1.765 L: 31.135, 2min52sec 
+Epoch 148 (batch = 600): Loss: -1.440 L: 31.355, 2min56sec 
+Epoch 148 (batch = 700): Loss: -1.405 L: 31.180, 2min47sec 
+Epoch 148 (batch = 800): Loss: -1.324 L: 31.541, 3min15sec 
+Epoch 148 (batch = 900): Loss: -1.562 L: 31.337, 2min46sec 
+Evaluating candidate model on baseline dataset (callback epoch = 148) 
+Epoch 148 candidate mean 20.137300491333008, baseline mean 20.160200119018555 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 148) 
+bl_vals = [25. 19. 20. ... 14. 18. 21.] ,means = 20.137300491333008 
+Epoch 149 (batch = 0): Loss: -0.116 L: 20.094, 3min15sec 
+Epoch 149 (batch = 100): Loss: -0.790 L: 31.845, 2min59sec 
+Epoch 149 (batch = 200): Loss: -1.632 L: 33.046, 3min14sec 
+Epoch 149 (batch = 300): Loss: -1.922 L: 33.105, 3min15sec 
+Epoch 149 (batch = 400): Loss: -1.471 L: 31.822, 2min37sec 
+Epoch 149 (batch = 500): Loss: -1.605 L: 31.743, 2min58sec 
+Epoch 149 (batch = 600): Loss: -1.573 L: 31.688, 2min51sec 
+Epoch 149 (batch = 700): Loss: -1.504 L: 32.116, 3min2sec 
+Epoch 149 (batch = 800): Loss: -1.330 L: 32.447, 3min3sec 
+Epoch 149 (batch = 900): Loss: -1.407 L: 32.144, 2min46sec 
+Evaluating candidate model on baseline dataset (callback epoch = 149) 
+Epoch 149 candidate mean 20.23859977722168, baseline mean 20.2268009185791 
+Epoch 150 (batch = 0): Loss: -0.095 L: 11.031, 3min10sec 
+Epoch 150 (batch = 100): Loss: -0.943 L: 31.732, 2min55sec 
+Epoch 150 (batch = 200): Loss: -2.045 L: 30.031, 2min42sec 
+Epoch 150 (batch = 300): Loss: -2.054 L: 29.748, 2min42sec 
+Epoch 150 (batch = 400): Loss: -2.153 L: 30.027, 2min48sec 
+Epoch 150 (batch = 500): Loss: -2.330 L: 30.864, 3min2sec 
+Epoch 150 (batch = 600): Loss: -2.876 L: 31.846, 3min24sec 
+Epoch 150 (batch = 700): Loss: -2.856 L: 32.451, 3min13sec 
+Epoch 150 (batch = 800): Loss: -2.684 L: 32.679, 3min4sec 
+Epoch 150 (batch = 900): Loss: -3.398 L: 32.479, 2min54sec 
+Evaluating candidate model on baseline dataset (callback epoch = 150) 
+Epoch 150 candidate mean 20.253700256347656, baseline mean 20.210599899291992 
+Epoch 151 (batch = 0): Loss: -36.945 L: 55.594, 3min19sec 
+Epoch 151 (batch = 100): Loss: -3.468 L: 26.485, 2min28sec 
+Epoch 151 (batch = 200): Loss: -4.249 L: 28.188, 2min49sec 
+Epoch 151 (batch = 300): Loss: -3.358 L: 27.682, 2min28sec 
+Epoch 151 (batch = 400): Loss: -3.079 L: 29.169, 3min8sec 
+Epoch 151 (batch = 500): Loss: -8.494 L: 30.794, 3min17sec 
+Epoch 151 (batch = 600): Loss: -12.754 L: 31.404, 3min4sec 
+Epoch 151 (batch = 700): Loss: -11.089 L: 30.939, 2min31sec 
+Epoch 151 (batch = 800): Loss: -9.737 L: 30.681, 2min37sec 
+Epoch 151 (batch = 900): Loss: -9.152 L: 31.062, 3min10sec 
+Evaluating candidate model on baseline dataset (callback epoch = 151) 
+Epoch 151 candidate mean 20.2096004486084, baseline mean 20.218599319458008 
+Epoch 152 (batch = 0): Loss: -0.075 L: 34.219, 3min14sec 
+Epoch 152 (batch = 100): Loss: -2.402 L: 30.302, 2min46sec 
+Epoch 152 (batch = 200): Loss: -1.875 L: 31.600, 2min54sec 
+Epoch 152 (batch = 300): Loss: -2.123 L: 31.792, 2min56sec 
+Epoch 152 (batch = 400): Loss: -1.728 L: 31.443, 2min50sec 
+Epoch 152 (batch = 500): Loss: -1.459 L: 31.244, 2min46sec 
+Epoch 152 (batch = 600): Loss: -1.336 L: 31.524, 2min58sec 
+Epoch 152 (batch = 700): Loss: -1.383 L: 31.613, 2min51sec 
+Epoch 152 (batch = 800): Loss: -2.137 L: 31.869, 2min59sec 
+Epoch 152 (batch = 900): Loss: -2.033 L: 31.896, 2min49sec 
+Evaluating candidate model on baseline dataset (callback epoch = 152) 
+Epoch 152 candidate mean 20.252700805664062, baseline mean 20.210899353027344 
+Epoch 153 (batch = 0): Loss: -0.029 L: 6.297, 3min16sec 
+Epoch 153 (batch = 100): Loss: -3.677 L: 31.214, 2min51sec 
+Epoch 153 (batch = 200): Loss: -2.885 L: 32.792, 3min5sec 
+Epoch 153 (batch = 300): Loss: -1.873 L: 34.168, 3min15sec 
+Epoch 153 (batch = 400): Loss: -1.519 L: 33.862, 2min58sec 
+Epoch 153 (batch = 500): Loss: -1.284 L: 33.218, 2min48sec 
+Epoch 153 (batch = 600): Loss: -1.260 L: 33.528, 3min9sec 
+Epoch 153 (batch = 700): Loss: -1.403 L: 33.223, 2min49sec 
+Epoch 153 (batch = 800): Loss: -1.523 L: 32.939, 2min47sec 
+Epoch 153 (batch = 900): Loss: -1.620 L: 32.805, 2min53sec 
+Evaluating candidate model on baseline dataset (callback epoch = 153) 
+Epoch 153 candidate mean 20.195499420166016, baseline mean 20.22719955444336 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 153) 
+bl_vals = [27. 24. 19. ... 22. 19. 21.] ,means = 20.195499420166016 
+Epoch 154 (batch = 0): Loss: -1.508 L: 35.125, 3min10sec 
+Epoch 154 (batch = 100): Loss: -0.830 L: 34.009, 3min2sec 
+Epoch 154 (batch = 200): Loss: -1.346 L: 33.862, 3min9sec 
+Epoch 154 (batch = 300): Loss: -1.812 L: 33.099, 2min50sec 
+Epoch 154 (batch = 400): Loss: -2.014 L: 33.509, 3min11sec 
+Epoch 154 (batch = 500): Loss: -1.956 L: 33.319, 2min58sec 
+Epoch 154 (batch = 600): Loss: -1.764 L: 32.840, 2min45sec 
+Epoch 154 (batch = 700): Loss: -2.245 L: 32.807, 2min59sec 
+Epoch 154 (batch = 800): Loss: -2.307 L: 32.778, 2min58sec 
+Epoch 154 (batch = 900): Loss: -2.164 L: 32.964, 3min1sec 
+Evaluating candidate model on baseline dataset (callback epoch = 154) 
+Epoch 154 candidate mean 20.300199508666992, baseline mean 20.15880012512207 
+Epoch 155 (batch = 0): Loss: 0.138 L: 65.453, 3min19sec 
+Epoch 155 (batch = 100): Loss: -3.258 L: 29.553, 2min42sec 
+Epoch 155 (batch = 200): Loss: -2.537 L: 30.541, 2min54sec 
+Epoch 155 (batch = 300): Loss: -5.185 L: 31.625, 3min5sec 
+Epoch 155 (batch = 400): Loss: -4.657 L: 32.102, 3min9sec 
+Epoch 155 (batch = 500): Loss: -4.820 L: 32.805, 3min17sec 
+Epoch 155 (batch = 600): Loss: -4.654 L: 33.304, 3min13sec 
+Epoch 155 (batch = 700): Loss: -4.853 L: 33.043, 2min52sec 
+Epoch 155 (batch = 800): Loss: -4.357 L: 32.962, 2min52sec 
+Epoch 155 (batch = 900): Loss: -3.978 L: 32.837, 2min58sec 
+Evaluating candidate model on baseline dataset (callback epoch = 155) 
+Epoch 155 candidate mean 20.239099502563477, baseline mean 20.215700149536133 
+Epoch 156 (batch = 0): Loss: -3.554 L: 69.219, 3min16sec 
+Epoch 156 (batch = 100): Loss: -1.265 L: 31.659, 2min49sec 
+Epoch 156 (batch = 200): Loss: -1.491 L: 31.618, 2min53sec 
+Epoch 156 (batch = 300): Loss: -2.412 L: 31.713, 2min57sec 
+Epoch 156 (batch = 400): Loss: -3.358 L: 31.858, 2min58sec 
+Epoch 156 (batch = 500): Loss: -3.131 L: 32.373, 3min0sec 
+Epoch 156 (batch = 600): Loss: -2.761 L: 31.948, 2min42sec 
+Epoch 156 (batch = 700): Loss: -3.346 L: 32.483, 3min9sec 
+Epoch 156 (batch = 800): Loss: -2.990 L: 32.630, 3min3sec 
+Epoch 156 (batch = 900): Loss: -2.872 L: 32.437, 2min52sec 
+Evaluating candidate model on baseline dataset (callback epoch = 156) 
+Epoch 156 candidate mean 20.158700942993164, baseline mean 20.169599533081055 
+Epoch 157 (batch = 0): Loss: -0.223 L: 12.797, 3min14sec 
+Epoch 157 (batch = 100): Loss: -1.572 L: 31.382, 2min50sec 
+Epoch 157 (batch = 200): Loss: -0.968 L: 32.907, 3min6sec 
+Epoch 157 (batch = 300): Loss: -1.034 L: 32.918, 3min1sec 
+Epoch 157 (batch = 400): Loss: -0.942 L: 34.063, 3min22sec 
+Epoch 157 (batch = 500): Loss: -1.077 L: 33.597, 2min57sec 
+Epoch 157 (batch = 600): Loss: -1.203 L: 33.640, 3min2sec 
+Epoch 157 (batch = 700): Loss: -1.156 L: 33.312, 2min50sec 
+Epoch 157 (batch = 800): Loss: -1.281 L: 33.074, 2min53sec 
+Epoch 157 (batch = 900): Loss: -1.409 L: 33.168, 3min5sec 
+Evaluating candidate model on baseline dataset (callback epoch = 157) 
+Epoch 157 candidate mean 20.167299270629883, baseline mean 20.21150016784668 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 157) 
+bl_vals = [17. 20. 20. ... 26. 17. 23.] ,means = 20.167299270629883 
+Epoch 158 (batch = 0): Loss: 0.064 L: 17.438, 3min29sec 
+Epoch 158 (batch = 100): Loss: -1.214 L: 29.865, 2min42sec 
+Epoch 158 (batch = 200): Loss: -1.810 L: 29.597, 2min41sec 
+Epoch 158 (batch = 300): Loss: -2.001 L: 30.805, 3min4sec 
+Epoch 158 (batch = 400): Loss: -2.001 L: 31.108, 2min51sec 
+Epoch 158 (batch = 500): Loss: -2.310 L: 32.154, 3min11sec 
+Epoch 158 (batch = 600): Loss: -2.492 L: 32.152, 2min55sec 
+Epoch 158 (batch = 700): Loss: -2.737 L: 32.717, 3min11sec 
+Epoch 158 (batch = 800): Loss: -2.731 L: 32.500, 2min45sec 
+Epoch 158 (batch = 900): Loss: -2.688 L: 32.290, 2min45sec 
+Evaluating candidate model on baseline dataset (callback epoch = 158) 
+Epoch 158 candidate mean 20.096399307250977, baseline mean 20.098100662231445 
+Epoch 159 (batch = 0): Loss: -18.505 L: 41.203, 3min14sec 
+Epoch 159 (batch = 100): Loss: -1.673 L: 29.557, 2min40sec 
+Epoch 159 (batch = 200): Loss: -1.356 L: 32.786, 3min11sec 
+Epoch 159 (batch = 300): Loss: -1.553 L: 32.270, 2min49sec 
+Epoch 159 (batch = 400): Loss: -1.483 L: 32.217, 2min52sec 
+Epoch 159 (batch = 500): Loss: -1.190 L: 32.435, 2min55sec 
+Epoch 159 (batch = 600): Loss: -1.240 L: 32.582, 2min57sec 
+Epoch 159 (batch = 700): Loss: -1.376 L: 32.263, 2min44sec 
+Epoch 159 (batch = 800): Loss: -1.518 L: 32.464, 3min4sec 
+Epoch 159 (batch = 900): Loss: -1.986 L: 32.682, 3min1sec 
+Evaluating candidate model on baseline dataset (callback epoch = 159) 
+Epoch 159 candidate mean 20.149599075317383, baseline mean 20.17840003967285 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 159) 
+bl_vals = [18. 25. 21. ... 18. 13. 22.] ,means = 20.149599075317383 
+Epoch 160 (batch = 0): Loss: 0.000 L: 5.703, 3min13sec 
+Epoch 160 (batch = 100): Loss: -1.169 L: 36.150, 3min14sec 
+Epoch 160 (batch = 200): Loss: -1.456 L: 34.358, 2min52sec 
+Epoch 160 (batch = 300): Loss: -1.268 L: 32.966, 2min39sec 
+Epoch 160 (batch = 400): Loss: -2.029 L: 32.547, 2min51sec 
+Epoch 160 (batch = 500): Loss: -1.993 L: 32.839, 3min9sec 
+Epoch 160 (batch = 600): Loss: -1.931 L: 32.616, 2min53sec 
+Epoch 160 (batch = 700): Loss: -2.332 L: 32.675, 2min59sec 
+Epoch 160 (batch = 800): Loss: -2.320 L: 32.482, 2min45sec 
+Epoch 160 (batch = 900): Loss: -2.178 L: 31.995, 2min33sec 
+Evaluating candidate model on baseline dataset (callback epoch = 160) 
+Epoch 160 candidate mean 20.161699295043945, baseline mean 20.11079978942871 
+Epoch 161 (batch = 0): Loss: -0.332 L: 24.734, 3min38sec 
+Epoch 161 (batch = 100): Loss: -2.272 L: 27.948, 2min42sec 
+Epoch 161 (batch = 200): Loss: -1.898 L: 30.928, 3min3sec 
+Epoch 161 (batch = 300): Loss: -1.627 L: 31.136, 2min53sec 
+Epoch 161 (batch = 400): Loss: -2.408 L: 31.933, 3min12sec 
+Epoch 161 (batch = 500): Loss: -2.283 L: 32.032, 2min57sec 
+Epoch 161 (batch = 600): Loss: -2.202 L: 32.374, 3min7sec 
+Epoch 161 (batch = 700): Loss: -2.262 L: 32.567, 3min8sec 
+Epoch 161 (batch = 800): Loss: -2.194 L: 32.686, 3min2sec 
+Epoch 161 (batch = 900): Loss: -2.093 L: 32.862, 3min1sec 
+Evaluating candidate model on baseline dataset (callback epoch = 161) 
+Epoch 161 candidate mean 20.134700775146484, baseline mean 20.077199935913086 
+Epoch 162 (batch = 0): Loss: -0.101 L: 6.078, 3min20sec 
+Epoch 162 (batch = 100): Loss: -2.622 L: 27.885, 2min35sec 
+Epoch 162 (batch = 200): Loss: -1.757 L: 29.601, 2min48sec 
+Epoch 162 (batch = 300): Loss: -3.337 L: 32.292, 3min14sec 
+Epoch 162 (batch = 400): Loss: -2.777 L: 32.554, 3min1sec 
+Epoch 162 (batch = 500): Loss: -2.956 L: 32.419, 2min51sec 
+Epoch 162 (batch = 600): Loss: -2.457 L: 32.593, 2min58sec 
+Epoch 162 (batch = 700): Loss: -2.322 L: 32.489, 2min56sec 
+Epoch 162 (batch = 800): Loss: -2.109 L: 32.469, 2min57sec 
+Epoch 162 (batch = 900): Loss: -1.977 L: 32.222, 2min46sec 
+Evaluating candidate model on baseline dataset (callback epoch = 162) 
+Epoch 162 candidate mean 20.135700225830078, baseline mean 20.088699340820312 
+Epoch 163 (batch = 0): Loss: 0.286 L: 34.859, 3min33sec 
+Epoch 163 (batch = 100): Loss: -0.820 L: 32.529, 2min59sec 
+Epoch 163 (batch = 200): Loss: -0.977 L: 33.342, 3min3sec 
+Epoch 163 (batch = 300): Loss: -2.385 L: 34.715, 3min25sec 
+Epoch 163 (batch = 400): Loss: -2.308 L: 34.100, 2min55sec 
+Epoch 163 (batch = 500): Loss: -2.133 L: 33.577, 2min54sec 
+Epoch 163 (batch = 600): Loss: -1.856 L: 33.663, 3min3sec 
+Epoch 163 (batch = 700): Loss: -1.867 L: 33.410, 2min57sec 
+Epoch 163 (batch = 800): Loss: -1.728 L: 33.048, 2min48sec 
+Epoch 163 (batch = 900): Loss: -1.729 L: 32.977, 2min57sec 
+Evaluating candidate model on baseline dataset (callback epoch = 163) 
+Epoch 163 candidate mean 20.187700271606445, baseline mean 20.124399185180664 
+Epoch 164 (batch = 0): Loss: 0.012 L: 4.688, 3min7sec 
+Epoch 164 (batch = 100): Loss: -2.289 L: 31.620, 2min52sec 
+Epoch 164 (batch = 200): Loss: -1.342 L: 32.517, 2min57sec 
+Epoch 164 (batch = 300): Loss: -2.647 L: 32.967, 3min3sec 
+Epoch 164 (batch = 400): Loss: -2.167 L: 32.222, 2min43sec 
+Epoch 164 (batch = 500): Loss: -1.771 L: 31.535, 2min31sec 
+Epoch 164 (batch = 600): Loss: -1.761 L: 31.502, 2min52sec 
+Epoch 164 (batch = 700): Loss: -1.567 L: 31.424, 2min51sec 
+Epoch 164 (batch = 800): Loss: -1.468 L: 31.514, 2min52sec 
+Epoch 164 (batch = 900): Loss: -1.423 L: 31.861, 3min2sec 
+Evaluating candidate model on baseline dataset (callback epoch = 164) 
+Epoch 164 candidate mean 20.02829933166504, baseline mean 20.013500213623047 
+Epoch 165 (batch = 0): Loss: 0.609 L: 25.219, 3min12sec 
+Epoch 165 (batch = 100): Loss: -1.571 L: 33.178, 2min58sec 
+Epoch 165 (batch = 200): Loss: -2.322 L: 33.766, 3min8sec 
+Epoch 165 (batch = 300): Loss: -1.700 L: 33.687, 2min55sec 
+Epoch 165 (batch = 400): Loss: -2.046 L: 34.132, 3min11sec 
+Epoch 165 (batch = 500): Loss: -1.769 L: 33.270, 2min40sec 
+Epoch 165 (batch = 600): Loss: -1.832 L: 33.136, 3min0sec 
+Epoch 165 (batch = 700): Loss: -1.818 L: 33.179, 3min0sec 
+Epoch 165 (batch = 800): Loss: -1.824 L: 33.139, 2min59sec 
+Epoch 165 (batch = 900): Loss: -1.765 L: 32.836, 2min45sec 
+Evaluating candidate model on baseline dataset (callback epoch = 165) 
+Epoch 165 candidate mean 20.077899932861328, baseline mean 20.099000930786133 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 165) 
+bl_vals = [17. 18. 22. ... 17. 24. 18.] ,means = 20.077899932861328 
+Epoch 166 (batch = 0): Loss: 0.793 L: 50.203, 3min1sec 
+Epoch 166 (batch = 100): Loss: -1.407 L: 32.012, 2min50sec 
+Epoch 166 (batch = 200): Loss: -1.577 L: 34.796, 3min15sec 
+Epoch 166 (batch = 300): Loss: -1.748 L: 33.529, 2min54sec 
+Epoch 166 (batch = 400): Loss: -1.734 L: 33.371, 2min57sec 
+Epoch 166 (batch = 500): Loss: -1.740 L: 33.389, 2min58sec 
+Epoch 166 (batch = 600): Loss: -1.737 L: 33.564, 3min7sec 
+Epoch 166 (batch = 700): Loss: -1.878 L: 33.753, 3min6sec 
+Epoch 166 (batch = 800): Loss: -1.859 L: 33.706, 3min9sec 
+Epoch 166 (batch = 900): Loss: -1.791 L: 33.470, 2min50sec 
+Evaluating candidate model on baseline dataset (callback epoch = 166) 
+Epoch 166 candidate mean 20.073299407958984, baseline mean 20.072399139404297 
+Epoch 167 (batch = 0): Loss: 0.055 L: 10.875, 3min31sec 
+Epoch 167 (batch = 100): Loss: -2.579 L: 29.158, 2min40sec 
+Epoch 167 (batch = 200): Loss: -2.530 L: 32.213, 3min4sec 
+Epoch 167 (batch = 300): Loss: -2.461 L: 33.119, 3min8sec 
+Epoch 167 (batch = 400): Loss: -2.143 L: 33.373, 5min25sec 
+Epoch 167 (batch = 500): Loss: -2.428 L: 33.716, 3min8sec 
+Epoch 167 (batch = 600): Loss: -2.349 L: 32.701, 2min34sec 
+Epoch 167 (batch = 700): Loss: -2.447 L: 33.016, 3min6sec 
+Epoch 167 (batch = 800): Loss: -2.595 L: 33.075, 2min59sec 
+Epoch 167 (batch = 900): Loss: -2.600 L: 32.840, 2min45sec 
+Evaluating candidate model on baseline dataset (callback epoch = 167) 
+Epoch 167 candidate mean 20.09469985961914, baseline mean 20.082500457763672 
+Epoch 168 (batch = 0): Loss: 0.130 L: 9.422, 3min54sec 
+Epoch 168 (batch = 100): Loss: -3.299 L: 33.955, 5min38sec 
+Epoch 168 (batch = 200): Loss: -3.335 L: 31.781, 4min13sec 
+Epoch 168 (batch = 300): Loss: -2.909 L: 31.843, 4min36sec 
+Epoch 168 (batch = 400): Loss: -2.592 L: 32.095, 4min56sec 
+Epoch 168 (batch = 500): Loss: -3.214 L: 32.040, 5min20sec 
+Epoch 168 (batch = 600): Loss: -2.924 L: 32.269, 5min23sec 
+Epoch 168 (batch = 700): Loss: -3.160 L: 32.908, 4min50sec 

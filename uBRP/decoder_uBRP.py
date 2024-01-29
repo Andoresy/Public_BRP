@@ -3,7 +3,7 @@ import torch.nn as nn
 import math
 from encoder import MultiHeadAttention, ScaledDotProductAttention, GraphAttentionEncoder, SingleHeadAttention
 from Env_V2 import Env
-from sampler import TopKSampler, CategoricalSampler
+from sampler import TopKSampler, CategoricalSampler, New_Sampler
 from data import generate_data
 from decoder_utils import concat_embedding, concat_graph_embedding
 class Decoder_uBRP(nn.Module):
@@ -69,7 +69,7 @@ class Decoder_uBRP(nn.Module):
         mask = env.create_mask_uBRP()
 
         #default n_samples=1
-        selecter = {'greedy': TopKSampler(), 'sampling': CategoricalSampler()}.get(decode_type, None)
+        selecter = {'greedy': TopKSampler(), 'sampling': CategoricalSampler(), 'new_sampling': New_Sampler()}.get(decode_type, None)
         log_ps, tours = [], []
         batch,max_stacks,max_tiers = x.size()
         cost=torch.zeros(batch).to(self.device)
@@ -82,9 +82,11 @@ class Decoder_uBRP(nn.Module):
             # log_p (batch,max_stacks)
 
             log_p = torch.log_softmax(logits, dim=1)
-
             # next_node (batch,1)
-            next_action = selecter(log_p)
+            if decode_type == 'new_sampling':
+                next_action = selecter(logits)
+            else:
+                next_action = selecter(log_p)
             source_node, dest_node = next_action//max_stacks, next_action%max_stacks
             actions = torch.cat((source_node,dest_node), 1)
 #            DEBUGGING Print
@@ -92,7 +94,7 @@ class Decoder_uBRP(nn.Module):
                 print('------------------------------------')
                 print('env:', env.x)
     #            print('mask:', mask.view(batch, max_stacks, max_stacks))
-    #            print('log_p:',log_p.view(batch, max_stacks, max_stacks))
+                print('p:',torch.softmax(logits, dim=1).view(batch, max_stacks, max_stacks))
                 print("action:", actions)
             cost += (1.0 - env.empty.type(torch.float64))
             #만약 필요하다면 끝난 node들에 대해 더해지는 일은 없어야할듯

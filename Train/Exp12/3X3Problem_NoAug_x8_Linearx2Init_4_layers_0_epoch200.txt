@@ -1,0 +1,36 @@
+240126_16_10
+ start training 
+{'n_encode_layers': 4, 'N_samplings': 8, 'epochs': 200, 'batch': 64, 'batch_num': 50, 'batch_verbose': 10, 'max_stacks': 3, 'max_tiers': 5, 'plus_tiers': 2, 'baseline_type': 'greedy', 'lr': 0.0001, 'warmuplr': 0.001, 'beta': 0.1, 'embed_dim': 32}Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 0) 
+bl_vals = [54. 54. 54. ... 54. 54. 54.] ,means = 53.5453987121582 
+Epoch 0 (batch = 0): Loss: -113.616 L: 7.609, 0min1sec 
+Epoch 0 (batch = 10): Loss: -156.119 L: 8.112, 0min10sec 
+Epoch 0 (batch = 20): Loss: -172.330 L: 8.484, 0min11sec 
+Epoch 0 (batch = 30): Loss: -166.908 L: 8.420, 0min10sec 
+Epoch 0 (batch = 40): Loss: -166.245 L: 8.387, 0min11sec 
+Evaluating candidate model on baseline dataset (callback epoch = 0) 
+Epoch 0 candidate mean 53.68239974975586, baseline mean 53.642799377441406 
+Epoch 1 (batch = 0): Loss: -131.333 L: 7.266, 0min18sec 
+Epoch 1 (batch = 10): Loss: -160.758 L: 8.337, 0min10sec 
+Epoch 1 (batch = 20): Loss: -163.745 L: 8.453, 0min11sec 
+Epoch 1 (batch = 30): Loss: -149.784 L: 8.140, 0min9sec 
+Epoch 1 (batch = 40): Loss: -138.955 L: 7.822, 0min9sec 
+Evaluating candidate model on baseline dataset (callback epoch = 1) 
+Epoch 1 candidate mean 53.531898498535156, baseline mean 53.65359878540039 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 1) 
+bl_vals = [54. 54. 54. ... 54. 54. 54.] ,means = 53.547698974609375 
+Epoch 2 (batch = 0): Loss: -95.568 L: 6.891, 0min20sec 
+Epoch 2 (batch = 10): Loss: -86.228 L: 6.652, 0min9sec 
+Epoch 2 (batch = 20): Loss: -95.601 L: 6.950, 0min8sec 
+Epoch 2 (batch = 30): Loss: -88.831 L: 6.730, 0min8sec 
+Epoch 2 (batch = 40): Loss: -81.882 L: 6.485, 0min8sec 
+Evaluating candidate model on baseline dataset (callback epoch = 2) 
+Epoch 2 candidate mean 52.2849006652832, baseline mean 53.40869903564453 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 2) 
+bl_vals = [54. 54. 54. ... 54. 54. 54.] ,means = 52.29859924316406 
+Epoch 3 (batch = 0): Loss: -42.187 L: 4.406, 0min20sec 
+Epoch 3 (batch = 10): Loss: -60.245 L: 5.648, 0min6sec 

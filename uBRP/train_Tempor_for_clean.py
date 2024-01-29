@@ -6,7 +6,7 @@ from tqdm import tqdm
 from time import time
 from datetime import datetime
 import os
-from model import AttentionModel
+from model_LSTM import AttentionModel_LSTM
 from baseline import RolloutBaseline, load_model
 from data import generate_data, Generator, MultipleGenerator
 
@@ -27,6 +27,8 @@ def train(log_path = None, dict_file = None):
     plus_tiers = dict_file["plus_tiers"]
     lr = dict_file["lr"]
     beta = dict_file["beta"]
+    embed_dim = dict_file["embed_dim"]
+    warmuplr = dict_file["warmuplr"]
     n_containers = max_stacks*(max_tiers-2)
     model_save_path = log_path
     log_path = log_path + f'/{max_stacks}X{max_tiers-2}Problem_NoAug_x{N_samplings}_Linearx2Init_{n_encode_layers}_layers_0_epoch{epochs}.txt'
@@ -40,9 +42,10 @@ def train(log_path = None, dict_file = None):
         f.write('\n start training \n')
         f.write(dict_file.__str__())
     
-    #model = AttentionModel(device=device, n_encode_layers=n_encode_layers, max_stacks = max_stacks, max_tiers = max_tiers+plus_tiers-2, n_containers = n_containers)
-    path = "./Train/Exp1/epoch45.pt" #from previous version
-    model = load_model(device='cuda:0', path=path,n_encode_layers=4, embed_dim=128, n_containers=n_containers, max_stacks=max_stacks, max_tiers=max_tiers+plus_tiers-2)
+    model = AttentionModel_LSTM(device=device, n_encode_layers=n_encode_layers, embed_dim=embed_dim, max_stacks = max_stacks, max_tiers = max_tiers+plus_tiers-2, n_containers = n_containers)
+    #model = AttentionModel(device=device, n_encode_layers=n_encode_layers, embed_dim=128, max_stacks = max_stacks, max_tiers = max_tiers+plus_tiers-2, n_containers = n_containers)
+    path = "./Train/Exp21/epoch71.pt" #from previous version
+    #model = load_model(device='cuda:0', path=path,n_encode_layers=4, embed_dim=embed_dim, n_containers=n_containers, max_stacks=max_stacks, max_tiers=max_tiers+plus_tiers-2)
     model=model.to(device)
     model.train()
 
@@ -50,7 +53,7 @@ def train(log_path = None, dict_file = None):
 
     optimizer = optim.Adam(model.parameters(), lr=lr)
     scheduler = optim.lr_scheduler.LambdaLR(optimizer=optimizer,
-                                        lr_lambda=lambda epoch: 0.96 ** epoch,
+                                        lr_lambda=lambda epoch: .99 ** epoch,
                                         last_epoch=-1,
                                         verbose=False)
     #bs batch steps number of samples = batch * batch_steps
@@ -82,6 +85,16 @@ def train(log_path = None, dict_file = None):
                     bLs = bLs + bL
                 bS = bLs/N_samplings
                 b = bG*beta + bS*(1-beta)
+            elif baseline_type == 'greedy+new_sampling':
+                b, bl = baseline.model(inputs, decode_type = 'greedy')
+                b_news = [b.unsqueeze(0)]
+                for i in range(N_samplings):
+                    b_new, b_newl = baseline.model(inputs, decode_type = 'new_sampling')
+                    b_news.append(b_new.unsqueeze(0))
+                #print(b_news)
+                best_from_new = torch.cat(b_news).min(dim=0)[0]
+                b = best_from_new
+
         model.train()
         L, ll = model(inputs, decode_type='sampling')
         #b = bs[t] if bs is not None else baseline.eval(inputs, L)
@@ -93,7 +106,6 @@ def train(log_path = None, dict_file = None):
 
     t1=time()
     for epoch in range(epochs):
-
         ave_loss, ave_L = 0., 0.
 
         datat1=time()
@@ -129,6 +141,7 @@ def train(log_path = None, dict_file = None):
                     epoch, t, ave_loss / (t + 1), ave_L / (t + 1), (t2 - t1) // 60, (t2 - t1) % 60))
                 t1 = time()
         model.eval()
+        print("lr: ", optimizer.param_groups[0]['lr'])
         baseline.epoch_callback(model, epoch)
         scheduler.step()
         torch.save(model.state_dict(), model_save_path + '/epoch%s.pt' % (epoch))
@@ -140,16 +153,18 @@ def train(log_path = None, dict_file = None):
 if __name__ == '__main__':
     dict_file = {"n_encode_layers": 4,
                  "N_samplings": 8,
-                 "epochs": 50,
-                 "batch": 128,
-                 "batch_num": 100,
+                 "epochs": 200,
+                 "batch": 256,
+                 "batch_num": 50,
                  "batch_verbose": 10,
-                 "max_stacks": 6,
+                 "max_stacks": 3,
                  "max_tiers": 5,
                  "plus_tiers": 2,
                  "baseline_type": "greedy",
-                 "lr": 0.00001,
-                 "beta": 0.1}
+                 "lr": 0.0001,
+                 "warmuplr": 0.001,
+                 "beta": 0.1,
+                 "embed_dim": 32}
     i = 0
     newpath = f'./train/Exp{i}' 
     while os.path.exists(newpath):

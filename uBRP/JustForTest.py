@@ -1,26 +1,36 @@
 import torch
+import torch.nn as nn
 import numpy as np
 from data import generate_data
 from Env_V2 import Env
-original_list = [[[1, 2, 3], [4, 5, 6], [7, 8, 0]], [[7, 8, 9], [10, 11, 22], [4, 5, 6]]]
+from scipy.stats import truncexpon
+"""
+original_list = torch.tensor([[[1, 2, 3], [4, 5, 6], [7, 8, 0]], [[-1, 2, 3], [4, 5, 6], [1, 2, 0.]]])
 
 # 리스트를 PyTorch 텐서로 변환
-batch,max_stacks,max_tiers = 2, 3, 4
-n_containers = max_stacks *(max_tiers-2)
-data = generate_data('cuda:0', batch, n_containers, max_stacks, max_tiers)
-binary_x = torch.where(data > 0., 1, 0).to('cuda:0') # Block -> 1 Empty -> 0
-stack_len = torch.sum(binary_x, dim=2).to('cuda:0') #Stack의 Length
-block_nums = torch.sum(stack_len, dim=1).to('cuda:0')
+batch,max_stacks,max_tiers,embed_dim=2,3,3,32
+original_list = original_list.view(batch, max_stacks, max_tiers, 1)
+linear = nn.Linear(1, embed_dim, bias=True)
+x = linear(original_list)
+lstm = nn.LSTM(input_size=embed_dim, hidden_size=embed_dim, num_layers=1, bidirectional=False, batch_first=True)
+x = x.view(batch*max_stacks, max_tiers, embed_dim)
+outputs, (hidden_state, cell_state) = lstm(x)
+print(hidden_state.view(batch, max_stacks, embed_dim).size())
+"""
+states = [(i,j) for i in range(3,11) for j in range(i-1, 11)]
+# for repeatability:
+import numpy as np
+np.random.seed(0)
+print(len(states))
+from scipy.stats import poisson, uniform
+from scipy import stats
+sample_size = 20
+maxval = 44
+mu = 0.01
+lower, upper, scale = 0, 43, .5
 
-env = Env('cuda:0', data)
-print(data)
-env.clear()
-print(env.x)
-binary_x = torch.where(env.x > 0., 1, 0).to('cuda:0') # Block -> 1 Empty -> 0
-stack_len = torch.sum(binary_x, dim=2).to('cuda:0') #Stack의 Length
-new_block_nums = torch.sum(stack_len, dim=1).to('cuda:0')
-print(block_nums)
-print(new_block_nums)
-new_ratio = (block_nums + 1)/(new_block_nums+1)
-print(new_ratio)
-print(torch.mul(env.x.view(batch, max_stacks*max_tiers), new_ratio.unsqueeze(1)).view(batch, max_stacks, max_tiers))
+for i in range(400):
+    scale = scale*1.03
+    X = stats.truncexpon(b=(upper-lower)/scale, loc=lower, scale=scale)
+    data = X.rvs(1000)
+    print(i, scale,  np.rint(data).mean())
