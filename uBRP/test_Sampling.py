@@ -9,12 +9,12 @@ import time
 if __name__ == '__main__':
     device = 'cuda:0'
     HWS = [(3,3),(3,4),(3,5),(3,6),(3,7),(3,8),(4,4),(4,5),(4,6),(4,7),(5,4),(5,5),(5,6),(5,7),(5,8),(6,6)]
-    HWS = [(4,5)]
+    HWS = [(3,3)]
     for H,W in HWS:
         H_plus = 2
-        Exp_num = 22
-        epochs = [165]
-        embed_dim = 32
+        Exp_num = 3
+        epochs = [1]
+        embed_dim = 64
         N = H*W
         data_caserta = data_from_caserta(f'data{H}-{W}-.*', H_plus).to(device)
         data_greedy = data_from_caserta_for_greedy(f'data{H}-{W}-.*', H_plus).to(device)
@@ -22,6 +22,7 @@ if __name__ == '__main__':
         for i in epochs:
             path = f"./Train/Exp{Exp_num}/epoch{i}.pt"
             model = load_model(device='cuda:0', path=path,n_encode_layers=4, embed_dim=embed_dim, n_containers=N, max_stacks=W, max_tiers=H+H_plus, is_Test=True)
+            model.eval()
             sampling_U = 640
             return_pi = False
             total = []
@@ -29,7 +30,7 @@ if __name__ == '__main__':
             output_ = output[0]
             total.append(output_.unsqueeze(0))
             for _ in tqdm(range(sampling_U), desc = f'{i}th epoch sampling:'):
-                output = model(data_caserta, decode_type='new_sampling', return_pi=return_pi)
+                output = model(data_caserta, decode_type='sampling', return_pi=return_pi)
                 output_ = output[0]
                 total.append(output_.unsqueeze(0))
             min_output = torch.cat(total).min(dim=0)[0]

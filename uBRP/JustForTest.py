@@ -16,7 +16,7 @@ lstm = nn.LSTM(input_size=embed_dim, hidden_size=embed_dim, num_layers=1, bidire
 x = x.view(batch*max_stacks, max_tiers, embed_dim)
 outputs, (hidden_state, cell_state) = lstm(x)
 print(hidden_state.view(batch, max_stacks, embed_dim).size())
-"""
+
 states = [(i,j) for i in range(3,11) for j in range(i-1, 11)]
 # for repeatability:
 import numpy as np
@@ -34,3 +34,13 @@ for i in range(400):
     X = stats.truncexpon(b=(upper-lower)/scale, loc=lower, scale=scale)
     data = X.rvs(1000)
     print(i, scale,  np.rint(data).mean())
+"""
+from baseline import load_model
+from data import generate_data
+from GreedyACO import GRE_rBRP, GRE_uBRP
+from data import data_from_caserta, data_from_caserta_for_greedy
+import torch
+import gc
+H,W,H_plus = 3,3,2
+device = 'cuda:0'
+print(data_from_caserta(f'data{H}-{W}-.*', H_plus).to(device)[0:1].repeat(640,1,1))

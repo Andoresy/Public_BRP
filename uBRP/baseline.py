@@ -9,7 +9,7 @@ import copy
 from model import AttentionModel
 from model_LSTM import AttentionModel_LSTM
 from model_LSTM_for_test import AttentionModel_LSTM_Test
-from data import Generator
+from data import Generator, MultipleGenerator
 def load_model(device,path,embed_dim,n_containers,max_stacks,max_tiers,n_encode_layers=3, is_Test = False):
     # https://pytorch.org/tutorials/beginner/saving_loading_models.html
 
@@ -44,7 +44,7 @@ class RolloutBaseline:
                  max_stacks=4, 
                  max_tiers=4,
                  plus_tiers=2, 
-                 n_rollout_samples=10000,
+                 n_rollout_samples=64*150,
                  warmup_beta=0.8,
                  warmup_epochs = 1,
                  device='cpu',
@@ -70,8 +70,7 @@ class RolloutBaseline:
         self.device = device
         self.log_path = log_path
         #Dataset
-        self.dataset = Generator(self.device, n_samples=self.n_rollout_samples, n_containers = self.n_containers,max_stacks=self.max_stacks,max_tiers=self.max_tiers, plus_tiers=self.plus_tiers)
-
+        self.dataset = MultipleGenerator(self.device, batch=128, n_samples=self.n_rollout_samples, epoch=epoch).get_dataset()
         # create and evaluate initial baseline
         self._update_baseline(model, epoch)
     def _update_baseline(self, model, epoch):
@@ -91,10 +90,12 @@ class RolloutBaseline:
             #torch.save(self.model.state_dict(), '%s%s_epoch%s.pt' % (self.weight_dir, self.task, epoch))
 
         self.model = self.model.to(self.device)
+        self.model.eval()
         # We generate a new dataset for baseline model on each baseline update to prevent possible overfitting _jk: 필요없을것 같음
         #self.dataset = Generator(self.device, n_samples=self.n_rollout_samples, n_containers = self.n_containers,max_stacks=self.max_stacks,max_tiers=self.max_tiers)
         self.bl_vals = self.rollout(self.model, self.dataset).cpu().numpy()
         self.mean = self.bl_vals.mean()
+        self.model.train()
         self.cur_epoch = epoch
         print(f'_update_baseline : Evaluating baseline model on baseline dataset (epoch = {epoch})')
         with open(self.log_path, 'a') as f:
@@ -135,7 +136,7 @@ class RolloutBaseline:
         if self.alpha < 1:
             return None
 
-        val_costs = self.rollout(self.model, dataset, batch=2048)
+        val_costs = self.rollout(self.model, dataset)
 
         return val_costs
 
@@ -143,13 +144,14 @@ class RolloutBaseline:
         """Compares current baseline model with the training model and updates baseline if it is improved
         """
         self.cur_epoch = epoch
-        self.dataset = Generator(self.device, n_samples=self.n_rollout_samples, n_containers = self.n_containers,max_stacks=self.max_stacks,max_tiers=self.max_tiers, plus_tiers=self.plus_tiers)
+        self.dataset = MultipleGenerator(self.device, batch=128, n_samples=self.n_rollout_samples, epoch=epoch).get_dataset()
+        #self.dataset = Generator(self.device, n_samples=self.n_rollout_samples, n_containers = self.n_containers,max_stacks=self.max_stacks,max_tiers=self.max_tiers, plus_tiers=self.plus_tiers)
 
         print(f'Evaluating candidate model on baseline dataset (callback epoch = {self.cur_epoch})')
         with open(self.log_path, 'a') as f:
             f.write(f'Evaluating candidate model on baseline dataset (callback epoch = {self.cur_epoch}) \n')
 
-        model.train()
+        model.eval()
         with torch.no_grad():
             candidate_vals = self.rollout(model=model, dataset=self.dataset).cpu().numpy()  # costs for training model on baseline dataset
             baseline_vals = self.rollout(model=self.model, dataset=self.dataset).cpu().numpy()
@@ -181,14 +183,17 @@ class RolloutBaseline:
     def copy_model(self, model):
         new_model = copy.deepcopy(model)
         return new_model
-    def rollout(self,model, dataset, batch=1000, disable_tqdm=False):
+    def rollout(self,model, dataset, batch=128, disable_tqdm=False):
         costs_list = []
-        dataloader = DataLoader(dataset, batch_size=batch)
-        #for inputs in tqdm(dataloader, disable=disable_tqdm, desc='Rollout greedy execution'):
-        for t,inputs in enumerate(dataloader):
-            with torch.no_grad():
-                # ~ inputs = list(map(lambda x: x.to(self.device), inputs))
-                cost, _ = model(inputs, decode_type='greedy')
-                # costs_list.append(cost.data.cpu())
-                costs_list.append(cost)
+        dataloaders = [DataLoader(ds, batch_size=batch, shuffle=True) for ds in dataset]
+        #dataloader = DataLoader(dataset, batch_size=batch)
+        model.eval()
+        for t,dataloader in enumerate(dataloaders):
+            for inputs in dataloader:
+                with torch.no_grad():
+                    # ~ inputs = list(map(lambda x: x.to(self.device), inputs))
+                    cost, _ = model(inputs, decode_type='greedy')
+                    # costs_list.append(cost.data.cpu())
+                    costs_list.append(cost)
+        model.train()
         return torch.cat(costs_list, 0)
