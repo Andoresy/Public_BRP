@@ -103,13 +103,13 @@ class Generator(Dataset):
 		return self.n_samples
 
 class MultipleGenerator():
-	def __init__(self, device, batch = 64, n_samples = 5120, seed=None, epoch = 0):
+	def __init__(self, device, batch = 64, n_samples = 5120, seed=None, epoch = 0, max_size = 5):
 		self.n_samples = n_samples
 		self.batch = batch
 		self.epoch = epoch
 		self.device = device 
 		
-		max_num = 8
+		max_num = max_size
 		type_of_Size = sorted([(i,j) for i in range(3,max_num+1) for j in range(i-1, max_num+1)], key = lambda x: x[0]+x[1]) #Should be Tested
 		#type_of_Size = [(i,j) for i in range(3,max_num+1) for j in range(i-1, max_num+1)]
 		
@@ -123,11 +123,14 @@ class MultipleGenerator():
 		#(max_stacks, max_tiers), dataset = self.datasets_withinfo[idx]
 		return  self.datasets
 	def get_prob_dist(self):
+		"""
 		#lower, upper, scale = 0, self.upper, .5 * (1.03)**self.epoch
 		lower, upper, scale = 0, self.upper, .5 + .3* self.epoch
 		X = stats.truncexpon(b=(upper-lower)/scale, loc=lower, scale=scale) #Truncated Expon
 		data = X.rvs(self.n_samples//self.batch)
 		return torch.tensor(np.rint(data), dtype=torch.long).to(self.device)
+		"""
+		return torch.randint(low=0, high=self.upper, size=(self.n_samples//self.batch,),device=self.device)
 if __name__ == '__main__':
 	#print(data_from_caserta()[39])
     #(data_from_caserta_for_greedy())

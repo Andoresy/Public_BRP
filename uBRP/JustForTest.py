@@ -43,4 +43,5 @@ import torch
 import gc
 H,W,H_plus = 3,3,2
 device = 'cuda:0'
-print(data_from_caserta(f'data{H}-{W}-.*', H_plus).to(device)[0:1].repeat(640,1,1))
+max_num=8
+print([(i,j) for i in range(3,max_num+1) for j in range(i-1, max_num+1)])

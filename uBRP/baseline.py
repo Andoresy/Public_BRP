@@ -6,9 +6,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 import copy
 
-from model import AttentionModel
 from model_LSTM import AttentionModel_LSTM
-from model_LSTM_for_test import AttentionModel_LSTM_Test
 from data import Generator, MultipleGenerator
 def load_model(device,path,embed_dim,n_containers,max_stacks,max_tiers,n_encode_layers=3, is_Test = False):
     # https://pytorch.org/tutorials/beginner/saving_loading_models.html
@@ -44,7 +42,7 @@ class RolloutBaseline:
                  max_stacks=4, 
                  max_tiers=4,
                  plus_tiers=2, 
-                 n_rollout_samples=64*150,
+                 n_rollout_samples=64*70,
                  warmup_beta=0.8,
                  warmup_epochs = 1,
                  device='cpu',
@@ -144,7 +142,7 @@ class RolloutBaseline:
         """Compares current baseline model with the training model and updates baseline if it is improved
         """
         self.cur_epoch = epoch
-        self.dataset = MultipleGenerator(self.device, batch=128, n_samples=self.n_rollout_samples, epoch=epoch).get_dataset()
+        #self.dataset = MultipleGenerator(self.device, batch=128, n_samples=self.n_rollout_samples, epoch=epoch).get_dataset()
         #self.dataset = Generator(self.device, n_samples=self.n_rollout_samples, n_containers = self.n_containers,max_stacks=self.max_stacks,max_tiers=self.max_tiers, plus_tiers=self.plus_tiers)
 
         print(f'Evaluating candidate model on baseline dataset (callback epoch = {self.cur_epoch})')
@@ -192,8 +190,8 @@ class RolloutBaseline:
             for inputs in dataloader:
                 with torch.no_grad():
                     # ~ inputs = list(map(lambda x: x.to(self.device), inputs))
-                    cost, _ = model(inputs, decode_type='greedy')
+                    cost, _ ,L = model(inputs, decode_type='greedy')
                     # costs_list.append(cost.data.cpu())
-                    costs_list.append(cost)
+                    costs_list.append(cost) 
         model.train()
         return torch.cat(costs_list, 0)

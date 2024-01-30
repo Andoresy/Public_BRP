@@ -22,10 +22,10 @@ class AttentionModel_LSTM(nn.Module):
     def forward(self, x, return_pi=False, decode_type='greedy'):
         decoder_output = self.Decoder(x,self.n_containers, return_pi=return_pi, decode_type=decode_type)
         if return_pi:
-            cost, ll = decoder_output
-            return cost, ll
-        cost, ll = decoder_output
-        return cost, ll
+            cost, ll, L = decoder_output
+            return cost, ll, L
+        cost, ll, L = decoder_output
+        return cost, ll, L
 
 
 if __name__ == '__main__':

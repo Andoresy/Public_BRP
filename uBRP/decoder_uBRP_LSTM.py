@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import math
 from encoder_LSTM import MultiHeadAttention, ScaledDotProductAttention, GraphAttentionEncoder, SingleHeadAttention
-from Env_V2 import Env
+from Env_V3 import Env
 from sampler import TopKSampler, CategoricalSampler, New_Sampler
 from data import generate_data
 from decoder_utils import concat_embedding, concat_graph_embedding
@@ -73,6 +73,7 @@ class Decoder_uBRP(nn.Module):
         log_ps, tours = [], []
         batch,max_stacks,max_tiers = x.size()
         cost=torch.zeros(batch).to(self.device)
+        Length = torch.zeros(batch).to(self.device)
         ll=torch.zeros(batch).to(self.device)
 
         for i in range(n_containers * max_tiers):
@@ -97,6 +98,7 @@ class Decoder_uBRP(nn.Module):
                 print('p:',torch.softmax(logits, dim=1).view(batch, max_stacks, max_stacks))
                 print("action:", actions)
             cost += (1.0 - env.empty.type(torch.float64))
+            Length += (1.0 - env.empty.type(torch.float64))
             #만약 필요하다면 끝난 node들에 대해 더해지는 일은 없어야할듯
             temp_log_p = log_p.clone()#수정필요
             temp_log_p[env.empty, :] = 0#수정필요
@@ -106,7 +108,7 @@ class Decoder_uBRP(nn.Module):
 
             #solv the actions
             env.step(actions)
-
+            #cost -= env.last_retrieved_nums.type(torch.float64) * 0.1
             if env.all_empty():
                 break
 
@@ -120,15 +122,17 @@ class Decoder_uBRP(nn.Module):
 #        print('\ncost(Number of Relocations):\n', cost)
 #        print('\nll(Sum of Log Probabilities on trajectory):\n', ll)
 
-        return cost, ll
+        return cost, ll, Length
 
 
 if __name__ == '__main__':
-    batch, max_stacks, embed_dim = 32, 4, 128
+    batch, max_stacks, embed_dim = 1, 4, 128
     data = generate_data(device = 'cuda:0', n_samples=batch, max_stacks=max_stacks)
     decoder = Decoder_uBRP('cuda:0', embed_dim, max_stacks=max_stacks, n_heads=8, clip=10.)
     decoder.train()
-    cost, ll= decoder(data, return_pi=True, decode_type='sampling')
+    cost, ll, Length= decoder(data, return_pi=False, decode_type='sampling')
+    print(data)
     print('\nbatch, max_stacks, embed_dim',batch, max_stacks, embed_dim)
-    print('\ncost(Number of Relocations):\n', cost)
+    print('\ncost:\n', cost)
+    print('\ncost(Number of Length):\n', Length)
     print('\nll(Sum of Log Probabilities on trajectory):\n', ll)

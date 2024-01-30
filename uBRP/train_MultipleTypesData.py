@@ -53,18 +53,18 @@ def train(log_path = None, dict_file = None):
 
     optimizer = optim.Adam(model.parameters(), lr=lr)
     scheduler = optim.lr_scheduler.LambdaLR(optimizer=optimizer,
-                                        lr_lambda=lambda epoch: .99 ** epoch,
+                                        lr_lambda=lambda epoch: .96 ** epoch,
                                         last_epoch=-1,
                                         verbose=False)
     #bs batch steps number of samples = batch * batch_steps
     def rein_loss(model, inputs, bs, t, device):
         with torch.no_grad():
             if baseline_type == 'greedy':
-                b, bl = baseline.model(inputs, decode_type = 'greedy')
+                b, bl, _ = baseline.model(inputs, decode_type = 'greedy')
             elif baseline_type == 'sampling':
                 bLs = torch.zeros([batch]).to(device)
                 for i in range(N_samplings):
-                    bL, bll = baseline.model(inputs, decode_type='sampling')
+                    bL, bll,_ = baseline.model(inputs, decode_type='sampling')
                     bLs = bLs + bL
                 b = bLs/N_samplings
             elif baseline_type == 'augmented_sampling':
@@ -72,21 +72,21 @@ def train(log_path = None, dict_file = None):
                 shifted_input = inputs
                 for i in range(N_samplings):
                     shifted_input = torch.cat([shifted_input[:, -1:], shifted_input[:, :-1]], dim=1)
-                    bL, bll = baseline.model(shifted_input, decode_type='sampling')
+                    bL, bll,_ = baseline.model(shifted_input, decode_type='sampling')
                     bLs = bLs + bL
                 b = bLs/N_samplings
             elif baseline_type == 'greedy+augmented_sampling':
                 bLs = torch.zeros([batch]).to(device)
                 shifted_input = inputs
-                bG, bgl = baseline.model(inputs, decode_type = 'greedy')
+                bG, bgl,_ = baseline.model(inputs, decode_type = 'greedy')
                 for i in range(N_samplings):
                     shifted_input = torch.cat([shifted_input[:, -1:], shifted_input[:, :-1]], dim=1)
-                    bL, bll = baseline.model(shifted_input, decode_type='sampling')
+                    bL, bll,_ = baseline.model(shifted_input, decode_type='sampling')
                     bLs = bLs + bL
                 bS = bLs/N_samplings
                 b = bG*beta + bS*(1-beta)
             elif baseline_type == 'greedy+new_sampling':
-                b, bl = baseline.model(inputs, decode_type = 'greedy')
+                b, bl,_ = baseline.model(inputs, decode_type = 'greedy')
                 b_news = [b.unsqueeze(0)]
                 for i in range(N_samplings):
                     b_new, b_newl = baseline.model(inputs, decode_type = 'new_sampling')
@@ -96,21 +96,21 @@ def train(log_path = None, dict_file = None):
                 b = best_from_new
 
         model.train()
-        L, ll = model(inputs, decode_type='sampling')
+        L, ll, Length = model(inputs, decode_type='sampling')
         #b = bs[t] if bs is not None else baseline.eval(inputs, L)
-        return ((L - b) * ll).mean(), L.mean()
+        return ((L - b) * ll).mean(), Length.mean()
         #return ((L-bL)*ll).mean(), L.mean()
 
     tt1 = time()
 
 
+    datasets=MultipleGenerator(device, batch=batch, n_samples=batch*batch_num, epoch=None).get_dataset()
     t1=time()
     for epoch in range(epochs):
         ave_loss, ave_L = 0., 0.
 
         datat1=time()
         n_containers = max_stacks * (max_tiers-2)
-        datasets=MultipleGenerator(device, batch=batch, n_samples=batch*batch_num, epoch=epoch).get_dataset()
         datat2=time()
         print('data_gen: %dmin%dsec' % ((datat2 - datat1) // 60, (datat2 - datat1) % 60))
 
@@ -118,6 +118,7 @@ def train(log_path = None, dict_file = None):
         #bs = bs.view(-1, batch) if bs is not None else None  # bs: (cfg.batch_steps, cfg.batch) or None
 
         model.train()
+        
         dataloaders = [DataLoader(dataset, batch_size=batch, shuffle=True) for dataset in datasets]
         for t, dataloader in enumerate(dataloaders):
             for inputs in dataloader:
@@ -134,17 +135,17 @@ def train(log_path = None, dict_file = None):
 
             if t % (batch_verbose) == 0:
                 t2 = time()
-                print('Epoch %d (batch = %d): Loss: %1.3f avg_L: %1.3f, batch_Loss: %1.3f batch_L: %1.3f %dmin%dsec' % (
+                print('Epoch %d (batch = %d): Loss: %1.3f avg_Cost: %1.3f, batch_Loss: %1.3f batch_Cost: %1.3f %dmin%dsec' % (
                     epoch, t, ave_loss / (t + 1), ave_L / (t + 1), loss.item(), L_mean.item(), (t2 - t1) // 60, (t2 - t1) % 60))
                 if True:
                     with open(log_path, 'a') as f:
-                        f.write('Epoch %d (batch = %d): Loss: %1.3f L: %1.3f, %dmin%dsec \n' % (
+                        f.write('Epoch %d (batch = %d): Loss: %1.3f Cost: %1.3f, %dmin%dsec \n' % (
                     epoch, t, ave_loss / (t + 1), ave_L / (t + 1), (t2 - t1) // 60, (t2 - t1) % 60))
                 t1 = time()
         model.eval()
         print("lr: ", optimizer.param_groups[0]['lr'])
         baseline.epoch_callback(model, epoch)
-        #scheduler.step()
+        scheduler.step()
         torch.save(model.state_dict(), model_save_path + '/epoch%s.pt' % (epoch))
 
     tt2 = time()
@@ -156,12 +157,12 @@ if __name__ == '__main__':
                  "N_samplings": 8,
                  "epochs": 400,
                  "batch": 64,
-                 "batch_num": 500,
+                 "batch_num": 1000,
                  "batch_verbose": 100,
                  "max_stacks": 3,
                  "max_tiers": 5,
                  "plus_tiers": 2,
-                 "baseline_type": "greedy+new_sampling",
+                 "baseline_type": "greedy",
                  "lr": 0.001,
                  "warmuplr": 0.001,
                  "beta": 0.1,

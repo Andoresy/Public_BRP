@@ -53,7 +53,7 @@ class ScaledDotProductAttention(nn.Module): #Tsp_Attention.ipynb
         super(ScaledDotProductAttention, self).__init__()
         self.d_k = d_k # key dimenstion
         self.inf = 1e9
-
+        self.dropout = nn.Dropout(0.5)
     def forward(self, Q, K, V, mask):
         # key, query의 곱을 통해 attention weight를 계산하고 value의 weighted sum인 output을 생성
         # input: Q, K, V, mask (query, key, value, padding 및 시간을 반영하기 위한 mask)
@@ -69,7 +69,7 @@ class ScaledDotProductAttention(nn.Module): #Tsp_Attention.ipynb
             attn_score = attn_score.masked_fill(mask[:, None, None, :, 0].repeat(1, attn_score.size(1), 1, 1) == True, -self.inf)
 
         attn_dist = F.softmax(attn_score, dim=-1)  # attention distribution
-        output = torch.matmul(attn_dist, V)  # dim of output : batchSize x n_heads x seqLen x d_v
+        output = torch.matmul(self.dropout(attn_dist), V)  # dim of output : batchSize x n_heads x seqLen x d_v
 
         return output, attn_dist
 
@@ -183,7 +183,7 @@ class GraphAttentionEncoder(nn.Module):
         self.n_layers = n_layers
         self.max_stacks = max_stacks
         self.max_tiers = max_tiers
-        self.LSTM = nn.LSTM(input_size=embed_dim, hidden_size = embed_dim, batch_first = True)
+        self.LSTM = nn.LSTM(input_size=embed_dim, hidden_size = embed_dim, batch_first = True, num_layers = 1)
         self.LSTM_embed = nn.Linear(embed_dim, embed_dim, bias=True)
         self.init_block_embed = nn.Sequential(
             nn.Linear(1, embed_dim//2, bias=True),

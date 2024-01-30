@@ -9,6 +9,8 @@ if __name__ == '__main__':
     device = 'cuda:0'
     HWS = [(3,3),(3,4),(3,5),(3,6),(3,7),(3,8),(4,4),(4,5),(4,6),(4,7),(5,4),(5,5),(5,6),(5,7),(5,8),(6,6)]
     HWS = [(3,3)]
+    sampling_U = 640
+    sampling_batch = 320
     for H,W in HWS:
         H_plus = 2
         Exp_num = 2
@@ -22,7 +24,6 @@ if __name__ == '__main__':
             path = f"./Train/Exp{Exp_num}/epoch{i}.pt"
             model = load_model(device='cuda:0', path=path,n_encode_layers=4, embed_dim=embed_dim, n_containers=N, max_stacks=W, max_tiers=H+H_plus, is_Test=True)
             model.eval()
-            sampling_U = 640
             return_pi = False
             total = []
             output = model(data_caserta, decode_type='greedy', return_pi=return_pi)
