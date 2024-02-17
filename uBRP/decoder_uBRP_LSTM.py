@@ -108,7 +108,7 @@ class Decoder_uBRP(nn.Module):
 
             #solv the actions
             env.step(actions)
-            #cost -= env.last_retrieved_nums.type(torch.float64) * 0.1
+            cost -= env.last_retrieved_nums.type(torch.float64) * 0.1
             if env.all_empty():
                 break
 

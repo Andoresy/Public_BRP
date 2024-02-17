@@ -49,7 +49,3 @@ if __name__ == '__main__':
         print(i, k.size(), torch.numel(k))
         cnt += torch.numel(k)
     print('total parameters:', cnt)
-
-# output[1].mean().backward()
-# print(model.Decoder.Wout.weight.grad)
-# print(model.Encoder.init_W_depot.weight.grad)

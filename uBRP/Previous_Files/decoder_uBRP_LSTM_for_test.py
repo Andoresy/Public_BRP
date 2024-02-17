@@ -75,7 +75,7 @@ class Decoder_uBRP(nn.Module):
         cost=torch.zeros(batch).to(self.device)
         ll=torch.zeros(batch).to(self.device)
 
-        for i in range(n_containers * max_tiers):
+        for i in range(50):
 
             # logits (batch,max_stacks)
             logits = self.compute_dynamic(mask, total_embeddings)

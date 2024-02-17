@@ -9,7 +9,7 @@ import os
 from model_LSTM import AttentionModel_LSTM
 from baseline import RolloutBaseline, load_model
 from data import generate_data, Generator, MultipleGenerator
-
+import copy
 def train(log_path = None, dict_file = None):
     torch.backends.cudnn.benchmark = True
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
@@ -43,8 +43,7 @@ def train(log_path = None, dict_file = None):
         f.write(dict_file.__str__())
     
     model = AttentionModel_LSTM(device=device, n_encode_layers=n_encode_layers, embed_dim=embed_dim, max_stacks = max_stacks, max_tiers = max_tiers+plus_tiers-2, n_containers = n_containers)
-    #model = AttentionModel(device=device, n_encode_layers=n_encode_layers, embed_dim=128, max_stacks = max_stacks, max_tiers = max_tiers+plus_tiers-2, n_containers = n_containers)
-    #path = "./Train/Exp27/epoch38.pt" #from previous version
+    #path = "./Train/Exp83/epoch370.pt" #from previous version
     #model = load_model(device='cuda:0', path=path,n_encode_layers=4, embed_dim=embed_dim, n_containers=n_containers, max_stacks=max_stacks, max_tiers=max_tiers+plus_tiers-2)
     model=model.to(device)
     model.train()
@@ -58,9 +57,11 @@ def train(log_path = None, dict_file = None):
                                         verbose=False)
     #bs batch steps number of samples = batch * batch_steps
     def rein_loss(model, inputs, bs, t, device):
+        baseline_copy_model = copy.deepcopy(baseline.model)
+        baseline_copy_model.train()
         with torch.no_grad():
             if baseline_type == 'greedy':
-                b, bl, _ = baseline.model(inputs, decode_type = 'greedy')
+                b, bl, _ = baseline_copy_model(inputs, decode_type = 'greedy')
             elif baseline_type == 'sampling':
                 bLs = torch.zeros([batch]).to(device)
                 for i in range(N_samplings):
@@ -104,13 +105,14 @@ def train(log_path = None, dict_file = None):
     tt1 = time()
 
 
-    datasets=MultipleGenerator(device, batch=batch, n_samples=batch*batch_num, epoch=None).get_dataset()
     t1=time()
     for epoch in range(epochs):
         ave_loss, ave_L = 0., 0.
 
         datat1=time()
         n_containers = max_stacks * (max_tiers-2)
+        datasets=MultipleGenerator(device, batch=batch, n_samples=batch*batch_num, epoch=epoch).get_dataset()
+
         datat2=time()
         print('data_gen: %dmin%dsec' % ((datat2 - datat1) // 60, (datat2 - datat1) % 60))
 
@@ -118,7 +120,6 @@ def train(log_path = None, dict_file = None):
         #bs = bs.view(-1, batch) if bs is not None else None  # bs: (cfg.batch_steps, cfg.batch) or None
 
         model.train()
-        
         dataloaders = [DataLoader(dataset, batch_size=batch, shuffle=True) for dataset in datasets]
         for t, dataloader in enumerate(dataloaders):
             for inputs in dataloader:
@@ -145,7 +146,7 @@ def train(log_path = None, dict_file = None):
         model.eval()
         print("lr: ", optimizer.param_groups[0]['lr'])
         baseline.epoch_callback(model, epoch)
-        scheduler.step()
+        #scheduler.step()
         torch.save(model.state_dict(), model_save_path + '/epoch%s.pt' % (epoch))
 
     tt2 = time()
@@ -153,17 +154,17 @@ def train(log_path = None, dict_file = None):
         (tt2 - tt1) // 60, (tt2 - tt1) % 60))
 
 if __name__ == '__main__':
-    dict_file = {"n_encode_layers": 4,
+    dict_file = {"n_encode_layers": 3,
                  "N_samplings": 8,
                  "epochs": 400,
-                 "batch": 64,
-                 "batch_num": 1000,
-                 "batch_verbose": 100,
-                 "max_stacks": 3,
-                 "max_tiers": 5,
+                 "batch": 128,
+                 "batch_num": 400,
+                 "batch_verbose": 50,
+                 "max_stacks": 5,
+                 "max_tiers": 7,
                  "plus_tiers": 2,
                  "baseline_type": "greedy",
-                 "lr": 0.001,
+                 "lr": 0.00005,
                  "warmuplr": 0.001,
                  "beta": 0.1,
                  "embed_dim": 64}
