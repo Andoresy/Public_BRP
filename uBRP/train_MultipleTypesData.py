@@ -9,7 +9,7 @@ import os
 from model_LSTM import AttentionModel_LSTM
 from baseline import RolloutBaseline, load_model
 from data import generate_data, Generator, MultipleGenerator
-
+import copy
 def train(log_path = None, dict_file = None):
     torch.backends.cudnn.benchmark = True
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
@@ -43,8 +43,7 @@ def train(log_path = None, dict_file = None):
         f.write(dict_file.__str__())
     
     model = AttentionModel_LSTM(device=device, n_encode_layers=n_encode_layers, embed_dim=embed_dim, max_stacks = max_stacks, max_tiers = max_tiers+plus_tiers-2, n_containers = n_containers)
-    #model = AttentionModel(device=device, n_encode_layers=n_encode_layers, embed_dim=128, max_stacks = max_stacks, max_tiers = max_tiers+plus_tiers-2, n_containers = n_containers)
-    #path = "./Train/Exp27/epoch38.pt" #from previous version
+    #path = "./Train/Exp83/epoch370.pt" #from previous version
     #model = load_model(device='cuda:0', path=path,n_encode_layers=4, embed_dim=embed_dim, n_containers=n_containers, max_stacks=max_stacks, max_tiers=max_tiers+plus_tiers-2)
     model=model.to(device)
     model.train()
@@ -53,18 +52,20 @@ def train(log_path = None, dict_file = None):
 
     optimizer = optim.Adam(model.parameters(), lr=lr)
     scheduler = optim.lr_scheduler.LambdaLR(optimizer=optimizer,
-                                        lr_lambda=lambda epoch: .99 ** epoch,
+                                        lr_lambda=lambda epoch: .96 ** epoch,
                                         last_epoch=-1,
                                         verbose=False)
     #bs batch steps number of samples = batch * batch_steps
     def rein_loss(model, inputs, bs, t, device):
+        baseline_copy_model = copy.deepcopy(baseline.model)
+        baseline_copy_model.train()
         with torch.no_grad():
             if baseline_type == 'greedy':
-                b, bl = baseline.model(inputs, decode_type = 'greedy')
+                b, bl, _ = baseline_copy_model(inputs, decode_type = 'greedy')
             elif baseline_type == 'sampling':
                 bLs = torch.zeros([batch]).to(device)
                 for i in range(N_samplings):
-                    bL, bll = baseline.model(inputs, decode_type='sampling')
+                    bL, bll,_ = baseline.model(inputs, decode_type='sampling')
                     bLs = bLs + bL
                 b = bLs/N_samplings
             elif baseline_type == 'augmented_sampling':
@@ -72,21 +73,21 @@ def train(log_path = None, dict_file = None):
                 shifted_input = inputs
                 for i in range(N_samplings):
                     shifted_input = torch.cat([shifted_input[:, -1:], shifted_input[:, :-1]], dim=1)
-                    bL, bll = baseline.model(shifted_input, decode_type='sampling')
+                    bL, bll,_ = baseline.model(shifted_input, decode_type='sampling')
                     bLs = bLs + bL
                 b = bLs/N_samplings
             elif baseline_type == 'greedy+augmented_sampling':
                 bLs = torch.zeros([batch]).to(device)
                 shifted_input = inputs
-                bG, bgl = baseline.model(inputs, decode_type = 'greedy')
+                bG, bgl,_ = baseline.model(inputs, decode_type = 'greedy')
                 for i in range(N_samplings):
                     shifted_input = torch.cat([shifted_input[:, -1:], shifted_input[:, :-1]], dim=1)
-                    bL, bll = baseline.model(shifted_input, decode_type='sampling')
+                    bL, bll,_ = baseline.model(shifted_input, decode_type='sampling')
                     bLs = bLs + bL
                 bS = bLs/N_samplings
                 b = bG*beta + bS*(1-beta)
             elif baseline_type == 'greedy+new_sampling':
-                b, bl = baseline.model(inputs, decode_type = 'greedy')
+                b, bl,_ = baseline.model(inputs, decode_type = 'greedy')
                 b_news = [b.unsqueeze(0)]
                 for i in range(N_samplings):
                     b_new, b_newl = baseline.model(inputs, decode_type = 'new_sampling')
@@ -96,9 +97,9 @@ def train(log_path = None, dict_file = None):
                 b = best_from_new
 
         model.train()
-        L, ll = model(inputs, decode_type='sampling')
+        L, ll, Length = model(inputs, decode_type='sampling')
         #b = bs[t] if bs is not None else baseline.eval(inputs, L)
-        return ((L - b) * ll).mean(), L.mean()
+        return ((L - b) * ll).mean(), Length.mean()
         #return ((L-bL)*ll).mean(), L.mean()
 
     tt1 = time()
@@ -111,6 +112,7 @@ def train(log_path = None, dict_file = None):
         datat1=time()
         n_containers = max_stacks * (max_tiers-2)
         datasets=MultipleGenerator(device, batch=batch, n_samples=batch*batch_num, epoch=epoch).get_dataset()
+
         datat2=time()
         print('data_gen: %dmin%dsec' % ((datat2 - datat1) // 60, (datat2 - datat1) % 60))
 
@@ -134,11 +136,11 @@ def train(log_path = None, dict_file = None):
 
             if t % (batch_verbose) == 0:
                 t2 = time()
-                print('Epoch %d (batch = %d): Loss: %1.3f avg_L: %1.3f, batch_Loss: %1.3f batch_L: %1.3f %dmin%dsec' % (
+                print('Epoch %d (batch = %d): Loss: %1.3f avg_Cost: %1.3f, batch_Loss: %1.3f batch_Cost: %1.3f %dmin%dsec' % (
                     epoch, t, ave_loss / (t + 1), ave_L / (t + 1), loss.item(), L_mean.item(), (t2 - t1) // 60, (t2 - t1) % 60))
                 if True:
                     with open(log_path, 'a') as f:
-                        f.write('Epoch %d (batch = %d): Loss: %1.3f L: %1.3f, %dmin%dsec \n' % (
+                        f.write('Epoch %d (batch = %d): Loss: %1.3f Cost: %1.3f, %dmin%dsec \n' % (
                     epoch, t, ave_loss / (t + 1), ave_L / (t + 1), (t2 - t1) // 60, (t2 - t1) % 60))
                 t1 = time()
         model.eval()
@@ -152,17 +154,17 @@ def train(log_path = None, dict_file = None):
         (tt2 - tt1) // 60, (tt2 - tt1) % 60))
 
 if __name__ == '__main__':
-    dict_file = {"n_encode_layers": 4,
+    dict_file = {"n_encode_layers": 3,
                  "N_samplings": 8,
                  "epochs": 400,
-                 "batch": 64,
-                 "batch_num": 500,
-                 "batch_verbose": 100,
-                 "max_stacks": 3,
-                 "max_tiers": 5,
+                 "batch": 128,
+                 "batch_num": 400,
+                 "batch_verbose": 50,
+                 "max_stacks": 5,
+                 "max_tiers": 7,
                  "plus_tiers": 2,
-                 "baseline_type": "greedy+new_sampling",
-                 "lr": 0.001,
+                 "baseline_type": "greedy",
+                 "lr": 0.00005,
                  "warmuplr": 0.001,
                  "beta": 0.1,
                  "embed_dim": 64}

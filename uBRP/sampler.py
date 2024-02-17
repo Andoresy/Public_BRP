@@ -22,7 +22,7 @@ class CategoricalSampler(Sampler):
         return torch.multinomial(logits.exp(), self.n_samples)
 
 class New_Sampler(Sampler):
-    def __init__(self, T = 12, **kwargs):
+    def __init__(self, T = 18, **kwargs):
         super().__init__(**kwargs)
         self.T = T
     def forward(self, logits):
@@ -32,6 +32,7 @@ class New_Sampler(Sampler):
         #print("new:", p_logits)
         #print("old:", torch.softmax(logits, dim=1))
         #print("------------------------------")
+        #self.T = self.T * 0.95
         return torch.multinomial(p_logits, self.n_samples)
 if __name__ == "__main__":
     sampler = New_Sampler()

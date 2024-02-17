@@ -22,10 +22,10 @@ class AttentionModel_LSTM(nn.Module):
     def forward(self, x, return_pi=False, decode_type='greedy'):
         decoder_output = self.Decoder(x,self.n_containers, return_pi=return_pi, decode_type=decode_type)
         if return_pi:
-            cost, ll = decoder_output
-            return cost, ll
-        cost, ll = decoder_output
-        return cost, ll
+            cost, ll, L = decoder_output
+            return cost, ll, L
+        cost, ll, L = decoder_output
+        return cost, ll, L
 
 
 if __name__ == '__main__':
@@ -49,7 +49,3 @@ if __name__ == '__main__':
         print(i, k.size(), torch.numel(k))
         cnt += torch.numel(k)
     print('total parameters:', cnt)
-
-# output[1].mean().backward()
-# print(model.Decoder.Wout.weight.grad)
-# print(model.Encoder.init_W_depot.weight.grad)

@@ -1,35 +1,31 @@
 from baseline import load_model
 from data import generate_data
-from GreedyACO import GRE_rBRP, GRE_uBRP
 from data import data_from_caserta, data_from_caserta_for_greedy
 import torch
 import gc
 if __name__ == '__main__':
     device = 'cuda:0'
-    HWS = [(3,3),(3,4),(3,5),(3,6),(3,7),(3,8),(4,4),(4,5),(4,6),(4,7),(5,4),(5,5),(5,6),(5,7),(5,8),(5,9)]
-    #HWS = [(3,3)]
+    HWS = [(3,3),(3,4),(3,5),(3,6),(3,7),(3,8),(4,4),(4,5),(4,6),(4,7),(5,4),(5,5),(5,6),(5,7), (5,8), (5,9), (5,10),(6,6)]
+    #HWS = [(3,3), (3,4), (3,5), (3,6),(4,4),(5,6), (5,7), (3,8)]
     for H,W in HWS:
         H_plus = 2
         N = H*W
+        Exp_num= 121
+        epoch_num = 337
         embed_dim = 64
         data_caserta = data_from_caserta(f'data{H}-{W}-.*', H_plus).to(device)
         data_greedy = data_from_caserta_for_greedy(f'data{H}-{W}-.*', H_plus).to(device)
-        for i in range(6,7):
+        for i in range(epoch_num,epoch_num+1):
     #        print(data_caserta.size())
     #        print(data_greedy.size())
-            path = f"./Train/Exp4/epoch{i}.pt"
-            model = load_model(device='cuda:0', path=path,n_encode_layers=4, embed_dim=embed_dim, n_containers=N, max_stacks=W, max_tiers=H+H_plus, is_Test = True)
+            path = f"./train/Exp{Exp_num}/epoch{i}.pt"
+            model = load_model(device='cuda:0', path=path,n_encode_layers=3, embed_dim=embed_dim, n_containers=N, max_stacks=W, max_tiers=H+H_plus, is_Test = True).to(device)
             model.eval()
             return_pi = False
             output = model(data_caserta, decode_type='greedy', return_pi=return_pi)
-            output_ = output[0]
-            print(f"{H}X{W} Greedy Mean Locations for {i}th epoch:",output[0].mean())  # cost: (batch)
-            #print(output_)
-            #is_toobig = torch.torch.where(output_ > 50, True, False)
-            #is_toobig = torch.nonzero(is_toobig).squeeze()
-            #is_toobig_sam = is_toobig[0]
-            #print(output_[is_toobig])
-            #model(data[is_toobig_sam:is_toobig_sam+1],decode_type='greedy', return_pi=True)
+            output_ = output[2] #Length
+            print(f"{H}X{W} Greedy Mean Locations for {i}th epoch:",output[2].mean())  # cost: (batch)
+            print(output_)
     #    print(output[1])  # ll: (batch)
         device = 'cuda:0'
 
@@ -59,4 +55,4 @@ if __name__ == '__main__':
     print(f"Avg uBRP_cnt: {uBRP_cnt/cnt}")
     for i in range(cnt):
         print(f"rBRPGR({i}) : {rBRP_cnt_ar[i]} uBRPGR({i}) : {uBRP_cnt_ar[i]} Model({i}): {output_[i]}")  
-        """
+    """

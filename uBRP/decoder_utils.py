@@ -27,10 +27,8 @@ if __name__ == "__main__":
     embed_size = 2
     node_embeddings = torch.rand((batch_size, width, embed_size))
 
-    # 함수 호출
     newnode_embeddings = concat_embedding(node_embeddings)
 
-    # 결과 출력
     print("Original node embeddings:")
     print(node_embeddings)
     print("\nConcatenated node embeddings:")

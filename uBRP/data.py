@@ -66,11 +66,13 @@ def generate_data(device,n_samples=10,n_containers = 8,max_stacks=4,max_tiers=4,
 	for i in range(n_samples):
 		per = np.arange(0, n_containers, 1)
 		np.random.shuffle(per)
-		per=torch.FloatTensor((per+1)/(n_containers+1.0))
+		per=torch.FloatTensor((per+1)/(n_containers+1.0)) #Uniform(0,1)
+		#per =torch.FloatTensor(1/(per+1)) #1/N
 		data=torch.reshape(per,(max_stacks,max_tiers-2)).to(device)
 		data = torch.cat([torch.zeros(plus_stacks, max_tiers-2).to(device),data], dim=0)
 		data = data[torch.randperm(data.size()[0])]
-		add_empty=torch.zeros((max_stacks+plus_stacks,plus_tiers),dtype=float).to(device)
+		add_empty= torch.zeros((max_stacks+plus_stacks,plus_tiers),dtype=float).to(device)
+		#add_empty=-1 * torch.ones((max_stacks+plus_stacks,plus_tiers),dtype=float).to(device)
 		dataset[i]=torch.cat( (data,add_empty) ,dim=1).to(device)
 
 	dataset=dataset.to(torch.float32)
@@ -103,33 +105,50 @@ class Generator(Dataset):
 		return self.n_samples
 
 class MultipleGenerator():
-	def __init__(self, device, batch = 64, n_samples = 5120, seed=None, epoch = 0):
+	def __init__(self, device, batch = 64, n_samples = 5120, seed=None, epoch = 0, max_size = 5, t_cur = 50, is_validation = False):
 		self.n_samples = n_samples
 		self.batch = batch
 		self.epoch = epoch
 		self.device = device 
-		
-		max_num = 8
-		type_of_Size = sorted([(i,j) for i in range(3,max_num+1) for j in range(i-1, max_num+1)], key = lambda x: x[0]+x[1]) #Should be Tested
+		self.t_cur = t_cur
+		max_num = max_size
+		#type_of_Size = sorted([(i,j) for i in range(3,max_num+1) for j in range(max(i-1, 3), max_num+1)], key = lambda x: x[0]*x[1]) #Should be Tested
+		type_of_Size = [(4,4),(5,4),(6,4),(7,4),(4,5),(5,5),(6,5)]
+		#print(type_of_Size)
 		#type_of_Size = [(i,j) for i in range(3,max_num+1) for j in range(i-1, max_num+1)]
-		
-		self.upper= len(type_of_Size)-1
-
-		self.prob_dist = self.get_prob_dist()
+		self.n_max = len(type_of_Size)
+		if epoch > t_cur:
+			self.upper = self.n_max
+		else:
+			self.upper = (self.n_max*epoch)//t_cur
+		self.upper = len(type_of_Size)
+		if is_validation:
+			self.prob_dist = self.get_prob_dist(is_validation)
+		else:
+			self.prob_dist = self.get_prob_dist()
 		self.type_num_dist = [type_of_Size[n] for n in self.prob_dist]
-		self.datasets = [Generator(device = self.device, n_samples=batch, n_containers=ms*(mt), max_stacks=ms, max_tiers=mt+2) for ms, mt in self.type_num_dist]
+		#print(self.type_num_dist)
+		self.datasets = [Generator(device = self.device, n_samples=batch, n_containers=ms*(mt), max_stacks=ms, max_tiers=mt+2, plus_tiers=2) for ms, mt in self.type_num_dist]
 		
 	def get_dataset(self):
 		#(max_stacks, max_tiers), dataset = self.datasets_withinfo[idx]
 		return  self.datasets
-	def get_prob_dist(self):
+	def get_prob_dist(self, is_validation = False):
+		"""
 		#lower, upper, scale = 0, self.upper, .5 * (1.03)**self.epoch
 		lower, upper, scale = 0, self.upper, .5 + .3* self.epoch
 		X = stats.truncexpon(b=(upper-lower)/scale, loc=lower, scale=scale) #Truncated Expon
 		data = X.rvs(self.n_samples//self.batch)
 		return torch.tensor(np.rint(data), dtype=torch.long).to(self.device)
+		"""
+		return torch.randint(low=0, high=self.upper, size=(self.n_samples//self.batch,), device=self.device)
+		#return torch.zeros((self.n_samples//self.batch,), dtype=torch.long)
+		if is_validation:
+			return torch.randint(low=0, high=self.n_max, size=(self.n_samples//self.batch,), device=self.device)
+		if self.upper == 0:
+			return torch.zeros((self.n_samples//self.batch,), dtype=torch.long)
+		else:
+			return torch.randint(low=0, high=self.upper, size=(1,),device=self.device).repeat(self.n_samples//self.batch)
 if __name__ == '__main__':
-	#print(data_from_caserta()[39])
-    #(data_from_caserta_for_greedy())
-    #print(generate_data_Multiple(device = 'cpu', total_n_samples = 100,  max_stacks = 4, max_tiers = 7, plus_tiers = 5)
-	print(MultipleGenerator('cuda:0', epoch=30).type_num_dist)
+	print(data_from_caserta()[39])
+	print(generate_data_Multiple(device = 'cpu', total_n_samples = 100,  max_stacks = 4, max_tiers = 7, plus_tiers = 5))
