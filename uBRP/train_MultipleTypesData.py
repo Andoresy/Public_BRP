@@ -159,7 +159,7 @@ if __name__ == '__main__':
                  "epochs": 400,
                  "batch": 128,
                  "batch_num": 400,
-                 "batch_verbose": 50,
+                 "batch_verbose": 200,
                  "max_stacks": 5,
                  "max_tiers": 7,
                  "plus_tiers": 2,

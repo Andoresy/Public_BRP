@@ -1,0 +1,470 @@
+240220_16_51
+ start training 
+{'n_encode_layers': 3, 'N_samplings': 8, 'epochs': 400, 'batch': 128, 'batch_num': 400, 'batch_verbose': 200, 'max_stacks': 5, 'max_tiers': 7, 'plus_tiers': 2, 'baseline_type': 'greedy', 'lr': 5e-05, 'warmuplr': 0.001, 'beta': 0.1, 'embed_dim': 64}Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 0) 
+bl_vals = [200. 200. 200. ... 150. 150. 150.] ,means = 190.0 
+Epoch 0 (batch = 0): Loss: 277.485 Cost: 199.742, 0min15sec 
+Epoch 0 (batch = 200): Loss: 2360.685 Cost: 168.890, 22min7sec 
+Evaluating candidate model on baseline dataset (callback epoch = 0) 
+Epoch 0 candidate mean 159.3484344482422, baseline mean 190.0 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 0) 
+bl_vals = [175. 175. 175. ... 200. 200. 200.] ,means = 146.19358825683594 
+new Evaluation dataset
+Epoch 1 (batch = 0): Loss: 17018.211 Cost: 135.695, 23min4sec 
+Epoch 1 (batch = 200): Loss: 10716.914 Cost: 79.396, 19min51sec 
+Evaluating candidate model on baseline dataset (callback epoch = 1) 
+Epoch 1 candidate mean 112.93547058105469, baseline mean 146.19358825683594 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 1) 
+bl_vals = [200. 200. 200. ...  21.  21.  25.] ,means = 128.36093139648438 
+new Evaluation dataset
+Epoch 2 (batch = 0): Loss: 9748.528 Cost: 61.703, 19min45sec 
+Epoch 2 (batch = 200): Loss: 6384.435 Cost: 52.132, 15min40sec 
+Evaluating candidate model on baseline dataset (callback epoch = 2) 
+Epoch 2 candidate mean 95.92109680175781, baseline mean 128.36093139648438 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 2) 
+bl_vals = [ 25.  21.  14. ... 175.  38.  18.] ,means = 95.61499786376953 
+new Evaluation dataset
+Epoch 3 (batch = 0): Loss: 6115.525 Cost: 56.711, 16min41sec 
+Epoch 3 (batch = 200): Loss: 3645.663 Cost: 45.309, 15min20sec 
+Evaluating candidate model on baseline dataset (callback epoch = 3) 
+Epoch 3 candidate mean 88.5414047241211, baseline mean 95.61499786376953 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 3) 
+bl_vals = [ 34.  47. 200. ...  37. 200.  42.] ,means = 71.77218627929688 
+new Evaluation dataset
+Epoch 4 (batch = 0): Loss: 4209.515 Cost: 49.109, 15min28sec 
+Epoch 4 (batch = 200): Loss: 1842.640 Cost: 35.633, 11min55sec 
+Evaluating candidate model on baseline dataset (callback epoch = 4) 
+Epoch 4 candidate mean 53.41796875, baseline mean 71.77218627929688 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 4) 
+bl_vals = [36. 28. 39. ... 23. 20. 22.] ,means = 49.443748474121094 
+new Evaluation dataset
+Epoch 5 (batch = 0): Loss: -8.266 Cost: 13.359, 15min55sec 
+Epoch 5 (batch = 200): Loss: 787.205 Cost: 31.763, 12min15sec 
+Evaluating candidate model on baseline dataset (callback epoch = 5) 
+Epoch 5 candidate mean 43.63703155517578, baseline mean 49.443748474121094 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 5) 
+bl_vals = [ 34.  41.  33. ... 200.  34.  26.] ,means = 44.19093704223633 
+new Evaluation dataset
+Epoch 6 (batch = 0): Loss: 178.184 Cost: 26.945, 16min19sec 
+Epoch 6 (batch = 200): Loss: 469.501 Cost: 34.812, 13min33sec 
+Evaluating candidate model on baseline dataset (callback epoch = 6) 
+Epoch 6 candidate mean 36.68375015258789, baseline mean 44.19093704223633 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 6) 
+bl_vals = [38. 32. 32. ... 28. 20. 24.] ,means = 43.557186126708984 
+new Evaluation dataset
+Epoch 7 (batch = 0): Loss: 1357.119 Cost: 53.328, 15min26sec 
+Epoch 7 (batch = 200): Loss: 145.059 Cost: 30.217, 11min59sec 
+Evaluating candidate model on baseline dataset (callback epoch = 7) 
+Epoch 7 candidate mean 40.95343780517578, baseline mean 43.557186126708984 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 7) 
+bl_vals = [24. 18. 18. ... 33. 43. 37.] ,means = 29.046249389648438 
+new Evaluation dataset
+Epoch 8 (batch = 0): Loss: -12.256 Cost: 21.281, 14min8sec 
+Epoch 8 (batch = 200): Loss: 65.488 Cost: 28.470, 12min4sec 
+Evaluating candidate model on baseline dataset (callback epoch = 8) 
+Epoch 8 candidate mean 62.723594665527344, baseline mean 29.046249389648438 
+Epoch 9 (batch = 0): Loss: -8.212 Cost: 15.328, 14min1sec 
+Epoch 9 (batch = 200): Loss: -185.033 Cost: 31.816, 12min7sec 
+Evaluating candidate model on baseline dataset (callback epoch = 9) 
+Epoch 9 candidate mean 30.362031936645508, baseline mean 29.046249389648438 
+Epoch 10 (batch = 0): Loss: 250.268 Cost: 40.414, 13min0sec 
+Epoch 10 (batch = 200): Loss: 118.390 Cost: 29.082, 11min46sec 
+Evaluating candidate model on baseline dataset (callback epoch = 10) 
+Epoch 10 candidate mean 29.845781326293945, baseline mean 29.046249389648438 
+Epoch 11 (batch = 0): Loss: -1.670 Cost: 15.039, 14min3sec 
+Epoch 11 (batch = 200): Loss: 114.986 Cost: 28.388, 11min18sec 
+Evaluating candidate model on baseline dataset (callback epoch = 11) 
+Epoch 11 candidate mean 27.470155715942383, baseline mean 29.046249389648438 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 11) 
+bl_vals = [34. 25. 34. ... 22. 20. 25.] ,means = 33.59031295776367 
+new Evaluation dataset
+Epoch 12 (batch = 0): Loss: -0.668 Cost: 12.992, 13min28sec 
+Epoch 12 (batch = 200): Loss: 54.010 Cost: 27.113, 11min19sec 
+Evaluating candidate model on baseline dataset (callback epoch = 12) 
+Epoch 12 candidate mean 32.329532623291016, baseline mean 33.59031295776367 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 12) 
+bl_vals = [32. 39. 23. ... 31. 31. 34.] ,means = 33.825313568115234 
+new Evaluation dataset
+Epoch 13 (batch = 0): Loss: 0.071 Cost: 14.680, 11min42sec 
+Epoch 13 (batch = 200): Loss: 24.795 Cost: 27.476, 10min33sec 
+Evaluating candidate model on baseline dataset (callback epoch = 13) 
+Epoch 13 candidate mean 30.527969360351562, baseline mean 33.825313568115234 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 13) 
+bl_vals = [ 42. 200.  46. ...  24.  21.  20.] ,means = 26.86750030517578 
+new Evaluation dataset
+Epoch 14 (batch = 0): Loss: 160.014 Cost: 31.383, 12min58sec 
+Epoch 14 (batch = 200): Loss: 25.564 Cost: 24.249, 8min41sec 
+Evaluating candidate model on baseline dataset (callback epoch = 14) 
+Epoch 14 candidate mean 34.4162483215332, baseline mean 26.86750030517578 
+Epoch 15 (batch = 0): Loss: -12.951 Cost: 31.609, 10min59sec 
+Epoch 15 (batch = 200): Loss: 39.544 Cost: 28.106, 11min7sec 
+Evaluating candidate model on baseline dataset (callback epoch = 15) 
+Epoch 15 candidate mean 24.958593368530273, baseline mean 26.86750030517578 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 15) 
+bl_vals = [36. 28. 30. ... 11. 10. 15.] ,means = 30.889062881469727 
+new Evaluation dataset
+Epoch 16 (batch = 0): Loss: -0.208 Cost: 12.297, 10min58sec 
+Epoch 16 (batch = 200): Loss: 18.916 Cost: 25.840, 9min9sec 
+Evaluating candidate model on baseline dataset (callback epoch = 16) 
+Epoch 16 candidate mean 32.2951545715332, baseline mean 30.889062881469727 
+Epoch 17 (batch = 0): Loss: -0.261 Cost: 14.328, 11min37sec 
+Epoch 17 (batch = 200): Loss: -82.577 Cost: 27.746, 10min34sec 
+Evaluating candidate model on baseline dataset (callback epoch = 17) 
+Epoch 17 candidate mean 29.281719207763672, baseline mean 30.889062881469727 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 17) 
+bl_vals = [15. 14. 17. ... 22. 26. 21.] ,means = 28.8778133392334 
+new Evaluation dataset
+Epoch 18 (batch = 0): Loss: -0.322 Cost: 12.047, 12min27sec 
+Epoch 18 (batch = 200): Loss: 1.380 Cost: 26.846, 11min2sec 
+Evaluating candidate model on baseline dataset (callback epoch = 18) 
+Epoch 18 candidate mean 29.447031021118164, baseline mean 28.8778133392334 
+Epoch 19 (batch = 0): Loss: -0.090 Cost: 11.789, 11min2sec 
+Epoch 19 (batch = 200): Loss: -3.389 Cost: 26.205, 9min51sec 
+Evaluating candidate model on baseline dataset (callback epoch = 19) 
+Epoch 19 candidate mean 28.782032012939453, baseline mean 28.8778133392334 
+Epoch 20 (batch = 0): Loss: -0.326 Cost: 19.789, 11min15sec 
+Epoch 20 (batch = 200): Loss: -78.344 Cost: 26.755, 10min32sec 
+Evaluating candidate model on baseline dataset (callback epoch = 20) 
+Epoch 20 candidate mean 27.915624618530273, baseline mean 28.8778133392334 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 20) 
+bl_vals = [36. 41. 35. ... 42. 43. 39.] ,means = 26.953907012939453 
+new Evaluation dataset
+Epoch 21 (batch = 0): Loss: 17.629 Cost: 36.086, 12min56sec 
+Epoch 21 (batch = 200): Loss: -21.649 Cost: 26.563, 9min37sec 
+Evaluating candidate model on baseline dataset (callback epoch = 21) 
+Epoch 21 candidate mean 27.975780487060547, baseline mean 26.953907012939453 
+Epoch 22 (batch = 0): Loss: 0.050 Cost: 13.953, 10min40sec 
+Epoch 22 (batch = 200): Loss: -38.844 Cost: 26.915, 9min30sec 
+Evaluating candidate model on baseline dataset (callback epoch = 22) 
+Epoch 22 candidate mean 25.706092834472656, baseline mean 26.953907012939453 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 22) 
+bl_vals = [24. 38. 33. ... 45. 34. 38.] ,means = 26.7840633392334 
+new Evaluation dataset
+Epoch 23 (batch = 0): Loss: 22.401 Cost: 35.344, 11min52sec 
+Epoch 23 (batch = 200): Loss: -15.635 Cost: 24.859, 8min46sec 
+Evaluating candidate model on baseline dataset (callback epoch = 23) 
+Epoch 23 candidate mean 27.30078125, baseline mean 26.7840633392334 
+Epoch 24 (batch = 0): Loss: -0.355 Cost: 11.891, 10min41sec 
+Epoch 24 (batch = 200): Loss: -1.744 Cost: 25.249, 9min8sec 
+Evaluating candidate model on baseline dataset (callback epoch = 24) 
+Epoch 24 candidate mean 26.662500381469727, baseline mean 26.7840633392334 
+Epoch 25 (batch = 0): Loss: -225.031 Cost: 45.523, 11min52sec 
+Epoch 25 (batch = 200): Loss: -16.052 Cost: 27.411, 10min51sec 
+Evaluating candidate model on baseline dataset (callback epoch = 25) 
+Epoch 25 candidate mean 27.948436737060547, baseline mean 26.7840633392334 
+Epoch 26 (batch = 0): Loss: -0.228 Cost: 19.258, 10min19sec 
+Epoch 26 (batch = 200): Loss: -514.574 Cost: 30.970, 11min6sec 
+Evaluating candidate model on baseline dataset (callback epoch = 26) 
+Epoch 26 candidate mean 25.537813186645508, baseline mean 26.7840633392334 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 26) 
+bl_vals = [18. 12. 20. ... 42. 43. 30.] ,means = 25.373437881469727 
+new Evaluation dataset
+Epoch 27 (batch = 0): Loss: 5.340 Cost: 12.242, 11min13sec 
+Epoch 27 (batch = 200): Loss: -7.941 Cost: 24.729, 7min47sec 
+Evaluating candidate model on baseline dataset (callback epoch = 27) 
+Epoch 27 candidate mean 26.587186813354492, baseline mean 25.373437881469727 
+Epoch 28 (batch = 0): Loss: -0.271 Cost: 11.984, 9min7sec 
+Epoch 28 (batch = 200): Loss: -62.315 Cost: 27.789, 10min6sec 
+Evaluating candidate model on baseline dataset (callback epoch = 28) 
+Epoch 28 candidate mean 26.154375076293945, baseline mean 25.373437881469727 
+Epoch 29 (batch = 0): Loss: -1.351 Cost: 23.578, 9min49sec 
+Epoch 29 (batch = 200): Loss: -9.040 Cost: 26.449, 8min54sec 
+Evaluating candidate model on baseline dataset (callback epoch = 29) 
+Epoch 29 candidate mean 26.383438110351562, baseline mean 25.373437881469727 
+Epoch 30 (batch = 0): Loss: -3.150 Cost: 29.219, 11min40sec 
+Epoch 30 (batch = 200): Loss: 1.368 Cost: 23.918, 7min9sec 
+Evaluating candidate model on baseline dataset (callback epoch = 30) 
+Epoch 30 candidate mean 26.279062271118164, baseline mean 25.373437881469727 
+Epoch 31 (batch = 0): Loss: -1.169 Cost: 19.891, 9min8sec 
+Epoch 31 (batch = 200): Loss: -10.872 Cost: 26.308, 9min10sec 
+Evaluating candidate model on baseline dataset (callback epoch = 31) 
+Epoch 31 candidate mean 24.952655792236328, baseline mean 25.373437881469727 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 31) 
+bl_vals = [27. 36. 20. ... 26. 33. 33.] ,means = 25.337186813354492 
+new Evaluation dataset
+Epoch 32 (batch = 0): Loss: 0.231 Cost: 23.117, 10min16sec 
+Epoch 32 (batch = 200): Loss: -13.448 Cost: 25.556, 9min30sec 
+Evaluating candidate model on baseline dataset (callback epoch = 32) 
+Epoch 32 candidate mean 25.93781280517578, baseline mean 25.337186813354492 
+Epoch 33 (batch = 0): Loss: 0.190 Cost: 14.297, 10min41sec 
+Epoch 33 (batch = 200): Loss: -11.045 Cost: 24.545, 8min43sec 
+Evaluating candidate model on baseline dataset (callback epoch = 33) 
+Epoch 33 candidate mean 25.15625, baseline mean 25.337186813354492 
+Epoch 34 (batch = 0): Loss: -0.269 Cost: 19.469, 9min48sec 
+Epoch 34 (batch = 200): Loss: -8.969 Cost: 25.397, 8min22sec 
+Evaluating candidate model on baseline dataset (callback epoch = 34) 
+Epoch 34 candidate mean 25.338125228881836, baseline mean 25.337186813354492 
+Epoch 35 (batch = 0): Loss: 4.148 Cost: 33.922, 9min5sec 
+Epoch 35 (batch = 200): Loss: -1.799 Cost: 24.697, 8min33sec 
+Evaluating candidate model on baseline dataset (callback epoch = 35) 
+Epoch 35 candidate mean 26.000938415527344, baseline mean 25.337186813354492 
+Epoch 36 (batch = 0): Loss: -0.767 Cost: 14.539, 9min21sec 
+Epoch 36 (batch = 200): Loss: -6.321 Cost: 24.580, 7min56sec 
+Evaluating candidate model on baseline dataset (callback epoch = 36) 
+Epoch 36 candidate mean 26.033124923706055, baseline mean 25.337186813354492 
+Epoch 37 (batch = 0): Loss: 1.571 Cost: 42.336, 9min51sec 
+Epoch 37 (batch = 200): Loss: -8.749 Cost: 24.027, 8min56sec 
+Evaluating candidate model on baseline dataset (callback epoch = 37) 
+Epoch 37 candidate mean 26.085155487060547, baseline mean 25.337186813354492 
+Epoch 38 (batch = 0): Loss: -0.884 Cost: 13.734, 10min5sec 
+Epoch 38 (batch = 200): Loss: -7.198 Cost: 24.442, 8min8sec 
+Evaluating candidate model on baseline dataset (callback epoch = 38) 
+Epoch 38 candidate mean 25.92171859741211, baseline mean 25.337186813354492 
+Epoch 39 (batch = 0): Loss: -1.594 Cost: 22.711, 8min55sec 
+Epoch 39 (batch = 200): Loss: -23.294 Cost: 26.353, 8min48sec 
+Evaluating candidate model on baseline dataset (callback epoch = 39) 
+Epoch 39 candidate mean 25.397968292236328, baseline mean 25.337186813354492 
+Epoch 40 (batch = 0): Loss: -181.976 Cost: 45.422, 8min40sec 
+Epoch 40 (batch = 200): Loss: -12.042 Cost: 24.273, 7min46sec 
+Evaluating candidate model on baseline dataset (callback epoch = 40) 
+Epoch 40 candidate mean 24.724687576293945, baseline mean 25.337186813354492 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 40) 
+bl_vals = [22. 11. 18. ... 13. 11.  8.] ,means = 23.78140640258789 
+new Evaluation dataset
+Epoch 41 (batch = 0): Loss: -0.546 Cost: 18.953, 10min2sec 
+Epoch 41 (batch = 200): Loss: -16.134 Cost: 23.410, 7min27sec 
+Evaluating candidate model on baseline dataset (callback epoch = 41) 
+Epoch 41 candidate mean 27.647968292236328, baseline mean 23.78140640258789 
+Epoch 42 (batch = 0): Loss: -2.102 Cost: 19.164, 10min58sec 
+Epoch 42 (batch = 200): Loss: -19.608 Cost: 27.027, 11min33sec 
+Evaluating candidate model on baseline dataset (callback epoch = 42) 
+Epoch 42 candidate mean 24.928438186645508, baseline mean 23.78140640258789 
+Epoch 43 (batch = 0): Loss: -0.545 Cost: 40.383, 8min4sec 
+Epoch 43 (batch = 200): Loss: -9.638 Cost: 24.883, 8min25sec 
+Evaluating candidate model on baseline dataset (callback epoch = 43) 
+Epoch 43 candidate mean 23.965782165527344, baseline mean 23.78140640258789 
+Epoch 44 (batch = 0): Loss: -0.485 Cost: 19.336, 8min18sec 
+Epoch 44 (batch = 200): Loss: -3.028 Cost: 23.508, 6min39sec 
+Evaluating candidate model on baseline dataset (callback epoch = 44) 
+Epoch 44 candidate mean 23.569374084472656, baseline mean 23.78140640258789 
+Epoch 45 (batch = 0): Loss: -10.536 Cost: 29.203, 8min14sec 
+Epoch 45 (batch = 200): Loss: -10.727 Cost: 24.679, 7min23sec 
+Evaluating candidate model on baseline dataset (callback epoch = 45) 
+Epoch 45 candidate mean 23.408124923706055, baseline mean 23.78140640258789 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 45) 
+bl_vals = [25. 30. 24. ... 20. 18. 12.] ,means = 26.45296859741211 
+new Evaluation dataset
+Epoch 46 (batch = 0): Loss: -0.082 Cost: 11.586, 8min3sec 
+Epoch 46 (batch = 200): Loss: -7.158 Cost: 24.104, 7min25sec 
+Evaluating candidate model on baseline dataset (callback epoch = 46) 
+Epoch 46 candidate mean 26.25015640258789, baseline mean 26.45296859741211 
+Epoch 47 (batch = 0): Loss: 0.033 Cost: 13.812, 8min34sec 
+Epoch 47 (batch = 200): Loss: -1.541 Cost: 25.571, 8min28sec 
+Evaluating candidate model on baseline dataset (callback epoch = 47) 
+Epoch 47 candidate mean 26.78125, baseline mean 26.45296859741211 
+Epoch 48 (batch = 0): Loss: -0.546 Cost: 19.156, 8min4sec 
+Epoch 48 (batch = 200): Loss: -2.652 Cost: 24.009, 7min4sec 
+Evaluating candidate model on baseline dataset (callback epoch = 48) 
+Epoch 48 candidate mean 26.961719512939453, baseline mean 26.45296859741211 
+Epoch 49 (batch = 0): Loss: 0.530 Cost: 21.906, 7min34sec 
+Epoch 49 (batch = 200): Loss: -0.863 Cost: 23.185, 6min13sec 
+Evaluating candidate model on baseline dataset (callback epoch = 49) 
+Epoch 49 candidate mean 27.788436889648438, baseline mean 26.45296859741211 
+Epoch 50 (batch = 0): Loss: 2.166 Cost: 18.695, 8min3sec 
+Epoch 50 (batch = 200): Loss: -91.837 Cost: 25.172, 9min6sec 
+Evaluating candidate model on baseline dataset (callback epoch = 50) 
+Epoch 50 candidate mean 26.89421844482422, baseline mean 26.45296859741211 
+Epoch 51 (batch = 0): Loss: 11.846 Cost: 39.469, 9min4sec 
+Epoch 51 (batch = 200): Loss: -52.120 Cost: 25.311, 8min44sec 
+Evaluating candidate model on baseline dataset (callback epoch = 51) 
+Epoch 51 candidate mean 27.692811965942383, baseline mean 26.45296859741211 
+Epoch 52 (batch = 0): Loss: -244.515 Cost: 48.125, 8min44sec 
+Epoch 52 (batch = 200): Loss: -6.210 Cost: 23.364, 6min29sec 
+Evaluating candidate model on baseline dataset (callback epoch = 52) 
+Epoch 52 candidate mean 26.444843292236328, baseline mean 26.45296859741211 
+Epoch 53 (batch = 0): Loss: 0.050 Cost: 18.703, 8min24sec 
+Epoch 53 (batch = 200): Loss: -14.849 Cost: 23.483, 7min41sec 
+Evaluating candidate model on baseline dataset (callback epoch = 53) 
+Epoch 53 candidate mean 25.970312118530273, baseline mean 26.45296859741211 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 53) 
+bl_vals = [33. 38. 26. ... 21. 21. 20.] ,means = 23.649843215942383 
+new Evaluation dataset
+Epoch 54 (batch = 0): Loss: 104.729 Cost: 40.727, 7min38sec 
+Epoch 54 (batch = 200): Loss: -1.035 Cost: 23.576, 7min16sec 
+Evaluating candidate model on baseline dataset (callback epoch = 54) 
+Epoch 54 candidate mean 24.65984344482422, baseline mean 23.649843215942383 
+Epoch 55 (batch = 0): Loss: 8.617 Cost: 21.812, 7min19sec 
+Epoch 55 (batch = 200): Loss: -9.050 Cost: 24.107, 6min50sec 
+Evaluating candidate model on baseline dataset (callback epoch = 55) 
+Epoch 55 candidate mean 23.689844131469727, baseline mean 23.649843215942383 
+Epoch 56 (batch = 0): Loss: -0.521 Cost: 18.359, 10min1sec 
+Epoch 56 (batch = 200): Loss: 1.055 Cost: 23.728, 7min6sec 
+Evaluating candidate model on baseline dataset (callback epoch = 56) 
+Epoch 56 candidate mean 24.63703155517578, baseline mean 23.649843215942383 
+Epoch 57 (batch = 0): Loss: -3.762 Cost: 41.062, 7min51sec 
+Epoch 57 (batch = 200): Loss: -1.672 Cost: 23.891, 6min56sec 
+Evaluating candidate model on baseline dataset (callback epoch = 57) 
+Epoch 57 candidate mean 24.723438262939453, baseline mean 23.649843215942383 
+Epoch 58 (batch = 0): Loss: -1.555 Cost: 27.703, 8min34sec 
+Epoch 58 (batch = 200): Loss: -2.602 Cost: 23.035, 6min22sec 
+Evaluating candidate model on baseline dataset (callback epoch = 58) 
+Epoch 58 candidate mean 23.549531936645508, baseline mean 23.649843215942383 
+Epoch 59 (batch = 0): Loss: -1.316 Cost: 28.125, 7min43sec 
+Epoch 59 (batch = 200): Loss: -3.231 Cost: 22.243, 6min15sec 
+Evaluating candidate model on baseline dataset (callback epoch = 59) 
+Epoch 59 candidate mean 23.286561965942383, baseline mean 23.649843215942383 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 59) 
+bl_vals = [32. 47. 31. ... 31. 36. 27.] ,means = 23.425312042236328 
+new Evaluation dataset
+Epoch 60 (batch = 0): Loss: -0.003 Cost: 11.289, 13min10sec 
+Epoch 60 (batch = 200): Loss: -27.822 Cost: 24.311, 13min34sec 
+Evaluating candidate model on baseline dataset (callback epoch = 60) 
+Epoch 60 candidate mean 23.208906173706055, baseline mean 23.425312042236328 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 60) 
+bl_vals = [17. 17. 21. ... 23. 23. 21.] ,means = 24.158281326293945 
+new Evaluation dataset
+Epoch 61 (batch = 0): Loss: -0.076 Cost: 18.172, 9min33sec 
+Epoch 61 (batch = 200): Loss: -3.608 Cost: 23.899, 6min9sec 
+Evaluating candidate model on baseline dataset (callback epoch = 61) 
+Epoch 61 candidate mean 25.284530639648438, baseline mean 24.158281326293945 
+Epoch 62 (batch = 0): Loss: -1.701 Cost: 21.594, 7min38sec 
+Epoch 62 (batch = 200): Loss: -4.251 Cost: 23.607, 6min11sec 
+Evaluating candidate model on baseline dataset (callback epoch = 62) 
+Epoch 62 candidate mean 24.500782012939453, baseline mean 24.158281326293945 
+Epoch 63 (batch = 0): Loss: -0.225 Cost: 26.367, 8min1sec 
+Epoch 63 (batch = 200): Loss: -10.180 Cost: 23.749, 7min10sec 
+Evaluating candidate model on baseline dataset (callback epoch = 63) 
+Epoch 63 candidate mean 24.430936813354492, baseline mean 24.158281326293945 
+Epoch 64 (batch = 0): Loss: -0.082 Cost: 39.359, 8min5sec 
+Epoch 64 (batch = 200): Loss: -14.763 Cost: 24.732, 7min20sec 
+Evaluating candidate model on baseline dataset (callback epoch = 64) 
+Epoch 64 candidate mean 24.299842834472656, baseline mean 24.158281326293945 
+Epoch 65 (batch = 0): Loss: -0.143 Cost: 17.867, 7min2sec 
+Epoch 65 (batch = 200): Loss: -2.757 Cost: 23.077, 6min4sec 
+Evaluating candidate model on baseline dataset (callback epoch = 65) 
+Epoch 65 candidate mean 24.138750076293945, baseline mean 24.158281326293945 
+Epoch 66 (batch = 0): Loss: -0.143 Cost: 26.883, 8min12sec 
+Epoch 66 (batch = 200): Loss: -0.287 Cost: 23.813, 6min55sec 
+Evaluating candidate model on baseline dataset (callback epoch = 66) 
+Epoch 66 candidate mean 24.03937530517578, baseline mean 24.158281326293945 
+Epoch 67 (batch = 0): Loss: -4.167 Cost: 27.055, 8min25sec 
+Epoch 67 (batch = 200): Loss: -2.445 Cost: 22.830, 6min30sec 
+Evaluating candidate model on baseline dataset (callback epoch = 67) 
+Epoch 67 candidate mean 24.665624618530273, baseline mean 24.158281326293945 
+Epoch 68 (batch = 0): Loss: -0.438 Cost: 18.875, 8min11sec 
+Epoch 68 (batch = 200): Loss: -14.759 Cost: 24.298, 8min44sec 
+Evaluating candidate model on baseline dataset (callback epoch = 68) 
+Epoch 68 candidate mean 24.947343826293945, baseline mean 24.158281326293945 
+Epoch 69 (batch = 0): Loss: -8.101 Cost: 33.352, 8min21sec 
+Epoch 69 (batch = 200): Loss: -5.296 Cost: 23.335, 6min38sec 
+Evaluating candidate model on baseline dataset (callback epoch = 69) 
+Epoch 69 candidate mean 24.131250381469727, baseline mean 24.158281326293945 
+Epoch 70 (batch = 0): Loss: -0.031 Cost: 20.320, 7min17sec 
+Epoch 70 (batch = 200): Loss: -4.943 Cost: 23.332, 6min45sec 
+Evaluating candidate model on baseline dataset (callback epoch = 70) 
+Epoch 70 candidate mean 24.542343139648438, baseline mean 24.158281326293945 
+Epoch 71 (batch = 0): Loss: 0.043 Cost: 12.812, 7min47sec 
+Epoch 71 (batch = 200): Loss: 0.515 Cost: 23.026, 5min57sec 
+Evaluating candidate model on baseline dataset (callback epoch = 71) 
+Epoch 71 candidate mean 24.032812118530273, baseline mean 24.158281326293945 
+Epoch 72 (batch = 0): Loss: 5.970 Cost: 35.703, 7min11sec 
+Epoch 72 (batch = 200): Loss: -3.176 Cost: 22.491, 5min36sec 
+Evaluating candidate model on baseline dataset (callback epoch = 72) 
+Epoch 72 candidate mean 23.987499237060547, baseline mean 24.158281326293945 
+Epoch 73 (batch = 0): Loss: -0.197 Cost: 11.211, 7min17sec 
+Epoch 73 (batch = 200): Loss: -0.133 Cost: 22.522, 5min38sec 
+Evaluating candidate model on baseline dataset (callback epoch = 73) 
+Epoch 73 candidate mean 24.044843673706055, baseline mean 24.158281326293945 
+Epoch 74 (batch = 0): Loss: 1.009 Cost: 20.820, 7min22sec 
+Epoch 74 (batch = 200): Loss: -11.299 Cost: 22.286, 6min34sec 
+Evaluating candidate model on baseline dataset (callback epoch = 74) 
+Epoch 74 candidate mean 23.668594360351562, baseline mean 24.158281326293945 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 74) 
+bl_vals = [13. 24. 15. ... 22. 16. 18.] ,means = 22.460155487060547 
+new Evaluation dataset
+Epoch 75 (batch = 0): Loss: 0.096 Cost: 17.727, 8min24sec 
+Epoch 75 (batch = 200): Loss: -2.459 Cost: 23.041, 6min54sec 
+Evaluating candidate model on baseline dataset (callback epoch = 75) 
+Epoch 75 candidate mean 22.589218139648438, baseline mean 22.460155487060547 
+Epoch 76 (batch = 0): Loss: -0.594 Cost: 31.039, 6min6sec 
+Epoch 76 (batch = 200): Loss: -12.465 Cost: 24.010, 7min49sec 
+Evaluating candidate model on baseline dataset (callback epoch = 76) 
+Epoch 76 candidate mean 22.356250762939453, baseline mean 22.460155487060547 
+Epoch 77 (batch = 0): Loss: 8.356 Cost: 31.383, 7min52sec 
+Epoch 77 (batch = 200): Loss: -1.946 Cost: 22.293, 6min9sec 
+Evaluating candidate model on baseline dataset (callback epoch = 77) 
+Epoch 77 candidate mean 22.317655563354492, baseline mean 22.460155487060547 
+Epoch 78 (batch = 0): Loss: -0.625 Cost: 25.750, 7min0sec 
+Epoch 78 (batch = 200): Loss: 0.002 Cost: 22.396, 5min33sec 
+Evaluating candidate model on baseline dataset (callback epoch = 78) 
+Epoch 78 candidate mean 22.298124313354492, baseline mean 22.460155487060547 
+Epoch 79 (batch = 0): Loss: 0.655 Cost: 30.570, 6min35sec 
+Epoch 79 (batch = 200): Loss: -2.592 Cost: 22.876, 7min33sec 
+Evaluating candidate model on baseline dataset (callback epoch = 79) 
+Epoch 79 candidate mean 22.052812576293945, baseline mean 22.460155487060547 
+Update baseline
+Baseline model copied 
+_update_baseline : Evaluating baseline model on baseline dataset (epoch = 79) 
+bl_vals = [30. 34. 34. ... 14. 24. 16.] ,means = 21.745468139648438 
+new Evaluation dataset
+Epoch 80 (batch = 0): Loss: 0.700 Cost: 30.586, 7min48sec 
+Epoch 80 (batch = 200): Loss: -2.140 Cost: 21.983, 5min53sec 
+Evaluating candidate model on baseline dataset (callback epoch = 80) 
+Epoch 80 candidate mean 24.124061584472656, baseline mean 21.745468139648438 
+Epoch 81 (batch = 0): Loss: -0.667 Cost: 17.641, 8min9sec 
+Epoch 81 (batch = 200): Loss: -12.553 Cost: 23.208, 7min24sec 
+Evaluating candidate model on baseline dataset (callback epoch = 81) 
+Epoch 81 candidate mean 22.189687728881836, baseline mean 21.745468139648438 
+Epoch 82 (batch = 0): Loss: -1.113 Cost: 31.422, 8min26sec 
+Epoch 82 (batch = 200): Loss: -9.908 Cost: 23.586, 7min25sec 
+Evaluating candidate model on baseline dataset (callback epoch = 82) 
+Epoch 82 candidate mean 22.095155715942383, baseline mean 21.745468139648438 
+Epoch 83 (batch = 0): Loss: -0.113 Cost: 26.500, 7min14sec 
+Epoch 83 (batch = 200): Loss: -2.228 Cost: 22.281, 5min58sec 
+Evaluating candidate model on baseline dataset (callback epoch = 83) 
+Epoch 83 candidate mean 22.012187957763672, baseline mean 21.745468139648438 
+Epoch 84 (batch = 0): Loss: -1.335 Cost: 25.508, 7min17sec 
+Epoch 84 (batch = 200): Loss: -4.153 Cost: 22.824, 7min4sec 
+Evaluating candidate model on baseline dataset (callback epoch = 84) 
+Epoch 84 candidate mean 22.046249389648438, baseline mean 21.745468139648438 
+Epoch 85 (batch = 0): Loss: -0.268 Cost: 12.938, 6min38sec 
+Epoch 85 (batch = 200): Loss: -10.569 Cost: 22.239, 6min31sec 
+Evaluating candidate model on baseline dataset (callback epoch = 85) 
+Epoch 85 candidate mean 22.055156707763672, baseline mean 21.745468139648438 
+Epoch 86 (batch = 0): Loss: -1.453 Cost: 31.312, 8min58sec 
