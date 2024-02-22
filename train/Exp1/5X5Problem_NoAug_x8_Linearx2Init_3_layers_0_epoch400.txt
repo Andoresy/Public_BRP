@@ -1,0 +1,3 @@
+240220_16_48
+ start training 
+{'n_encode_layers': 3, 'N_samplings': 8, 'epochs': 400, 'batch': 128, 'batch_num': 400, 'batch_verbose': 200, 'max_stacks': 5, 'max_tiers': 7, 'plus_tiers': 2, 'baseline_type': 'greedy', 'lr': 5e-05, 'warmuplr': 0.001, 'beta': 0.1, 'embed_dim': 64}

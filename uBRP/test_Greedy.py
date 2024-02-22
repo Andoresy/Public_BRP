@@ -5,13 +5,14 @@ import torch
 import gc
 if __name__ == '__main__':
     device = 'cuda:0'
-    HWS = [(3,3),(3,4),(3,5),(3,6),(3,7),(3,8),(4,4),(4,5),(4,6),(4,7),(5,4),(5,5),(5,6),(5,7), (5,8), (5,9), (5,10),(6,6)]
+    HWS = [(3,3),(3,4),(3,5),(3,6),(3,7),(3,8),(4,4),(4,5),(4,6),(4,7),(5,4),(5,5),(5,6),(5,7)]# (5,8), (5,9), (5,10),(6,6)
     #HWS = [(3,3), (3,4), (3,5), (3,6),(4,4),(5,6), (5,7), (3,8)]
+    #HWS = [(3,3)]
     for H,W in HWS:
         H_plus = 2
         N = H*W
-        Exp_num= 121
-        epoch_num = 337
+        Exp_num= 0
+        epoch_num = 344
         embed_dim = 64
         data_caserta = data_from_caserta(f'data{H}-{W}-.*', H_plus).to(device)
         data_greedy = data_from_caserta_for_greedy(f'data{H}-{W}-.*', H_plus).to(device)
